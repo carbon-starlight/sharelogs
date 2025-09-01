@@ -104,7 +104,7 @@
                     font-weight: 500;
                     transition: background 0.2s, color 0.2s, border 0.2s;
                     box-shadow: 0 2px 8px #0002;    
-                    /* font-family: "Lexend";   set font not here, but in input[ty*/
+                    /* font-family: "Lexend";   set font not here, but in input[ty…*/
                 }
                 input[type="datetime-local"]::-webkit-calendar-picker-indicator {
                     filter: invert(1);
@@ -217,58 +217,13 @@
     <h1 style="text-align: center;">View & Share System Logs</h1>
     <!-- <h1 class="scanlines" style="text-align: center;">View & Share System Logs</h1> -->
 
-    <!-- <div id="drop_zone">
-        <p>Drag one or more files to this <i>drop zone</i>.</p>
-    </div> -->
-    
-    <script>
-        // document.getElementById("drop_zone").addEventListener("drop", dropHandler);
-        
-        // document
-        // .getElementById("drop_zone")
-        // .addEventListener("dragover", dragOverHandler);
-        
-        // function dropHandler(ev) {
-        //     console.log("File(s) dropped");
-            
-        //     // Prevent default behavior (Prevent file from being opened)
-        //     ev.preventDefault();
-            
-        //     if (ev.dataTransfer.items) {
-        //             // Use DataTransferItemList interface to access the file(s)
-        //             [...ev.dataTransfer.items].forEach((item, i) => {
-        //                 // If dropped items aren't files, reject them
-        //                 if (item.kind === "file") {
-        //                     const file = item.getAsFile();
-        //                     console.log(`… file[${i}].name = ${file.name}`);
-        //                 }
-        //             });
-        //             } else {
-        //                 // Use DataTransfer interface to access the file(s)
-        //                 [...ev.dataTransfer.files].forEach((file, i) => {
-        //                     console.log(`… file[${i}].name = ${file.name}`);
-        //                 });
-        //             }
-        //         }
-        // function dragOverHandler(ev) {
-        //     console.log("File(s) in drop zone");
-            
-        //     // Prevent default behavior (Prevent file from being opened)
-        //     ev.preventDefault();
-        //     }
-            
-            </script>
-
-<p style="text-align: center;">
-    <!-- <label for="share-from">Share data from:</label> -->
-    
+    <p style="text-align: center;">    
     <input style="border-width: 0.15em; border-radius: 10px;"
     type="datetime-local"
     id="share-from"
     name="meeting-time"
     value="2025-07-05T20:00" />
     
-    <!-- <label for="share-to">to:</label> -->
     <label for="share-to" style="margin: 5px;";"><i class="fa-solid fa-arrow-right"></i></label>
     
     <input style="border-width: 0.15em; border-radius: 10px;"
@@ -277,17 +232,6 @@
     name="meeting-time"
     value="2025-07-05T20:05" />
     </p>
-    
-    <!-- <script>
-        const now = new Date();
-        const fifteenMinutesAgo = new Date(now.getTime() - 15 * 60 * 1000);
-        
-        const shareFromInput = document.getElementById('share-from');
-        const shareToInput = document.getElementById('share-to');
-        
-        shareFromInput.value = fifteenMinutesAgo.toISOString().slice(0, 16);
-        shareToInput.value = now.toISOString().slice(0, 16);
-    </script> -->
 
     <script>
         function setNowAsValue() {
@@ -322,10 +266,6 @@
         console.log(navigator)
     </script>
     
-    <!-- <input type="file" value="Upload" id="file-picker" title="Select one or more files" name="fileList" webkitdirectory multiple /> -->
-    <!-- <input id="file-picker" type="file" webkitdirectory multiple aria-label="Upload files"> -->
-    
-    
     <p style="padding: 10px; text-align: center"><label for="file-picker" class="upload-btn" style="cursor: pointer; border:#ffffff 2px solid; border-radius: 40px; padding: 10px 20px; font-weight: bold;">Select the /var/log directory to <i class="fa-solid fa-upload"></i></label>
         <input
         type="file"
@@ -337,70 +277,56 @@
         style="display: none"
         /></p>
         
-        <p style="text-align: center;">
-            <progress
-            id="progress"
-            value="0"
-            max="100"
-            aria-label="File processing progress bar"
-            style="display: none;"
-            >
-        </progress>
-    </p>
-    
-    <!-- <progress id="progress1" value="30.2861782205778" max="100" aria-label="File processing progress bar" style="display: block;"></progress> -->
-    
-    <!-- <ul id="listing"></ul> -->
-    
-    <!-- <div>
-        <input type="checkbox" id="remove_sensitive_checkbox" name="scales" checked />
-        <label for="remove_sensitive_checkbox">Attempt to remove potentially sensitive data</label>
-    </div>
-    <div>
-        <input type="checkbox" id="lossy_compression_checkbox" name="scales" checked />
-        <label for="lossy_compression_checkbox">Enable lossy compression</label>
-    </div> -->
+    <p style="text-align: center;">
+        <progress
+        id="progress"
+        value="0"
+        max="100"
+        aria-label="File processing progress bar"
+        style="display: none;"
+        >
+    </progress></p>
 
     <style>
-  .checkbox-row {
-    margin: 8px 0;
-  }
-  .checkbox-label {
-    display: inline-block;
-    margin-left: 6px;
-    font-weight: 600;
-  }
-  .checkbox-clarification {
-    display: block;
-    margin-left: 30px; /* aligns with label text, adjust if needed */
-    color: #6b7280;    /* gray color (Tailwind slate-500-ish) */
-    font-size: 0.875rem; /* slightly smaller than main label */
-    line-height: 1.2;
-  }
-</style>
+        .checkbox-row {
+            margin: 8px 0;
+        }
+        .checkbox-label {
+            display: inline-block;
+            margin-left: 6px;
+            font-weight: 600;
+        }
+        .checkbox-clarification {
+            display: block;
+            margin-left: 30px; /* aligns with label text, adjust if needed */
+            color: #6b7280;    /* gray color (Tailwind slate-500-ish) */
+            font-size: 0.875rem; /* slightly smaller than main label */
+            line-height: 1.2;
+        }
+    </style>
 
-<div class="checkbox-row" style="margin-top: 1.7em;">
-  <input type="checkbox" id="remove_sensitive_checkbox" name="scales" checked />
-  <label class="checkbox-label" for="remove_sensitive_checkbox">
-    Attempt to remove potentially sensitive data
-  </label>
-  <span class="checkbox-clarification">
-    Logs are designed to omit private information like passwords, but 
-    some user-unique data like locale or IP adresses may be present
-    <!-- If checked, an attempt to parse and hide this data will be made -->
-  </span>
-</div>
+    <div class="checkbox-row" style="margin-top: 1.7em;">
+    <input type="checkbox" id="remove_sensitive_checkbox" name="scales" checked />
+    <label class="checkbox-label" for="remove_sensitive_checkbox">
+        Attempt to remove potentially sensitive data
+    </label>
+    <span class="checkbox-clarification">
+        Logs are designed to omit private information like passwords, but 
+        some user-unique data like locale or IP adresses may be present
+        <!-- If checked, an attempt to parse and hide this data will be made -->
+    </span>
+    </div>
 
-<div class="checkbox-row" style="margin-bottom: 1.7em;">
-  <input type="checkbox" id="lossy_compression_checkbox" name="scales" checked />
-  <label class="checkbox-label" for="lossy_compression_checkbox">
-    Enable lossy compression
-  </label>
-  <span class="checkbox-clarification">
-    Reduce file size by excluding rarely useful fields and lowering precision
-    of timestamps from microseconds to seconds
-  </span>
-</div>
+    <div class="checkbox-row" style="margin-bottom: 1.7em;">
+    <input type="checkbox" id="lossy_compression_checkbox" name="scales" checked />
+    <label class="checkbox-label" for="lossy_compression_checkbox">
+        Enable lossy compression
+    </label>
+    <span class="checkbox-clarification">
+        Reduce file size by excluding rarely useful fields and lowering precision
+        of timestamps from microseconds to seconds
+    </span>
+    </div>
 
     <label>Share logs from app<span id="ending_s">s</span>: <output id="amount_of_apps_to_share">all</output> </label>
     <input id="apps_to_share_logs_of" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="sources" title="t" multiple style="padding: 5px 10px"></input>
@@ -442,7 +368,6 @@
         var bs81f = window.baseX(BASE81F)
         
         var imported_logs = urlParams.get('fragment');
-        // alert(fragment)
         if (fragment) {
             fragment = bs81f.decode(fragment)
             console.log('fragment:', fragment)
@@ -461,30 +386,6 @@
             var extracted_logs = JSON.parse(string)
             console.log('extracted_logs:', extracted_logs)
             
-            
-            // const compressedData = new Uint8Array(fragment);
-            // const readableStream = new ReadableStream({
-            // start(controller) {
-            //     controller.enqueue(compressedData);
-            //     controller.close();
-            // }
-            // });
-            
-            // const decompressionStream = new CompressionStream('deflate');
-            // const decompressedStream = readableStream.pipeThrough(decompressionStream);
-            
-            // decompressedStream.getReader().read().then(({ decompressedData, done }) => {
-                
-            
-            //     console.log('decompressedData:', decompressedData, done)
-            // })
-            
-            
-            
-                    
-                    
-                    
-                    
             const logsElement = document.getElementById('logs');
             
             extracted_logs.forEach(element => {            
@@ -504,10 +405,6 @@
     </script>
 
     <script>
-
-
-
-
         var progressBar = document.getElementById('progress');
         function convertBytesToInt(bytes, type) {
             // receives array of 4/8 bytes (as ints) and type as unsigned le64, be64, le32, be32
@@ -623,24 +520,12 @@
                 if (element.PRIORITY == 5) { color1 = "<font color=\"white\"><strong>"; color2 = "</strong></font>" }
                 if (element.PRIORITY == 7) { color1 = "<font color=\"gray\">"; color2 = "</font>" }
                 verbose = ""
-                // for (const key in element) { if (element.hasOwnProperty(key)) { verbose += "    " + key + "=" + element[key] + "\n" } }
                 for (const key in element) { if (element.hasOwnProperty(key)) { verbose += "    " + (key == "MESSAGE" || key == "SYSLOG_IDENTIFIER" || key == "PRIORITY" ? "<font color=\"white\">" : "<font color=\"lightgreen\">") + (key == "MESSAGE" ? "<strong>" : "") + key + "=" + element[key] + (key == "MESSAGE" ? "</strong>" : "") + (key == "MESSAGE" || key == "SYSLOG_IDENTIFIER" || key == "PRIORITY" ? "</font>" : "") + "\n" } }
                 logsElement.innerHTML += '<details><summary>' + color1 + (new Date(Math.floor(parseInt(element.__REALTIME_TIMESTAMP) / 1000))).toLocaleString('en-US', {month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false}).replace(/,/g, '') + ' ' + element._HOSTNAME + ' ' + element.SYSLOG_IDENTIFIER + '[' + element._PID + ']: ' + element.MESSAGE + color2 + '</summary>' + verbose + '</details>'; 
                 console.log(element.MESSAGE)
 
             });
             // TODO: BRING THIS SHIT TO A SEPARATE FUCKING FUNCTION for a 100th time I add features to the wrong one
-
-            // // Compress the data
-            // const compressedReadableStream = inputReadableStream.pipeThrough(
-            //     new CompressionStream("gzip"),
-            // );
-
-            // // Convert the compressed stream to base64
-            // const compressedBlob = new Blob([compressedReadableStream], { type: "application/gzip" });
-            
-            // console.log(compressedReadableStream)
-            // console.log(compressedBlob)
 
 
             // DATA COMPRESSION
@@ -677,32 +562,7 @@
                 console.log('compressedBlob:', compressedBlob)
                 
                 
-                // TO BASE64/81
-
-                // var reader = new FileReader();
-                // reader.readAsDataURL(compressedBlob); 
-                // reader.onloadend = function() {
-                //     var base64data = reader.result;                
-                //     console.log(base64data);
-                    
-                //     fragment = base64data.replace('data:application/json;base64,', '');
-                //     console.log(fragment)
-                    
-                //     static_url = "http://127.0.0.1:5500/journalview.html#" + fragment;
-                //     console.log(static_url)
-                //     // window.open(static_url, '_blank');
-                    
-                //     // DISPLAY URL IN APPROPRIATE WINDOW
-                    
-                //     // static_url_output.textContent = static_url;
-                //     static_url_output.value = static_url;
-                //     static_url_output_length_output.textContent = static_url.length;
-                    
-                // }
-
-
-                
-                
+                // TO BASE81F
                 
                 var BASE81F = "!$&'()*+,-./0123456789:;=?@ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz~"
                 var bs81f = window.baseX(BASE81F)
@@ -730,16 +590,6 @@
                     console.log('---')
                 });
 
-
-
-
-
-                // var decoded = bs81f.decode('5Kd3NBUAdUnhyzenEwVLy9pBKxSwXvE9FMPyR4UKZvpe6E3AgLr')
-
-                // console.log(bs81f.encode(decoded))
-
-
-                // const uploaded_logs_division = document.getElementById('uploaded_logs_division');
                 console.log(uploaded_logs_division, 'uploaded_logs_division')
                 uploaded_logs_division.style.display = 'block';
 
@@ -755,8 +605,6 @@
         });
         
         document.getElementById("file-picker").addEventListener("change", (event) => {
-            // let output = document.getElementById("listing");
-
             window.timeOfStart = new Date().getTime();
 
             progressBar.style.display = 'block';
@@ -808,27 +656,18 @@
                 console.log(file.webkitRelativePath)
                 let item = document.createElement("li");
                 item.textContent = file.webkitRelativePath;
-                // output.appendChild(item);
 
                 const headEntryRealtimeBlob = file.slice(184, 192);
                 console.log(headEntryRealtimeBlob);
-                // console.log(headEntryRealtimeBlob.bytes());
                 console.log('---');
-                // hB = headEntryRealtimeBlob.bytes();
 
                 const tailEntryRealtimeBlob = file.slice(192, 200);
                 console.log(tailEntryRealtimeBlob);
-                // console.log(tailEntryRealtimeBlob.bytes());
                 console.log('---');
-                // tB = tailEntryRealtimeBlob.bytes();
 
                 console.log('-+-');
 
                 const wholeFileAsBlob = file.slice(0);
-                
-                // let headEntryRealtime;
-                // let tailEntryRealtime;
-
 
                 headEntryRealtimeBlob.arrayBuffer().then(buf => {
                     let bytes = new Uint8Array(buf);
@@ -956,42 +795,6 @@
                                 // Without: 00:03.747 (Performance mode)
                                     
 
-
-
-                                // Helper: read little-endian 64-bit integer from bytes slice.
-                                // If your convertBytesToInt returns Number or BigInt, adapt accordingly.
-                                // Example wrapper assumes convertBytesToInt exists.
-                                // function readRealtime(bytes, offset) {
-                                //     // slice offset + 24 .. offset + 32 (end exclusive)
-                                //     const slice = bytes.slice(offset + 24, offset + 32);
-                                //     return convertBytesToInt(slice, "le64");
-                                // }
-
-                                // // binary search for first index with realtime > shareFrom
-                                // // bytes: Uint8Array (or Buffer), knownEntryArrayOffsets: number[] (sorted), shareFrom: Number or BigInt
-                                // function trimOffsetsBeforeShare(bytes, knownEntryArrayOffsets, shareFrom) {
-                                // let lo = 0;
-                                // let hi = knownEntryArrayOffsets.length; // exclusive
-                                // while (lo < hi) {
-                                //     const mid = (lo + hi) >>> 1;
-                                //     const rt = readRealtime(bytes, knownEntryArrayOffsets[mid]);
-                                //     // If using BigInt for shareFrom and rt, ensure both are BigInt
-                                //     if (rt <= shareFrom) {
-                                //     lo = mid + 1;
-                                //     } else {
-                                //     hi = mid;
-                                //     }
-                                // }
-                                // // lo is first index with realtime > shareFrom, or knownEntryArrayOffsets.length if none
-                                // if (lo === 0) return knownEntryArrayOffsets.slice(); // nothing to remove
-                                // return knownEntryArrayOffsets.slice(lo);
-                                // }
-
-
-
-
-
-
                                 for (const offset of knownEntryArrayOffsets) {
                                     // Iterating through known logs (collections of 01 data objects)
                                     console.log('03:', bytes[offset])
@@ -1023,14 +826,6 @@
                                         var progressBar = document.getElementById('progress');
                                         progressBar.value = Number(processedFiles / numFiles * 100 + processedEntries / amountOfEntries / numFiles * 100);
                                         console.log('Progress bar is: ', progressBar)
-                                        // if (progressBar.value > 10 && Math.random() < 0.02) {
-                                        //     progressBar.value = 10
-                                        //     alert(progressBar.value + "i" + progressBar.max + "i" + processedEntries + "_" + amountOfEntries + "_" + processedFiles + "_" + numFiles + "_" + Number(processedFiles / numFiles * 100 + processedEntries / amountOfEntries / numFiles * 100))
-                                        // }
-                                        // document.getElementById('progress').value = 70
-                                        // TODO: find where the fuck this fails
-                                        // But this works:
-                                        // progressBar.value = Number(processedFiles / numFiles * 100);
                                         console.log('Processed entries:', processedEntries);
                                         console.log('Amount of entries:', amountOfEntries);
 
@@ -1107,12 +902,10 @@
 
                                     progressBar.value = Number(processedFiles / numFiles * 100 + processedEntries / amountOfEntries / numFiles  * 100);
                                     
-                                    
                                     // const startTime = Date.now();
                                     // while (Date.now() - startTime < 15000) {
                                         // // do nothing
                                         // }
-                                        
                                 }
                                     
                                     
@@ -1127,9 +920,6 @@
                                     document.dispatchEvent(new CustomEvent('allLogsExtracted'));
 
                                 }
-                                    
-                                
-
                                 
 
                                     // _packed_ struct DataObject {
@@ -1151,189 +941,6 @@
                                     //                 } compact;                                              \
                                     //         };                                                              \
                                     // };
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    // const fileUrl = URL.createObjectURL(file);
-                                    // const link = document.createElement("a");
-                                    // link.href = fileUrl;
-                                // link.download = file.name;
-                                // link.click();
-                                // URL.revokeObjectURL(fileUrl);
-                                
-                            //     extracted_logs.push(...[{
-                            //         "PRIORITY" : "4",
-                            //         "_UID" : "1000",
-                            //         "_SELINUX_CONTEXT" : "unconfined_u:unconfined_r:xserver_t:s0-s0:c0.c1023",
-                            //         "_SYSTEMD_UNIT" : "session-14.scope",
-                            //         "_SYSTEMD_SLICE" : "user-1000.slice",
-                            //         "_MACHINE_ID" : "45dfdd3ecb7d4aa28109292b52b760d1",
-                            //         "__REALTIME_TIMESTAMP" : "1739231510252845",
-                            //         "_RUNTIME_SCOPE" : "system",
-                            //         "_SYSTEMD_CGROUP" : "/user.slice/user-1000.slice/session-14.scope",
-                            //         "_COMM" : "Xorg",
-                            //         "_SYSTEMD_SESSION" : "14",
-                            //         "_PID" : "340025",
-                            //         "_SYSTEMD_INVOCATION_ID" : "720af7e398914a00b00382c3cc0a18d2",
-                            //         "MESSAGE" : "(II) event22 - BT4.0+2.4G KB Keyboard: device removed",
-                            //         "_BOOT_ID" : "952411f6d1ed4307a4483a11e59436a5",
-                            //         "__SEQNUM_ID" : "fe1949d702b8490ebdf98019fe932df9",
-                            //         "_GID" : "1000",
-                            //         "__CURSOR" : "s=fe1949d702b8490ebdf98019fe932df9;i=5fd33;b=952411f6d1ed4307a4483a11e59436a5;m=15c78162d9;t=62dd26459cd2d;x=c9779422a54c5eda",
-                            //         "SYSLOG_IDENTIFIER" : "/usr/libexec/gdm-x-session",
-                            //         "_HOSTNAME" : "fedora",
-                            //         "_SYSTEMD_OWNER_UID" : "1000",
-                            //         "_SYSTEMD_USER_SLICE" : "-.slice",
-                            //         "__MONOTONIC_TIMESTAMP" : "93541458649",
-                            //         "_STREAM_ID" : "8170f6c8ae0049a19de6d504209d3db9",
-                            //         "_TRANSPORT" : "stdout",
-                            //         "_AUDIT_LOGINUID" : "1000",
-                            //         "__SEQNUM" : "392499",
-                            //         "_CMDLINE" : "/usr/libexec/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -nolisten tcp -background none -noreset -keeptty -novtswitch -verbose 3",
-                            //         "_EXE" : "/usr/libexec/Xorg",
-                            //         "_AUDIT_SESSION" : "14",
-                            //         "_CAP_EFFECTIVE" : "0"
-                            // },
-                            // {
-                            //         "_GID" : "1000",
-                            //         "_MACHINE_ID" : "45dfdd3ecb7d4aa28109292b52b760d1",
-                            //         "_SYSTEMD_OWNER_UID" : "1000",
-                            //         "_COMM" : "Xorg",
-                            //         "_SYSTEMD_USER_SLICE" : "-.slice",
-                            //         "_SELINUX_CONTEXT" : "unconfined_u:unconfined_r:xserver_t:s0-s0:c0.c1023",
-                            //         "_SYSTEMD_UNIT" : "session-14.scope",
-                            //         "MESSAGE" : "(II) config/udev: removing device BT4.0+2.4G KB Keyboard",
-                            //         "_TRANSPORT" : "stdout",
-                            //         "_PID" : "340025",
-                            //         "_SYSTEMD_SESSION" : "14",
-                            //         "_SYSTEMD_INVOCATION_ID" : "720af7e398914a00b00382c3cc0a18d2",
-                            //         "__SEQNUM" : "392500",
-                            //         "_BOOT_ID" : "952411f6d1ed4307a4483a11e59436a5",
-                            //         "__SEQNUM_ID" : "fe1949d702b8490ebdf98019fe932df9",
-                            //         "SYSLOG_IDENTIFIER" : "/usr/libexec/gdm-x-session",
-                            //         "__MONOTONIC_TIMESTAMP" : "93541487690",
-                            //         "__CURSOR" : "s=fe1949d702b8490ebdf98019fe932df9;i=5fd34;b=952411f6d1ed4307a4483a11e59436a5;m=15c781d44a;t=62dd2645a3e9d;x=8c5b7714b685570c",
-                            //         "_HOSTNAME" : "fedora",
-                            //         "_CAP_EFFECTIVE" : "0",
-                            //         "_AUDIT_LOGINUID" : "1000",
-                            //         "PRIORITY" : "4",
-                            //         "_RUNTIME_SCOPE" : "system",
-                            //         "_UID" : "1000",
-                            //         "_SYSTEMD_CGROUP" : "/user.slice/user-1000.slice/session-14.scope",
-                            //         "_EXE" : "/usr/libexec/Xorg",
-                            //         "_AUDIT_SESSION" : "14",
-                            //         "__REALTIME_TIMESTAMP" : "1739231510281885",
-                            //         "_SYSTEMD_SLICE" : "user-1000.slice",
-                            //         "_CMDLINE" : "/usr/libexec/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -nolisten tcp -background none -noreset -keeptty -novtswitch -verbose 3",
-                            //         "_STREAM_ID" : "8170f6c8ae0049a19de6d504209d3db9"
-                            //     },
-                            //     {
-                            //         "_STREAM_ID" : "8170f6c8ae0049a19de6d504209d3db9",
-                            //         "_SYSTEMD_USER_SLICE" : "-.slice",
-                            //         "_GID" : "1000",
-                            //         "_SYSTEMD_CGROUP" : "/user.slice/user-1000.slice/session-14.scope",
-                            //         "__MONOTONIC_TIMESTAMP" : "93541487690",
-                            //         "_PID" : "340025",
-                            //         "_TRANSPORT" : "stdout",
-                            //         "_UID" : "1000",
-                            //         "_SYSTEMD_OWNER_UID" : "1000",
-                            //         "_SYSTEMD_UNIT" : "session-14.scope",
-                            //         "__CURSOR" : "s=fe1949d702b8490ebdf98019fe932df9;i=5fd35;b=952411f6d1ed4307a4483a11e59436a5;m=15c781d44a;t=62dd2645a3e9d;x=604a33da4712523f",
-                            //         "_SYSTEMD_SESSION" : "14",
-                            //         "__SEQNUM_ID" : "fe1949d702b8490ebdf98019fe932df9",
-                            //         "_CAP_EFFECTIVE" : "0",
-                            //         "__REALTIME_TIMESTAMP" : "1739231510281885",
-                            //         "MESSAGE" : "(**) Option \"fd\" \"185\"",
-                            //         "_MACHINE_ID" : "45dfdd3ecb7d4aa28109292b52b760d1",
-                            //         "_SYSTEMD_INVOCATION_ID" : "720af7e398914a00b00382c3cc0a18d2",
-                            //         "_AUDIT_LOGINUID" : "1000",
-                            //         "_BOOT_ID" : "952411f6d1ed4307a4483a11e59436a5",
-                            //         "PRIORITY" : "4",
-                            //         "__SEQNUM" : "392501",
-                            //         "_AUDIT_SESSION" : "14",
-                            //         "_RUNTIME_SCOPE" : "system",
-                            //         "_SYSTEMD_SLICE" : "user-1000.slice",
-                            //         "_HOSTNAME" : "fedora",
-                            //         "_SELINUX_CONTEXT" : "unconfined_u:unconfined_r:xserver_t:s0-s0:c0.c1023",
-                            //         "_EXE" : "/usr/libexec/Xorg",
-                            //         "_CMDLINE" : "/usr/libexec/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -nolisten tcp -background none -noreset -keeptty -novtswitch -verbose 3",
-                            //         "_COMM" : "Xorg",
-                            //         "SYSLOG_IDENTIFIER" : "/usr/libexec/gdm-x-session"
-                            // },
-                            // {
-                            //     "_HOSTNAME" : "fedora",
-                            //     "PRIORITY" : "4",
-                            //         "_BOOT_ID" : "952411f6d1ed4307a4483a11e59436a5",
-                            //         "_AUDIT_SESSION" : "14",
-                            //         "_SYSTEMD_INVOCATION_ID" : "720af7e398914a00b00382c3cc0a18d2",
-                            //         "_MACHINE_ID" : "45dfdd3ecb7d4aa28109292b52b760d1",
-                            //         "_AUDIT_LOGINUID" : "1000",
-                            //         "_SYSTEMD_SLICE" : "user-1000.slice",
-                            //         "MESSAGE" : "(II) UnloadModule: \"libinput\"",
-                            //         "__MONOTONIC_TIMESTAMP" : "93541487690",
-                            //         "_GID" : "1000",
-                            //         "_SYSTEMD_USER_SLICE" : "-.slice",
-                            //         "__SEQNUM_ID" : "fe1949d702b8490ebdf98019fe932df9",
-                            //         "__SEQNUM" : "392502",
-                            //         "_SYSTEMD_CGROUP" : "/user.slice/user-1000.slice/session-14.scope",
-                            //         "_SYSTEMD_UNIT" : "session-14.scope",
-                            //         "_SELINUX_CONTEXT" : "unconfined_u:unconfined_r:xserver_t:s0-s0:c0.c1023",
-                            //         "_COMM" : "Xorg",
-                            //         "__REALTIME_TIMESTAMP" : "1739231510281885",
-                            //         "SYSLOG_IDENTIFIER" : "/usr/libexec/gdm-x-session",
-                            //         "__CURSOR" : "s=fe1949d702b8490ebdf98019fe932df9;i=5fd36;b=952411f6d1ed4307a4483a11e59436a5;m=15c781d44a;t=62dd2645a3e9d;x=38ee0bea6f33793d",
-                            //         "_PID" : "340025",
-                            //         "_RUNTIME_SCOPE" : "system",
-                            //         "_CMDLINE" : "/usr/libexec/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -nolisten tcp -background none -noreset -keeptty -novtswitch -verbose 3",
-                            //         "_SYSTEMD_SESSION" : "14",
-                            //         "_TRANSPORT" : "stdout",
-                            //         "_UID" : "1000",
-                            //         "_SYSTEMD_OWNER_UID" : "1000",
-                            //         "_CAP_EFFECTIVE" : "0",
-                            //         "_STREAM_ID" : "8170f6c8ae0049a19de6d504209d3db9",
-                            //         "_EXE" : "/usr/libexec/Xorg"
-                            //     },
-                            //     {
-                            //         "_SYSTEMD_SLICE" : "user-1000.slice",
-                            //         "_AUDIT_SESSION" : "14",
-                            //         "__SEQNUM" : "392503",
-                            //         "_SELINUX_CONTEXT" : "unconfined_u:unconfined_r:xserver_t:s0-s0:c0.c1023",
-                            //         "_SYSTEMD_INVOCATION_ID" : "720af7e398914a00b00382c3cc0a18d2",
-                            //         "_TRANSPORT" : "stdout",
-                            //         "__SEQNUM_ID" : "fe1949d702b8490ebdf98019fe932df9",
-                            //         "_RUNTIME_SCOPE" : "system",
-                            //         "_BOOT_ID" : "952411f6d1ed4307a4483a11e59436a5",
-                            //         "PRIORITY" : "3",
-                            //         "_SYSTEMD_CGROUP" : "/user.slice/user-1000.slice/session-14.scope",
-                            //         "_HOSTNAME" : "fedora",
-                            //         "_UID" : "1000",
-                            //         "__REALTIME_TIMESTAMP" : "1739231510281885",
-                            //         "_CAP_EFFECTIVE" : "0",
-                            //         "_AUDIT_LOGINUID" : "1000",
-                            //         "_STREAM_ID" : "8170f6c8ae0049a19de6d504209d3db9",
-                            //         "_SYSTEMD_UNIT" : "session-14.scope",
-                            //         "__MONOTONIC_TIMESTAMP" : "93541487690",
-                            //         "_SYSTEMD_OWNER_UID" : "1000",
-                            //         "_PID" : "340025",
-                            //         "MESSAGE" : "(II) systemd-logind: not releasing fd for 13:86, still in use",
-                            //         "_COMM" : "Xorg",
-                            //         "_MACHINE_ID" : "45dfdd3ecb7d4aa28109292b52b760d1",
-                            //         "SYSLOG_IDENTIFIER" : "/usr/libexec/gdm-x-session",
-                            //         "_SYSTEMD_USER_SLICE" : "-.slice",
-                            //         "_CMDLINE" : "/usr/libexec/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -nolisten tcp -background none -noreset -keeptty -novtswitch -verbose 3",
-                            //         "_SYSTEMD_SESSION" : "14",
-                            //         "__CURSOR" : "s=fe1949d702b8490ebdf98019fe932df9;i=5fd37;b=952411f6d1ed4307a4483a11e59436a5;m=15c781d44a;t=62dd2645a3e9d;x=ad9f929ce4742e75",
-                            //         "_GID" : "1000",
-                            //         "_EXE" : "/usr/libexec/Xorg"
-                            //     }
-                            // ]) 
-                                                            
-
                             
                         });
                         
@@ -1350,7 +957,6 @@
                                     console.log('All files processed');
                                     progressBar.style.display = 'none';
                                     allLogsWereExtracted = true;
-                                    // document.dispatchEvent(new CustomEvent('allLogsExtracted'));
 
                                     document.dispatchEvent(new CustomEvent('allLogsExtracted'));
                                     
@@ -1358,138 +964,7 @@
                         };
                     });
 
-                });
-
-                
-                
-                
-                
-                // headEntryRealtimeBlob.arrayBuffer().then(headBuf => {
-                    //     let headView = new DataView(headBuf);
-                    //     var headEntryRealtime = headView.getBigUint64(0, true); // true for little-endian
-
-                //     console.log("Head Entry Realtime:", headEntryRealtime); // Log immediately after assignment
-                    
-                //     return tailEntryRealtimeBlob.arrayBuffer(); // Return the next Promise
-                // }).then(tailBuf => {
-                //     console.log('**+**');
-                
-                //     let tailView = new DataView(tailBuf);
-                //     var tailEntryRealtime = tailView.getBigUint64(0, true); // true for little-endian
-
-                //     console.log("Tail Entry Realtime:", tailEntryRealtime);
-                //     console.log("Head Entry Realtime in second then:", headEntryRealtime); // Check value here
-
-                //     console.log('¡!!!!!!!¡');
-
-                    
-                // }).catch(error => {
-                //     console.error('Error occurred:', error);
-                // });
-                
-
-                
-
-
-
-                
-                
-                
-                
-                // function getTimestamp(file) {
-                    //     return new Promise((resolve, reject) => {
-                //         const reader = new FileReader();
-                        
-                //         reader.onload = function(event) {
-                //             const timestampBytes = new Uint8Array(event.target.result);
-                //             let timestamp = 0;
-
-                //             for (let i = 0; i < timestampBytes.length; i++) {
-                //                 timestamp |= (timestampBytes[i] << (i * 8));
-                //             }
-                //             resolve(timestamp);
-                //         };
-                
-                //         reader.onerror = function() {
-                //             reject(new Error("Error reading file."));
-                //         };
-
-                //         console.log(timestamp)
-                //         reader.readAsArrayBuffer(file.slice(184, 192));
-                //     });
-                // }
-                
-                // // Usage
-                // getTimestamp(file).then(timestamp => {
-                //     console.log(timestamp);
-                // }).catch(error => {
-                    //     console.error(error);
-                    // });
-                    
-
-
-
-
-
-
-
-
-                // // As I can't for the love of god figure out a way to read them in sync with
-                // // the rest of the script, I'll just extend the solution that works for one by
-                // // conjoining the values to parse them with mind-twisting function and later 
-                // // separate them as ints with math.
-                // const headEntryRealtimeBlobTailEntryRealtimeBlob = file.slice(184, 200);
-                // console.log(tailEntryRealtimeBlob);
-                // console.log(tailEntryRealtimeBlob.bytes());
-                // console.log('---');
-                
-                // const reader = new FileReader();
-                
-                
-                
-                
-                // reader.onload = function(event) {
-                //     const arrayBuffer = event.target.result;
-                //     const dataView = new DataView(arrayBuffer);
-                //     var time = dataView.getBigInt64(0, true); // true for little-endian
-                //     var time = Number(time)
-                //     console.log(time); // Do something with the time variable
-                //     console.log(headEntryRealtimeBlob)
-                
-                
-                
-                
-                //     const shareFromInput = document.getElementById('share-from');
-                //     const shareToInput = document.getElementById('share-to');
-
-                //     const logTimestamps = () => {
-                    //         const shareFrom = new Date(shareFromInput.value).getTime();
-                //         const shareTo = new Date(shareToInput.value).getTime();
-                        
-                //         console.log(`Share from (Unix timestamp): ${shareFrom}`);
-                //         console.log('+++')
-                //         console.log(`Share to (Unix timestamp): ${shareTo}`);
-                
-                
-                
-
-                
-
-                
-                //     };
-                
-                //     // Call the function to log the timestamps
-                //     logTimestamps();
-                
-                
-                
-                
-                
-                
-                // };
-                
-                // reader.readAsArrayBuffer(headEntryRealtimeBlob);  // DELETE ASYNC
-                
+                });                 
             }
         },
         false,
@@ -1498,8 +973,6 @@
 
     
     </script>
-
-    <!-- <script>static_url_output.value = ""</script> -->
 
     <div id="quick_settings_panel">
         <!-- A single-line panel with icons allowing quick interface adjustments -->
@@ -1510,12 +983,6 @@
     <div id="uploaded_logs_division" style="display: none;">
         <pre id="logs" class="scanlines" style="font-family: 'Source Code Pro', '3270', monospace; overflow-x:auto; overflow-y: auto; max-height: 12em;">
         </pre>
-        <!-- Logs will be shown here
-        <details><summary>Log</summary>New log message</details> -->
-
-        <!-- <output id="static_url_output" style="white-space: nowrap; overflow-x: auto; width: 200px;">
-            U
-        </output> -->
 
         <style>
             .link_share_clarification {
@@ -1545,7 +1012,5 @@
             <p class="link_share_clarification">The data is temporarily <span title="No permanent timeframe for storage rotation: oldest files are automatically deleted when it runs out of allocated space"><u>[?]</u></span> stored on my server. Your IP will be logged to prevent spam</p>
         </div>
     </div>
-    
-
 </body>
 </html>
