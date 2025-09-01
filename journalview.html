@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            margin: 40px auto;
+            max-width: 650px;
+            font-size: 18px;
+            background-color: #F6F6F6;
+            color: #444;
+            padding: 0 10px;
+            background-color: black;
+            color: white;
+            /* font-family: '3270'; */
+            font-family: lexend, sans;
+            font-size: larger;
+            scrollbar-color: white black;
+        }
+        #drop_zone {
+            border: 2px dashed #bbb;
+            border-radius: 5px;
+            padding: 50px;
+            text-align: center;
+        }
+        .scanlines {
+            overflow: hidden;
+            position: relative;
+        }
+        .scanlines:before,
+        .scanlines:after {
+            display: block;
+            pointer-events: none;
+            content: "";
+            position: absolute;
+        }
+        .scanlines:before {
+            width: 100%;
+            height: 2px;
+            z-index: 2147483649;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0.75;
+            animation: scanline 6s linear infinite;
+        }
+        .scanlines:after {
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 2147483648;
+            background: linear-gradient(
+                to bottom,
+                transparent 50%,
+                rgba(0, 0, 0, 0.3) 51%
+                );
+                background-size: 100% 4px;
+                animation: scanlines 1s steps(60) infinite;
+            }
+            
+            /* ANIMATE UNIQUE SCANLINE */
+            @keyframes scanline {
+                0% {
+                    transform: translate3d(0, 200000%, 0);
+                }
+            }
+            @keyframes scanlines {
+                0% {
+                    background-position: 0 50%;
+                }
+            }
+            div {
+                margin: 0;
+                padding: 0;
+            }
+            div.scanlines {
+                position: absolute;
+            }
+            /* div .jpg {
+                width: 100vw;
+            height: 100vh;
+            border: none;
+        }
+        .jpg {
+            background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Philips_PM5544.svg/800px-Philips_PM5544.svg.png")
+            no-repeat;
+            background-size: cover;
+            } */
+            /* body {
+                position: relative;
+                background: #1b1b1b;
+                } */
+                
+                .datetime-local {
+                    background-color: #232323;
+                    color: #f3f3f3;
+                    border: 2px solid #ffffff;
+                    border-radius: 14px; 
+                    padding: 7px 18px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-weight: 500;
+                    transition: background 0.2s, color 0.2s, border 0.2s;
+                    box-shadow: 0 2px 8px #0002;    
+                    /* font-family: "Lexend";   set font not here, but in input[ty*/
+                }
+                input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+                    filter: invert(1);
+                }
+                
+                /* Minimal dark styling for all datetime-local inputs */
+                input[type="datetime-local"] {
+                    font-family: inherit;
+                    /* font-size: inherit; */
+                    font-size: 16px;
+                    background: black;
+                    color: #e6eef8;
+                    border: 1px solid white;
+                    padding: 8px 10px;
+                    border-radius: 6px;
+                    -webkit-appearance: none;
+                    appearance: none;
+                }
+                
+                /* Keep inner text color in WebKit-based browsers */
+                input[type="datetime-local"]::-webkit-datetime-edit,
+                input[type="datetime-local"]::-webkit-datetime-edit-fields-wrapper,
+                input[type="datetime-local"]::-webkit-datetime-edit-text {
+                    color: inherit;
+                }
+    
+                /* Simple accessible focus hint */
+                input[type="datetime-local"]:focus {
+                    outline: none;
+                    box-shadow: 0 0 0 4px rgba(99,102,241,0.08);
+                    border-color: rgba(99,102,241,0.7);
+                }
+                
+                input::file-selector-button {
+                    font-weight: bold;
+                    color: white;
+                    padding: 0.5em;
+                    border: thin solid white;
+                    border-radius: 3px;
+                    background-color: #000000;
+                }
+                
+                @font-face {
+                    font-family: '3270';
+                    src: url('fonts/3270-Regular.otf') format('opentype');
+                    font-weight: normal;
+                    font-style: normal;
+                    font-display: swap;
+                }
+                
+                progress {
+                    display: block;
+                    margin: 0 auto;
+                }
+                
+                input[type="text"] {
+                    background-color: #232323;
+                    color: #f3f3f3;
+                    border: 2px solid #ffffff;
+                    border-radius: 14px; 
+                    padding: 7px 18px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-weight: 500;
+                    transition: background 0.2s, color 0.2s, border 0.2s;
+                    box-shadow: 0 2px 8px #0002;
+                }
+
+                /* Try to fix autosuggestion style overwrite? 
+                Futile. Chrome problem.*/
+                input:-webkit-autofill,
+                input:-webkit-autofill:focus,
+                input:-webkit-autofill:hover,
+                input:-webkit-autofill:active {
+                -webkit-text-fill-color: #f3f3f3 !important;
+                box-shadow: inset 0 0 0 1000px #232323 !important;
+                transition: background-color 5000s ease-in-out 0s !important;
+                }
+
+                
+
+
+                
+                
+                
+                
+                /* a:link, a:visited {
+                    background-color: grey;
+                    color: white;
+                    border: 2px solid white;
+                    padding: 1px 2px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    }
+                    
+                    a:hover, a:active {
+                        background-color: green;
+                        color: white;
+                    } */
+                    
+                    
+                    </style>
+
+
+
+</head>
+<body>
+    <h1 style="text-align: center;">View & Share System Logs</h1>
+    <!-- <h1 class="scanlines" style="text-align: center;">View & Share System Logs</h1> -->
+
+    <!-- <div id="drop_zone">
+        <p>Drag one or more files to this <i>drop zone</i>.</p>
+    </div> -->
+    
+    <script>
+        // document.getElementById("drop_zone").addEventListener("drop", dropHandler);
+        
+        // document
+        // .getElementById("drop_zone")
+        // .addEventListener("dragover", dragOverHandler);
+        
+        // function dropHandler(ev) {
+        //     console.log("File(s) dropped");
+            
+        //     // Prevent default behavior (Prevent file from being opened)
+        //     ev.preventDefault();
+            
+        //     if (ev.dataTransfer.items) {
+        //             // Use DataTransferItemList interface to access the file(s)
+        //             [...ev.dataTransfer.items].forEach((item, i) => {
+        //                 // If dropped items aren't files, reject them
+        //                 if (item.kind === "file") {
+        //                     const file = item.getAsFile();
+        //                     console.log(`… file[${i}].name = ${file.name}`);
+        //                 }
+        //             });
+        //             } else {
+        //                 // Use DataTransfer interface to access the file(s)
+        //                 [...ev.dataTransfer.files].forEach((file, i) => {
+        //                     console.log(`… file[${i}].name = ${file.name}`);
+        //                 });
+        //             }
+        //         }
+        // function dragOverHandler(ev) {
+        //     console.log("File(s) in drop zone");
+            
+        //     // Prevent default behavior (Prevent file from being opened)
+        //     ev.preventDefault();
+        //     }
+            
+            </script>
+
+<p style="text-align: center;">
+    <!-- <label for="share-from">Share data from:</label> -->
+    
+    <input style="border-width: 0.15em; border-radius: 10px;"
+    type="datetime-local"
+    id="share-from"
+    name="meeting-time"
+    value="2025-07-05T20:00" />
+    
+    <!-- <label for="share-to">to:</label> -->
+    <label for="share-to" style="margin: 5px;";"><i class="fa-solid fa-arrow-right"></i></label>
+    
+    <input style="border-width: 0.15em; border-radius: 10px;"
+    type="datetime-local"
+    id="share-to"
+    name="meeting-time"
+    value="2025-07-05T20:05" />
+    </p>
+    
+    <!-- <script>
+        const now = new Date();
+        const fifteenMinutesAgo = new Date(now.getTime() - 15 * 60 * 1000);
+        
+        const shareFromInput = document.getElementById('share-from');
+        const shareToInput = document.getElementById('share-to');
+        
+        shareFromInput.value = fifteenMinutesAgo.toISOString().slice(0, 16);
+        shareToInput.value = now.toISOString().slice(0, 16);
+    </script> -->
+
+    <script>
+        function setNowAsValue() {
+            const shareFrom = document.getElementById('share-from');
+            const shareTo = document.getElementById('share-to');
+            const now = new Date();
+            timeFrom = new Date(now);
+            timeFrom.setMinutes(now.getMinutes() - 15)
+            console.log(timeFrom)
+
+            // Build YYYY-MM-DDThh:mm in local time
+            const pad = n => String(n).padStart(2, '0');
+            const yyyy = now.getFullYear();
+            const mm = pad(now.getMonth() + 1);
+            const dd = pad(now.getDate());
+            const hh = pad(now.getHours());
+            const min = pad(now.getMinutes());
+
+            const yyyyf = timeFrom.getFullYear();
+            const mmf = pad(timeFrom.getMonth() + 1);
+            const ddf = pad(timeFrom.getDate());
+            const hhf = pad(timeFrom.getHours());
+            const minf = pad(timeFrom.getMinutes());
+
+            shareTo.value = `${yyyy}-${mm}-${dd}T${hh}:${min}`;
+            shareFrom.value = `${yyyyf}-${mmf}-${ddf}T${hhf}:${minf}`
+        }
+
+        // Set on load
+        window.addEventListener('DOMContentLoaded', setNowAsValue);
+
+        console.log(navigator)
+    </script>
+    
+    <!-- <input type="file" value="Upload" id="file-picker" title="Select one or more files" name="fileList" webkitdirectory multiple /> -->
+    <!-- <input id="file-picker" type="file" webkitdirectory multiple aria-label="Upload files"> -->
+    
+    
+    <p style="padding: 10px; text-align: center"><label for="file-picker" class="upload-btn" style="cursor: pointer; border:#ffffff 2px solid; border-radius: 40px; padding: 10px 20px; font-weight: bold;">Select the /var/log directory to <i class="fa-solid fa-upload"></i></label>
+        <input
+        type="file"
+        id="file-picker"
+        name="fileList"
+        display="none"
+        webkitdirectory
+        multiple
+        style="display: none"
+        /></p>
+        
+        <p style="text-align: center;">
+            <progress
+            id="progress"
+            value="0"
+            max="100"
+            aria-label="File processing progress bar"
+            style="display: none;"
+            >
+        </progress>
+    </p>
+    
+    <!-- <progress id="progress1" value="30.2861782205778" max="100" aria-label="File processing progress bar" style="display: block;"></progress> -->
+    
+    <!-- <ul id="listing"></ul> -->
+    
+    <!-- <div>
+        <input type="checkbox" id="remove_sensitive_checkbox" name="scales" checked />
+        <label for="remove_sensitive_checkbox">Attempt to remove potentially sensitive data</label>
+    </div>
+    <div>
+        <input type="checkbox" id="lossy_compression_checkbox" name="scales" checked />
+        <label for="lossy_compression_checkbox">Enable lossy compression</label>
+    </div> -->
+
+    <style>
+  .checkbox-row {
+    margin: 8px 0;
+  }
+  .checkbox-label {
+    display: inline-block;
+    margin-left: 6px;
+    font-weight: 600;
+  }
+  .checkbox-clarification {
+    display: block;
+    margin-left: 30px; /* aligns with label text, adjust if needed */
+    color: #6b7280;    /* gray color (Tailwind slate-500-ish) */
+    font-size: 0.875rem; /* slightly smaller than main label */
+    line-height: 1.2;
+  }
+</style>
+
+<div class="checkbox-row" style="margin-top: 1.7em;">
+  <input type="checkbox" id="remove_sensitive_checkbox" name="scales" checked />
+  <label class="checkbox-label" for="remove_sensitive_checkbox">
+    Attempt to remove potentially sensitive data
+  </label>
+  <span class="checkbox-clarification">
+    Logs are designed to omit private information like passwords, but 
+    some user-unique data like locale or IP adresses may be present
+    <!-- If checked, an attempt to parse and hide this data will be made -->
+  </span>
+</div>
+
+<div class="checkbox-row" style="margin-bottom: 1.7em;">
+  <input type="checkbox" id="lossy_compression_checkbox" name="scales" checked />
+  <label class="checkbox-label" for="lossy_compression_checkbox">
+    Enable lossy compression
+  </label>
+  <span class="checkbox-clarification">
+    Reduce file size by excluding rarely useful fields and lowering precision
+    of timestamps from microseconds to seconds
+  </span>
+</div>
+
+    <label>Share logs from app<span id="ending_s">s</span>: <output id="amount_of_apps_to_share">all</output> </label>
+    <input id="apps_to_share_logs_of" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="sources" title="t" multiple style="padding: 5px 10px"></input>
+
+    <script>
+    const inputElement = document.getElementById('apps_to_share_logs_of');
+
+    inputElement.addEventListener('input', function() {
+        var words = apps_to_share_logs_of.value.trim().split(/\s+/).filter(Boolean);
+        console.log(words)
+        const numWords = words.length;
+
+        console.log(numWords); // Output: 7
+        amount_of_apps_to_share.textContent = numWords > 0 ? numWords : "all";
+        console.log('User entered a symbol!');
+        ending_s.textContent = numWords > 1 || numWords == 0 ? 's' : '';
+    });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/pako@2.0.3/dist/pako.min.js"></script>
+
+    <script type="module"> 
+        import baseX from 'https://cdn.jsdelivr.net/npm/base-x@5.0.1/+esm' 
+        window.baseX = baseX
+
+        const urlParams = new URLSearchParams(window.location.search);
+        console.log(urlParams)
+
+        if (urlParams.has('sources')) {
+            const share_logs_from = urlParams.get('sources').split(',');
+            console.log(share_logs_from)
+            apps_to_share_logs_of.value = share_logs_from.join(' ');
+            amount_of_apps_to_share.textContent = share_logs_from.length > 0 ? share_logs_from.length : "all";
+        }
+        var fragment = window.location.hash.substring(1);
+        console.log(fragment)
+        
+        var BASE81F = "!$&'()*+,-./0123456789:;=?@ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz~"
+        var bs81f = window.baseX(BASE81F)
+        
+        var imported_logs = urlParams.get('fragment');
+        // alert(fragment)
+        if (fragment) {
+            fragment = bs81f.decode(fragment)
+            console.log('fragment:', fragment)
+
+            
+            
+            const compressedData = new Uint8Array([...fragment]);
+            const decompressedData = pako.inflate(compressedData);
+            
+            console.log('decompressedData:', decompressedData)
+            
+            const decoder = new TextDecoder('utf-8');
+            const string = decoder.decode(decompressedData);
+            console.log('string:', string)
+            
+            var extracted_logs = JSON.parse(string)
+            console.log('extracted_logs:', extracted_logs)
+            
+            
+            // const compressedData = new Uint8Array(fragment);
+            // const readableStream = new ReadableStream({
+            // start(controller) {
+            //     controller.enqueue(compressedData);
+            //     controller.close();
+            // }
+            // });
+            
+            // const decompressionStream = new CompressionStream('deflate');
+            // const decompressedStream = readableStream.pipeThrough(decompressionStream);
+            
+            // decompressedStream.getReader().read().then(({ decompressedData, done }) => {
+                
+            
+            //     console.log('decompressedData:', decompressedData, done)
+            // })
+            
+            
+            
+                    
+                    
+                    
+                    
+            const logsElement = document.getElementById('logs');
+            
+            extracted_logs.forEach(element => {            
+                console.log(element.__REALTIME_TIMESTAMP)
+                var color1 = "<font color=\"white\">"
+                var color2 = "</font>"
+                if (element.PRIORITY == 0 || element.PRIORITY == 1 || element.PRIORITY == 2 || element.PRIORITY == 3) { color1 = "<font color=\"red\">"; color2 = "</font>" }
+                if (element.PRIORITY == 4) { color1 = "<font color=\"yellow\">"; color2 = "</font>" }
+                if (element.PRIORITY == 5) { color1 = "<font color=\"white\"><strong>"; color2 = "</strong></font>" }
+                if (element.PRIORITY == 7) { color1 = "<font color=\"gray\">"; color2 = "</font>" }
+                var verbose = ""
+                for (const key in element) { if (element.hasOwnProperty(key)) { verbose += "    " + key + "=" + element[key] + "\n" } }
+                logsElement.innerHTML += '<details><summary>' + color1 + (new Date(Math.floor(parseInt(element.__REALTIME_TIMESTAMP) / 1000))).toLocaleString('en-US', {month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false}).replace(/,/g, '') + ' ' + element._HOSTNAME + ' ' + element.SYSLOG_IDENTIFIER + '[' + element._PID + ']: ' + element.MESSAGE + color2 + '</summary>' + verbose + '</details>'; 
+                console.log(element.MESSAGE)
+            });
+        }
+    </script>
+
+    <script>
+
+
+
+
+        var progressBar = document.getElementById('progress');
+        function convertBytesToInt(bytes, type) {
+            // receives array of 4/8 bytes (as ints) and type as unsigned le64, be64, le32, be32
+            if (!bytes) {
+                return 0;
+            }
+            if (type == "le64") {
+                num = bytes[0] + bytes[1] * 256 + bytes[2] * 256 ** 2 + bytes[3] * 256 ** 3 + bytes[4] * 256 ** 4 + bytes[5] * 256 ** 5 + bytes[6] * 256 ** 6 + bytes[7] * 256 ** 7;
+                return num;
+                // correct way ⬆
+            } else if (type == "be64") {
+                num = (bytes[0] << 56) | (bytes[1] << 48) | (bytes[2] << 40) | (bytes[3] << 32) | (bytes[4] << 24) | (bytes[5] << 16) | (bytes[6] << 8) | bytes[7];
+                return num;
+            } else if (type == "le32") {
+                num = bytes[0] + bytes[1] * 256 + bytes[2] * 256 ** 2 + bytes[3] * 256 ** 3;
+                return num;
+            } else if (type == "be32") {
+                num = (bytes[0] << 24) | (bytes[1] << 16) | (bytes[2] << 8) | bytes[3];
+                return num;
+            } else if (type == "le16") {
+                num = bytes[0] | (bytes[1] << 8);
+                return num;
+            } else if (type == "be16") {
+                num = (bytes[0] << 8) | bytes[1];
+                return num;
+            }
+        }
+
+        var extracted_logs = [];
+
+        document.addEventListener('allLogsExtracted', () => {
+            console.log('All logs extracted (event)');
+
+            console.log("logs:", extracted_logs)
+                
+            const logsElement = document.getElementById('logs');
+
+            console.warn("extracted_logs.length:", extracted_logs.length)
+
+            if (extracted_logs.length == 0) {
+                extracted_logs = [{"MESSAGE": "No relevant logs were found."}]
+                console.log(extracted_logs)
+            }
+            
+            extracted_logs.forEach(element => {
+                for (const key in element) {
+                    const value = element[key];
+                    if (key.length + String(value).length > 4096) {
+                        delete element[key];
+                        console.log("Removing key-value pair:", key, value, 'because of extraordinary length: ', key.length, String(value).length);
+                    }
+                }
+                if (remove_sensitive_checkbox.checked == true) {
+                    sensitive_data_regex = {
+                        "/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/g": "░░░░░░░░-░░░░-░░░░-░░░░-░░░░░░░░░░░░",
+                        "/[0-9a-fA-F]{8}[0-9a-fA-F]{4}[0-9a-fA-F]{4}[0-9a-fA-F]{4}[0-9a-fA-F]{12}/g": "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░",
+                        "/((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}/g": "░░░.░░░.░░░.░░░",
+                        "/(?:[0-9A-F]{2}[-]){5}(?:[0-9A-F]{2})/g": "░░-░░-░░-░░-░░-░░",        // MAC addresses per IEEE 802
+                        "/(?:[0-9A-F]{2}[-]){7}(?:[0-9A-F]{2})/g": "░░-░░-░░-░░-░░-░░-░░-░░",
+                        "/(?:[0-9A-F]{2}[:]){5}(?:[0-9A-F]{2})/g": "░░:░░:░░:░░:░░:░░",         
+                        // "/(?:[0-9A-F]{2}[:]){7}(?:[0-9A-F]{2})/g": "░░:░░:░░:░░:░░:░░:░░:░░",
+                        // "/(?:[0-9A-F]{2}[.]){5}(?:[0-9A-F]{2})/g": "░░.░░.░░.░░.░░.░░",
+                        // "/(?:[0-9A-F]{2}[.]){7}(?:[0-9A-F]{2})/g": "░░.░░.░░.░░.░░.░░.░░.░░",
+                        "/([0-9a-fA-F]{4}\.){2}[0-9a-fA-F]{4}/g": "░░░░.░░░░.░░░░"
+                    }
+                    for (const regexPattern in sensitive_data_regex) {
+                        const regex = new RegExp(regexPattern);
+                        const replacement = sensitive_data_regex[regexPattern];
+                        // do something with regex and replacement
+                            
+                        Object.keys(element).forEach(key => {
+                            if (typeof element[key] === 'string') {
+                                element[key] = element[key].replace(regex, replacement);
+                            }
+                        });
+                    }
+                }
+                if (lossy_compression_checkbox.checked == true) {
+                    console.log("lossy compression")
+                    delete element.__SEQNUM
+                    delete element.__SEQNUM_ID
+                    delete element._BOOT_ID
+                    delete element._MACHINE_ID
+                    delete element._RUNTIME_SCOPE
+                    delete element._UID  
+                    delete element._GID  
+                    delete element._SYSTEMD_SLICE  
+                    delete element.SYSLOG_FACILITY  
+                    // delete element.SYSLOG_IDENTIFIER  
+                    delete element._CAP_EFFECTIVE  
+                    delete element._SELINUX_CONTEXT  
+                    delete element._SYSTEMD_INVOCATION_ID  
+                    delete element.SYSLOG_TIMESTAMP  
+                    delete element._SOURCE_REALTIME_TIMESTAMP
+                    delete element[""]
+                    element.__REALTIME_TIMESTAMP = element.__REALTIME_TIMESTAMP.toString().slice(-6)
+                }
+                list_of_apps_to_share_logs_from = []
+                apps_to_share_logs_of.value.split(',').forEach(element => { list_of_apps_to_share_logs_from.push(element.trim()) });
+                if (list_of_apps_to_share_logs_from[0] != "") {
+                    console.log(list_of_apps_to_share_logs_from.length, "apps to share logs from:", list_of_apps_to_share_logs_from)                
+                    if (list_of_apps_to_share_logs_from.includes(element.SYSLOG_IDENTIFIER) == false) {
+                        console.log("Excluded element: ", element)
+                        extracted_logs = extracted_logs.filter(log => list_of_apps_to_share_logs_from.includes(log.SYSLOG_IDENTIFIER));
+                        return
+                    }
+                }
+                console.log(element.__REALTIME_TIMESTAMP)
+                color1 = "<font color=\"white\">"
+                color2 = "</font>"
+                if (element.PRIORITY == 0 || element.PRIORITY == 1 || element.PRIORITY == 2 || element.PRIORITY == 3) { color1 = "<font color=\"red\">"; color2 = "</font>" }
+                if (element.PRIORITY == 4) { color1 = "<font color=\"yellow\">"; color2 = "</font>" }
+                if (element.PRIORITY == 5) { color1 = "<font color=\"white\"><strong>"; color2 = "</strong></font>" }
+                if (element.PRIORITY == 7) { color1 = "<font color=\"gray\">"; color2 = "</font>" }
+                verbose = ""
+                // for (const key in element) { if (element.hasOwnProperty(key)) { verbose += "    " + key + "=" + element[key] + "\n" } }
+                for (const key in element) { if (element.hasOwnProperty(key)) { verbose += "    " + (key == "MESSAGE" || key == "SYSLOG_IDENTIFIER" || key == "PRIORITY" ? "<font color=\"white\">" : "<font color=\"lightgreen\">") + (key == "MESSAGE" ? "<strong>" : "") + key + "=" + element[key] + (key == "MESSAGE" ? "</strong>" : "") + (key == "MESSAGE" || key == "SYSLOG_IDENTIFIER" || key == "PRIORITY" ? "</font>" : "") + "\n" } }
+                logsElement.innerHTML += '<details><summary>' + color1 + (new Date(Math.floor(parseInt(element.__REALTIME_TIMESTAMP) / 1000))).toLocaleString('en-US', {month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false}).replace(/,/g, '') + ' ' + element._HOSTNAME + ' ' + element.SYSLOG_IDENTIFIER + '[' + element._PID + ']: ' + element.MESSAGE + color2 + '</summary>' + verbose + '</details>'; 
+                console.log(element.MESSAGE)
+
+            });
+            // TODO: BRING THIS SHIT TO A SEPARATE FUCKING FUNCTION for a 100th time I add features to the wrong one
+
+            // // Compress the data
+            // const compressedReadableStream = inputReadableStream.pipeThrough(
+            //     new CompressionStream("gzip"),
+            // );
+
+            // // Convert the compressed stream to base64
+            // const compressedBlob = new Blob([compressedReadableStream], { type: "application/gzip" });
+            
+            // console.log(compressedReadableStream)
+            // console.log(compressedBlob)
+
+
+            // DATA COMPRESSION
+            console.log('DATA COMPRESSION')
+
+            // way 2: pako library
+
+            
+
+            // way 1: compression stream
+
+            const arr = extracted_logs;
+
+            // Convert array to JSON blob, get a byte stream, compress, and get a Blob
+            const json = JSON.stringify(arr);
+            const blob = new Blob([json], { type: "application/json" });
+
+            const compressedStream = blob.stream().pipeThrough(new CompressionStream("deflate"));
+            console.log('compressedStream:', compressedStream)
+            const compressedBlob = new Response(compressedStream).blob().then((compressedBlob) => {
+                
+                
+                
+                
+                // compressedBlob is a gzip file you can download or send
+                
+                console.log('array:', arr)
+                console.log('is taking:', JSON.stringify(arr).length * 2, 'bytes')
+                var g = JSON.stringify(arr).replace(/[\[\]\,\"]/g,''); //stringify and remove all "stringification" extra data
+                console.log('length:', g.length); //this will be your length.
+                console.log('that being: ' + g)
+                console.log('blob:', blob)
+                console.log('compressedStream:', compressedStream)
+                console.log('compressedBlob:', compressedBlob)
+                
+                
+                // TO BASE64/81
+
+                // var reader = new FileReader();
+                // reader.readAsDataURL(compressedBlob); 
+                // reader.onloadend = function() {
+                //     var base64data = reader.result;                
+                //     console.log(base64data);
+                    
+                //     fragment = base64data.replace('data:application/json;base64,', '');
+                //     console.log(fragment)
+                    
+                //     static_url = "http://127.0.0.1:5500/journalview.html#" + fragment;
+                //     console.log(static_url)
+                //     // window.open(static_url, '_blank');
+                    
+                //     // DISPLAY URL IN APPROPRIATE WINDOW
+                    
+                //     // static_url_output.textContent = static_url;
+                //     static_url_output.value = static_url;
+                //     static_url_output_length_output.textContent = static_url.length;
+                    
+                // }
+
+
+                
+                
+                
+                var BASE81F = "!$&'()*+,-./0123456789:;=?@ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz~"
+                var bs81f = window.baseX(BASE81F)
+                console.log(bs81f)
+
+                console.log("12345A")
+
+                compressedBlob.arrayBuffer().then((arrayBuffer) => {
+                    const uint8Array = new Uint8Array(arrayBuffer);
+
+                    console.log("123456")
+                    
+                    test = bs81f.encode([23, 25, 30, 39])
+                    console.log(test)
+                    fragment = bs81f.encode(uint8Array)
+                    static_url = document.URL + "#" + fragment;
+                    console.log("logging su: ", static_url)
+                    // alert(static_url)
+                    static_url_output.value = static_url;
+                    static_url_output_length_output.textContent = static_url.length;
+                    
+                    var timeOfEnd = new Date().getTime();
+                    console.log('---')
+                    console.log('Execution took: ', (timeOfEnd - window.timeOfStart) / 1000, 'seconds')
+                    console.log('---')
+                });
+
+
+
+
+
+                // var decoded = bs81f.decode('5Kd3NBUAdUnhyzenEwVLy9pBKxSwXvE9FMPyR4UKZvpe6E3AgLr')
+
+                // console.log(bs81f.encode(decoded))
+
+
+                // const uploaded_logs_division = document.getElementById('uploaded_logs_division');
+                console.log(uploaded_logs_division, 'uploaded_logs_division')
+                uploaded_logs_division.style.display = 'block';
+
+
+
+
+
+
+
+
+            
+            });
+        });
+        
+        document.getElementById("file-picker").addEventListener("change", (event) => {
+            // let output = document.getElementById("listing");
+
+            window.timeOfStart = new Date().getTime();
+
+            progressBar.style.display = 'block';
+            
+            const shareFromInput = document.getElementById('share-from');
+            const shareToInput = document.getElementById('share-to');
+
+            const shareFrom = new Date(shareFromInput.value).getTime() * 1000;
+            const shareTo = new Date(shareToInput.value).getTime() * 1000;
+            
+            console.log(`Share from (Unix timestamp): ${shareFrom}`);
+            console.log('+++')
+            console.log(`Share to (Unix timestamp): ${shareTo}`);
+            
+            
+            logging_system = "unknown"
+            for (var file of event.target.files) {
+                if (file.webkitRelativePath.startsWith("log/journal/")) {
+                    logging_system = "journald"
+                    console.log('is journald')
+                    console.log(file.webkitRelativePath, 'is journald')
+                }
+            }
+            if (logging_system == "unknown") {
+                logging_system = "syslog"
+                alert("Journal catalog not found, is your system using journald? Syslog is not supported yet, but will be soon.")
+            }
+            
+            console.log('Logging system:', logging_system)
+            
+            let filteredFiles;
+            if (logging_system == "journald") {
+                console.log('IJDIJD')
+                const files = Array.from(event.target.files);
+                console.log(files)
+                filteredFiles = files.filter(file => file.webkitRelativePath.startsWith('log/journal/'));
+                console.log(filteredFiles)
+            }
+            console.log(filteredFiles)
+            
+            var numFiles = filteredFiles.length;
+            console.log('Number of files:', numFiles);
+            processedFiles = 0;
+
+
+            for (const file of filteredFiles) {
+
+                console.log("FILE: ", file)
+                console.log(file.webkitRelativePath)
+                let item = document.createElement("li");
+                item.textContent = file.webkitRelativePath;
+                // output.appendChild(item);
+
+                const headEntryRealtimeBlob = file.slice(184, 192);
+                console.log(headEntryRealtimeBlob);
+                // console.log(headEntryRealtimeBlob.bytes());
+                console.log('---');
+                // hB = headEntryRealtimeBlob.bytes();
+
+                const tailEntryRealtimeBlob = file.slice(192, 200);
+                console.log(tailEntryRealtimeBlob);
+                // console.log(tailEntryRealtimeBlob.bytes());
+                console.log('---');
+                // tB = tailEntryRealtimeBlob.bytes();
+
+                console.log('-+-');
+
+                const wholeFileAsBlob = file.slice(0);
+                
+                // let headEntryRealtime;
+                // let tailEntryRealtime;
+
+
+                headEntryRealtimeBlob.arrayBuffer().then(buf => {
+                    let bytes = new Uint8Array(buf);
+                    console.log(bytes /*...*/);
+                    console.log('*****')
+                    var x = 1
+                    var view = new DataView(buf);
+                    var value = view.getBigUint64(0, true); // true for little-endian
+                    console.log(value);
+                    var headEntryRealtime = value;
+
+                    tailEntryRealtimeBlob.arrayBuffer().then(buf => {
+                        console.log('**+**')
+                        var bytes = new Uint8Array(buf);
+                        console.log(bytes /*...*/);
+                        console.log(x + 1)
+
+                        var view = new DataView(buf);
+                        var value = view.getBigUint64(0, true); // true for little-endian
+                        console.log(value);
+                        var tailEntryRealtime = value;
+
+                        console.log(headEntryRealtime);
+                        console.log(tailEntryRealtime);
+                        console.log('¡!!!!!!!¡');
+
+                        console.log(headEntryRealtime <= shareTo && tailEntryRealtime >= shareFrom)
+                        console.log(headEntryRealtime, shareTo, tailEntryRealtime, shareFrom)
+                        console.log(typeof headEntryRealtime)
+                        console.log(typeof shareTo)
+
+                        if (headEntryRealtime <= shareTo && tailEntryRealtime >= shareFrom) {
+                            console.log('File is relevant to the selected timeframe', file.webkitRelativePath);
+
+                            wholeFileAsBlob.arrayBuffer().then(buf => {
+                                let bytes = new Uint8Array(buf);
+                                console.log(bytes)
+                                console.log(typeof bytes)
+                                knownEntryArrayOffsets = [];
+                                console.log('aoe: ', bytes.slice(98, 106))
+                                amountOfEntries = bytes[152] * 256 ** 0 + bytes[153] * 256 ** 1 + bytes[154] * 256 ** 2 + bytes[155] * 256 ** 3 + bytes[156] * 256 ** 4 + bytes[157] * 256 ** 5 + bytes[158] * 256 ** 6 + bytes[159] * 256 ** 7;
+                                processedEntries = 0;
+
+                                entryArrayOffset = bytes[176] * 256 ** 0 + bytes[177] * 256 ** 1 + bytes[178] * 256 ** 2 + bytes[179] * 256 ** 3 + bytes[180] * 256 ** 4 + bytes[181] * 256 ** 5 + bytes[182] * 256 ** 6 + bytes[183] * 256 ** 7;
+                                console.log(entryArrayOffset)
+                                console.log("////****\\\\\\")
+
+                                console.log('06:', bytes[entryArrayOffset])
+                                entryArraySize = bytes[entryArrayOffset + 8] + bytes[entryArrayOffset + 9] * 256 + bytes[entryArrayOffset + 10] * 256 ** 2
+                                nextEntryArrayOffset = convertBytesToInt(bytes.slice(entryArrayOffset + 16, entryArrayOffset + 24), "le64")
+
+                                while (nextEntryArrayOffset != 0) {
+                                        
+                                    // TODO: 32 or 64
+                                    for (let i = 0; i < (entryArraySize - 8) / 8; i++) {
+                                        knownEntryArrayOffsets.push(convertBytesToInt(bytes.slice(nextEntryArrayOffset + 24 + i * 4, nextEntryArrayOffset + 28 + i * 4), "le32"))
+                                    }
+                                    
+                                    nextEntryArrayOffset = convertBytesToInt(bytes.slice(nextEntryArrayOffset + 16, nextEntryArrayOffset + 24), "le64")
+                                    entryArraySize = bytes[nextEntryArrayOffset + 8] + bytes[nextEntryArrayOffset + 9] * 256 + bytes[nextEntryArrayOffset + 10] * 256 ** 2
+                                    
+                                    console.log('Entry Array Size:', entryArraySize)
+                                    console.log('Next Entry Array Offset:', nextEntryArrayOffset)
+                                    console.log('Known Entry Array Offsets:', knownEntryArrayOffsets)
+
+                                }
+                                
+
+                                // knownEntryArrayOffsets contains offsets to entries describing structure of 03 log entries
+
+                                // TODO: cut off first useless EntryArrays with binary search
+                                // index = Math.floor(length(knownEntryArrayOffsets) / 2)
+                                // while (true) {
+                                //     offset = knownEntryArrayOffsets[index]
+                                //     realtime = convertBytesToInt(bytes.slice(offset + 24, offset + 32), "le64")
+                                //     if (realtime < shareFrom) {
+                                //         // we at the left from the first one
+                                //         previouslyCheckedIndex = index
+                                //         index = Math.floor(index * 1.5)
+                                //     } else if (realtime > shareFrom) {
+                                //         // we at the right from the first one
+                                //         previouslyCheckedIndex = index
+                                //         index = Math.floor(index / 2)
+                                //     } else {
+                                //         break
+                                //     }
+
+                                // }
+
+                                useBinarySearch = true
+                                // TODO: Check for off-by-one errors
+
+                                if (useBinarySearch) {
+                                    var o = knownEntryArrayOffsets[Math.floor(knownEntryArrayOffsets.length / 2) - 2]
+                                    var r = convertBytesToInt(bytes.slice(o + 24, o + 32), "le64")
+                                    if (r < shareFrom) {
+                                        var o = knownEntryArrayOffsets[Math.floor(knownEntryArrayOffsets.length * 0.75) - 2]
+                                        var r = convertBytesToInt(bytes.slice(o + 24, o + 32), "le64")
+                                        if (r < shareFrom) {
+                                            // o in the last ¼
+                                            knownEntryArrayOffsets = knownEntryArrayOffsets.slice(Math.floor(knownEntryArrayOffsets.length * 0.75) - 2)
+                                        } else {
+                                            // o in the first ¾, but not first ½
+                                            knownEntryArrayOffsets = knownEntryArrayOffsets.slice(Math.floor(knownEntryArrayOffsets.length / 2) - 2)
+                                        }
+                                    } else if (r > shareFrom) {
+                                        // o in the first ½
+                                        var o = knownEntryArrayOffsets[Math.floor(knownEntryArrayOffsets.length / 4) - 2]
+                                        var r = convertBytesToInt(bytes.slice(o + 24, o + 32), "le64")
+                                        if (r > shareFrom) {
+                                            // o in the first ¼
+                                            knownEntryArrayOffsets = knownEntryArrayOffsets
+                                        } else {
+                                            // o in the first ½, but not first ¼
+                                            knownEntryArrayOffsets = knownEntryArrayOffsets.slice(Math.floor(knownEntryArrayOffsets.length / 4) - 2)
+                                        }
+                                    } else {
+                                        // o is offset to the exact entry, remove everything before it
+                                        knownEntryArrayOffsets = knownEntryArrayOffsets.slice(knownEntryArrayOffsets.indexOf(o) - 1)
+                                    }
+                                }
+                                // alert(String(o + " " + knownEntryArrayOffsets.length + " " + knownEntryArrayOffsets.indexOf(o)))
+
+                                // With this 4-sector binary search: 00:02.141
+                                // Without: 00:03.747 (Performance mode)
+                                    
+
+
+
+                                // Helper: read little-endian 64-bit integer from bytes slice.
+                                // If your convertBytesToInt returns Number or BigInt, adapt accordingly.
+                                // Example wrapper assumes convertBytesToInt exists.
+                                // function readRealtime(bytes, offset) {
+                                //     // slice offset + 24 .. offset + 32 (end exclusive)
+                                //     const slice = bytes.slice(offset + 24, offset + 32);
+                                //     return convertBytesToInt(slice, "le64");
+                                // }
+
+                                // // binary search for first index with realtime > shareFrom
+                                // // bytes: Uint8Array (or Buffer), knownEntryArrayOffsets: number[] (sorted), shareFrom: Number or BigInt
+                                // function trimOffsetsBeforeShare(bytes, knownEntryArrayOffsets, shareFrom) {
+                                // let lo = 0;
+                                // let hi = knownEntryArrayOffsets.length; // exclusive
+                                // while (lo < hi) {
+                                //     const mid = (lo + hi) >>> 1;
+                                //     const rt = readRealtime(bytes, knownEntryArrayOffsets[mid]);
+                                //     // If using BigInt for shareFrom and rt, ensure both are BigInt
+                                //     if (rt <= shareFrom) {
+                                //     lo = mid + 1;
+                                //     } else {
+                                //     hi = mid;
+                                //     }
+                                // }
+                                // // lo is first index with realtime > shareFrom, or knownEntryArrayOffsets.length if none
+                                // if (lo === 0) return knownEntryArrayOffsets.slice(); // nothing to remove
+                                // return knownEntryArrayOffsets.slice(lo);
+                                // }
+
+
+
+
+
+
+                                for (const offset of knownEntryArrayOffsets) {
+                                    // Iterating through known logs (collections of 01 data objects)
+                                    console.log('03:', bytes[offset])
+                                    data_offsets = []
+                                    data_entries = []
+                                    size = bytes[offset + 8] + bytes[offset + 9] * 256 + bytes[offset + 10] * 256 ** 2
+                                    seqnum = convertBytesToInt(bytes.slice(offset + 16, offset + 24), "le64")
+                                    console.log('Working with realtime: ', bytes.slice(offset + 24, offset + 32))
+                                    realtime = convertBytesToInt(bytes.slice(offset + 24, offset + 32), "le64")
+                                    monotonic = convertBytesToInt(bytes.slice(offset + 32, offset + 40), "le64")
+                                    boot_id = bytes.slice(offset + 40, offset + 56)
+                                    xor_hash = convertBytesToInt(bytes.slice(offset + 56, offset + 64), "le64")
+
+                                    console.log(bytes.slice(offset, offset + 128).toString())
+
+                                    console.log('Size:', size)
+                                    console.log('Seqnum:', seqnum)
+                                    console.log('Realtime:', realtime)
+                                    console.log('Monotonic:', monotonic)
+                                    console.log('Boot ID:', boot_id)
+                                    console.log('Xor Hash:', xor_hash)
+                                    
+                                    data_objects = (size - 56) / 4  // assuming 32, TODO
+
+                                    if (!(realtime >= shareFrom && realtime <= shareTo)) {
+                                        processedEntries++;
+                                        console.log('Realtime is not in the selected timeframe')
+                                        
+                                        var progressBar = document.getElementById('progress');
+                                        progressBar.value = Number(processedFiles / numFiles * 100 + processedEntries / amountOfEntries / numFiles * 100);
+                                        console.log('Progress bar is: ', progressBar)
+                                        // if (progressBar.value > 10 && Math.random() < 0.02) {
+                                        //     progressBar.value = 10
+                                        //     alert(progressBar.value + "i" + progressBar.max + "i" + processedEntries + "_" + amountOfEntries + "_" + processedFiles + "_" + numFiles + "_" + Number(processedFiles / numFiles * 100 + processedEntries / amountOfEntries / numFiles * 100))
+                                        // }
+                                        // document.getElementById('progress').value = 70
+                                        // TODO: find where the fuck this fails
+                                        // But this works:
+                                        // progressBar.value = Number(processedFiles / numFiles * 100);
+                                        console.log('Processed entries:', processedEntries);
+                                        console.log('Amount of entries:', amountOfEntries);
+
+                                        console.log('Setting progress bar to: ', Number(processedFiles / numFiles * 100 + processedEntries / amountOfEntries / numFiles * 100));
+
+                                        // Check if, by chance, all relevant logs are already extracted
+
+                                        if (realtime > shareTo) {
+                                            console.log('All logs from given file are extracted')
+                                            amountOfEntries = processedEntries
+                                            break
+                                            // Assuming all logs are in order, right?
+                                        }
+
+                                        continue
+                                    }
+
+                                    // Iterating through data objects
+
+                                    for (let i = 0; i < data_objects; i++) {
+                                        data_offset_offset = offset + 56 + i * 4
+                                        data_offset = convertBytesToInt(bytes.slice(data_offset_offset, data_offset_offset + 4), "le32")
+                                        console.log('Data offset:', data_offset)
+                                        data_offsets.push(data_offset)
+
+                                        console.log('01:', bytes[data_offset])
+                                        size = bytes[data_offset + 8] + bytes[data_offset + 9] * 256 + bytes[data_offset + 10] * 256 ** 2
+                                        console.log('hash is: ', bytes.slice(data_offset + 16, data_offset + 24).toString())
+                                        hash = convertBytesToInt(bytes.slice(data_offset + 16, data_offset + 24), "le64")
+                                        next_hash_offset = convertBytesToInt(bytes.slice(data_offset + 24, data_offset + 32), "le64")
+                                        next_field_offset = convertBytesToInt(bytes.slice(data_offset + 32, data_offset + 40), "le64")
+                                        entry_offset = convertBytesToInt(bytes.slice(data_offset + 40, data_offset + 48), "le64")
+                                        entry_array_offset = convertBytesToInt(bytes.slice(data_offset + 48, data_offset + 56), "le64")
+                                        n_entries = convertBytesToInt(bytes.slice(data_offset + 56, data_offset + 64), "le64")
+                                        console.log('Size:', size)
+                                        console.log('Hash:', hash)
+                                        console.log('Next Hash Offset:', next_hash_offset)
+                                        console.log('Next Field Offset:', next_field_offset)
+                                        console.log('Entry Offset:', entry_offset)
+                                        console.log('Entry Array Offset:', entry_array_offset)
+                                        console.log('N Entries:', n_entries)
+                                        tail_entry_array_offset = convertBytesToInt(bytes.slice(data_offset + 64, data_offset + 68), "le32")
+                                        tail_entry_array_n_entries = convertBytesToInt(bytes.slice(data_offset + 68, data_offset + 72), "le32")
+                                        payload = bytes.slice(data_offset + 72, data_offset + size)
+                                        const decoder = new TextDecoder('utf-8');
+                                        const string = decoder.decode(payload);
+                                        console.log('String:', string)
+                                        data_entries.push(string)
+                                    }
+
+                                    // Making the single log entry
+                                    const entry = {
+                                        "__SEQNUM": seqnum,
+                                        "__REALTIME_TIMESTAMP": realtime,
+                                        "__MONOTONIC_TIMESTAMP": monotonic,
+                                        "_BOOT_ID": boot_id,
+                                        
+                                    };
+
+                                    data_entries.forEach((entryStr) => {
+                                    const [key, ...rest] = entryStr.split('=');
+                                    const value = rest.join('=');
+                                    entry[key] = value;
+                                    });
+                                    
+                                    console.log('Entry:', entry)
+                                    
+                                    extracted_logs.push(entry)
+
+                                    processedEntries++;
+
+                                    console.log('Processed entries:', processedEntries);
+                                    console.log('Amount of entries:', amountOfEntries);
+
+                                    progressBar.value = Number(processedFiles / numFiles * 100 + processedEntries / amountOfEntries / numFiles  * 100);
+                                    
+                                    
+                                    // const startTime = Date.now();
+                                    // while (Date.now() - startTime < 15000) {
+                                        // // do nothing
+                                        // }
+                                        
+                                }
+                                    
+                                    
+                                processedFiles++;
+                                console.log(processedFiles, '_/_', numFiles);
+                                progressBar.value = Number(processedFiles / numFiles * 100);
+
+                                if (processedFiles === numFiles) {
+                                    console.log('All files processed');
+                                    progressBar.style.display = 'none';
+
+                                    document.dispatchEvent(new CustomEvent('allLogsExtracted'));
+
+                                }
+                                    
+                                
+
+                                
+
+                                    // _packed_ struct DataObject {
+                                        //         ObjectHeader object;
+                                        //         le64_t hash;
+                                        //         le64_t next_hash_offset;
+                                        //         le64_t next_field_offset;
+                                        //         le64_t entry_offset; /* the first array entry we store inline */
+                                        //         le64_t entry_array_offset;
+                                        //         le64_t n_entries;
+                                        //         union {                                                         \
+                                    //                 struct {                                                \
+                                    //                         uint8_t payload[] ;                             \
+                                    //                 } regular;                                              \
+                                    //                 struct {                                                \
+                                    //                         le32_t tail_entry_array_offset;                 \
+                                    //                         le32_t tail_entry_array_n_entries;              \
+                                    //                         uint8_t payload[];                              \
+                                    //                 } compact;                                              \
+                                    //         };                                                              \
+                                    // };
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    // const fileUrl = URL.createObjectURL(file);
+                                    // const link = document.createElement("a");
+                                    // link.href = fileUrl;
+                                // link.download = file.name;
+                                // link.click();
+                                // URL.revokeObjectURL(fileUrl);
+                                
+                            //     extracted_logs.push(...[{
+                            //         "PRIORITY" : "4",
+                            //         "_UID" : "1000",
+                            //         "_SELINUX_CONTEXT" : "unconfined_u:unconfined_r:xserver_t:s0-s0:c0.c1023",
+                            //         "_SYSTEMD_UNIT" : "session-14.scope",
+                            //         "_SYSTEMD_SLICE" : "user-1000.slice",
+                            //         "_MACHINE_ID" : "45dfdd3ecb7d4aa28109292b52b760d1",
+                            //         "__REALTIME_TIMESTAMP" : "1739231510252845",
+                            //         "_RUNTIME_SCOPE" : "system",
+                            //         "_SYSTEMD_CGROUP" : "/user.slice/user-1000.slice/session-14.scope",
+                            //         "_COMM" : "Xorg",
+                            //         "_SYSTEMD_SESSION" : "14",
+                            //         "_PID" : "340025",
+                            //         "_SYSTEMD_INVOCATION_ID" : "720af7e398914a00b00382c3cc0a18d2",
+                            //         "MESSAGE" : "(II) event22 - BT4.0+2.4G KB Keyboard: device removed",
+                            //         "_BOOT_ID" : "952411f6d1ed4307a4483a11e59436a5",
+                            //         "__SEQNUM_ID" : "fe1949d702b8490ebdf98019fe932df9",
+                            //         "_GID" : "1000",
+                            //         "__CURSOR" : "s=fe1949d702b8490ebdf98019fe932df9;i=5fd33;b=952411f6d1ed4307a4483a11e59436a5;m=15c78162d9;t=62dd26459cd2d;x=c9779422a54c5eda",
+                            //         "SYSLOG_IDENTIFIER" : "/usr/libexec/gdm-x-session",
+                            //         "_HOSTNAME" : "fedora",
+                            //         "_SYSTEMD_OWNER_UID" : "1000",
+                            //         "_SYSTEMD_USER_SLICE" : "-.slice",
+                            //         "__MONOTONIC_TIMESTAMP" : "93541458649",
+                            //         "_STREAM_ID" : "8170f6c8ae0049a19de6d504209d3db9",
+                            //         "_TRANSPORT" : "stdout",
+                            //         "_AUDIT_LOGINUID" : "1000",
+                            //         "__SEQNUM" : "392499",
+                            //         "_CMDLINE" : "/usr/libexec/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -nolisten tcp -background none -noreset -keeptty -novtswitch -verbose 3",
+                            //         "_EXE" : "/usr/libexec/Xorg",
+                            //         "_AUDIT_SESSION" : "14",
+                            //         "_CAP_EFFECTIVE" : "0"
+                            // },
+                            // {
+                            //         "_GID" : "1000",
+                            //         "_MACHINE_ID" : "45dfdd3ecb7d4aa28109292b52b760d1",
+                            //         "_SYSTEMD_OWNER_UID" : "1000",
+                            //         "_COMM" : "Xorg",
+                            //         "_SYSTEMD_USER_SLICE" : "-.slice",
+                            //         "_SELINUX_CONTEXT" : "unconfined_u:unconfined_r:xserver_t:s0-s0:c0.c1023",
+                            //         "_SYSTEMD_UNIT" : "session-14.scope",
+                            //         "MESSAGE" : "(II) config/udev: removing device BT4.0+2.4G KB Keyboard",
+                            //         "_TRANSPORT" : "stdout",
+                            //         "_PID" : "340025",
+                            //         "_SYSTEMD_SESSION" : "14",
+                            //         "_SYSTEMD_INVOCATION_ID" : "720af7e398914a00b00382c3cc0a18d2",
+                            //         "__SEQNUM" : "392500",
+                            //         "_BOOT_ID" : "952411f6d1ed4307a4483a11e59436a5",
+                            //         "__SEQNUM_ID" : "fe1949d702b8490ebdf98019fe932df9",
+                            //         "SYSLOG_IDENTIFIER" : "/usr/libexec/gdm-x-session",
+                            //         "__MONOTONIC_TIMESTAMP" : "93541487690",
+                            //         "__CURSOR" : "s=fe1949d702b8490ebdf98019fe932df9;i=5fd34;b=952411f6d1ed4307a4483a11e59436a5;m=15c781d44a;t=62dd2645a3e9d;x=8c5b7714b685570c",
+                            //         "_HOSTNAME" : "fedora",
+                            //         "_CAP_EFFECTIVE" : "0",
+                            //         "_AUDIT_LOGINUID" : "1000",
+                            //         "PRIORITY" : "4",
+                            //         "_RUNTIME_SCOPE" : "system",
+                            //         "_UID" : "1000",
+                            //         "_SYSTEMD_CGROUP" : "/user.slice/user-1000.slice/session-14.scope",
+                            //         "_EXE" : "/usr/libexec/Xorg",
+                            //         "_AUDIT_SESSION" : "14",
+                            //         "__REALTIME_TIMESTAMP" : "1739231510281885",
+                            //         "_SYSTEMD_SLICE" : "user-1000.slice",
+                            //         "_CMDLINE" : "/usr/libexec/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -nolisten tcp -background none -noreset -keeptty -novtswitch -verbose 3",
+                            //         "_STREAM_ID" : "8170f6c8ae0049a19de6d504209d3db9"
+                            //     },
+                            //     {
+                            //         "_STREAM_ID" : "8170f6c8ae0049a19de6d504209d3db9",
+                            //         "_SYSTEMD_USER_SLICE" : "-.slice",
+                            //         "_GID" : "1000",
+                            //         "_SYSTEMD_CGROUP" : "/user.slice/user-1000.slice/session-14.scope",
+                            //         "__MONOTONIC_TIMESTAMP" : "93541487690",
+                            //         "_PID" : "340025",
+                            //         "_TRANSPORT" : "stdout",
+                            //         "_UID" : "1000",
+                            //         "_SYSTEMD_OWNER_UID" : "1000",
+                            //         "_SYSTEMD_UNIT" : "session-14.scope",
+                            //         "__CURSOR" : "s=fe1949d702b8490ebdf98019fe932df9;i=5fd35;b=952411f6d1ed4307a4483a11e59436a5;m=15c781d44a;t=62dd2645a3e9d;x=604a33da4712523f",
+                            //         "_SYSTEMD_SESSION" : "14",
+                            //         "__SEQNUM_ID" : "fe1949d702b8490ebdf98019fe932df9",
+                            //         "_CAP_EFFECTIVE" : "0",
+                            //         "__REALTIME_TIMESTAMP" : "1739231510281885",
+                            //         "MESSAGE" : "(**) Option \"fd\" \"185\"",
+                            //         "_MACHINE_ID" : "45dfdd3ecb7d4aa28109292b52b760d1",
+                            //         "_SYSTEMD_INVOCATION_ID" : "720af7e398914a00b00382c3cc0a18d2",
+                            //         "_AUDIT_LOGINUID" : "1000",
+                            //         "_BOOT_ID" : "952411f6d1ed4307a4483a11e59436a5",
+                            //         "PRIORITY" : "4",
+                            //         "__SEQNUM" : "392501",
+                            //         "_AUDIT_SESSION" : "14",
+                            //         "_RUNTIME_SCOPE" : "system",
+                            //         "_SYSTEMD_SLICE" : "user-1000.slice",
+                            //         "_HOSTNAME" : "fedora",
+                            //         "_SELINUX_CONTEXT" : "unconfined_u:unconfined_r:xserver_t:s0-s0:c0.c1023",
+                            //         "_EXE" : "/usr/libexec/Xorg",
+                            //         "_CMDLINE" : "/usr/libexec/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -nolisten tcp -background none -noreset -keeptty -novtswitch -verbose 3",
+                            //         "_COMM" : "Xorg",
+                            //         "SYSLOG_IDENTIFIER" : "/usr/libexec/gdm-x-session"
+                            // },
+                            // {
+                            //     "_HOSTNAME" : "fedora",
+                            //     "PRIORITY" : "4",
+                            //         "_BOOT_ID" : "952411f6d1ed4307a4483a11e59436a5",
+                            //         "_AUDIT_SESSION" : "14",
+                            //         "_SYSTEMD_INVOCATION_ID" : "720af7e398914a00b00382c3cc0a18d2",
+                            //         "_MACHINE_ID" : "45dfdd3ecb7d4aa28109292b52b760d1",
+                            //         "_AUDIT_LOGINUID" : "1000",
+                            //         "_SYSTEMD_SLICE" : "user-1000.slice",
+                            //         "MESSAGE" : "(II) UnloadModule: \"libinput\"",
+                            //         "__MONOTONIC_TIMESTAMP" : "93541487690",
+                            //         "_GID" : "1000",
+                            //         "_SYSTEMD_USER_SLICE" : "-.slice",
+                            //         "__SEQNUM_ID" : "fe1949d702b8490ebdf98019fe932df9",
+                            //         "__SEQNUM" : "392502",
+                            //         "_SYSTEMD_CGROUP" : "/user.slice/user-1000.slice/session-14.scope",
+                            //         "_SYSTEMD_UNIT" : "session-14.scope",
+                            //         "_SELINUX_CONTEXT" : "unconfined_u:unconfined_r:xserver_t:s0-s0:c0.c1023",
+                            //         "_COMM" : "Xorg",
+                            //         "__REALTIME_TIMESTAMP" : "1739231510281885",
+                            //         "SYSLOG_IDENTIFIER" : "/usr/libexec/gdm-x-session",
+                            //         "__CURSOR" : "s=fe1949d702b8490ebdf98019fe932df9;i=5fd36;b=952411f6d1ed4307a4483a11e59436a5;m=15c781d44a;t=62dd2645a3e9d;x=38ee0bea6f33793d",
+                            //         "_PID" : "340025",
+                            //         "_RUNTIME_SCOPE" : "system",
+                            //         "_CMDLINE" : "/usr/libexec/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -nolisten tcp -background none -noreset -keeptty -novtswitch -verbose 3",
+                            //         "_SYSTEMD_SESSION" : "14",
+                            //         "_TRANSPORT" : "stdout",
+                            //         "_UID" : "1000",
+                            //         "_SYSTEMD_OWNER_UID" : "1000",
+                            //         "_CAP_EFFECTIVE" : "0",
+                            //         "_STREAM_ID" : "8170f6c8ae0049a19de6d504209d3db9",
+                            //         "_EXE" : "/usr/libexec/Xorg"
+                            //     },
+                            //     {
+                            //         "_SYSTEMD_SLICE" : "user-1000.slice",
+                            //         "_AUDIT_SESSION" : "14",
+                            //         "__SEQNUM" : "392503",
+                            //         "_SELINUX_CONTEXT" : "unconfined_u:unconfined_r:xserver_t:s0-s0:c0.c1023",
+                            //         "_SYSTEMD_INVOCATION_ID" : "720af7e398914a00b00382c3cc0a18d2",
+                            //         "_TRANSPORT" : "stdout",
+                            //         "__SEQNUM_ID" : "fe1949d702b8490ebdf98019fe932df9",
+                            //         "_RUNTIME_SCOPE" : "system",
+                            //         "_BOOT_ID" : "952411f6d1ed4307a4483a11e59436a5",
+                            //         "PRIORITY" : "3",
+                            //         "_SYSTEMD_CGROUP" : "/user.slice/user-1000.slice/session-14.scope",
+                            //         "_HOSTNAME" : "fedora",
+                            //         "_UID" : "1000",
+                            //         "__REALTIME_TIMESTAMP" : "1739231510281885",
+                            //         "_CAP_EFFECTIVE" : "0",
+                            //         "_AUDIT_LOGINUID" : "1000",
+                            //         "_STREAM_ID" : "8170f6c8ae0049a19de6d504209d3db9",
+                            //         "_SYSTEMD_UNIT" : "session-14.scope",
+                            //         "__MONOTONIC_TIMESTAMP" : "93541487690",
+                            //         "_SYSTEMD_OWNER_UID" : "1000",
+                            //         "_PID" : "340025",
+                            //         "MESSAGE" : "(II) systemd-logind: not releasing fd for 13:86, still in use",
+                            //         "_COMM" : "Xorg",
+                            //         "_MACHINE_ID" : "45dfdd3ecb7d4aa28109292b52b760d1",
+                            //         "SYSLOG_IDENTIFIER" : "/usr/libexec/gdm-x-session",
+                            //         "_SYSTEMD_USER_SLICE" : "-.slice",
+                            //         "_CMDLINE" : "/usr/libexec/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -nolisten tcp -background none -noreset -keeptty -novtswitch -verbose 3",
+                            //         "_SYSTEMD_SESSION" : "14",
+                            //         "__CURSOR" : "s=fe1949d702b8490ebdf98019fe932df9;i=5fd37;b=952411f6d1ed4307a4483a11e59436a5;m=15c781d44a;t=62dd2645a3e9d;x=ad9f929ce4742e75",
+                            //         "_GID" : "1000",
+                            //         "_EXE" : "/usr/libexec/Xorg"
+                            //     }
+                            // ]) 
+                                                            
+
+                            
+                        });
+                        
+                    } else {
+                            console.log("Irrelevant file");
+
+                            // processedFiles++;
+                            // console.log(processedFiles, '_/_', numFiles);
+                            // progressBar.value = Number(processedFiles / numFiles * 100);
+                            
+                            numFiles--;
+
+                            if (processedFiles === numFiles) {
+                                    console.log('All files processed');
+                                    progressBar.style.display = 'none';
+                                    allLogsWereExtracted = true;
+                                    // document.dispatchEvent(new CustomEvent('allLogsExtracted'));
+
+                                    document.dispatchEvent(new CustomEvent('allLogsExtracted'));
+                                    
+                            }
+                        };
+                    });
+
+                });
+
+                
+                
+                
+                
+                // headEntryRealtimeBlob.arrayBuffer().then(headBuf => {
+                    //     let headView = new DataView(headBuf);
+                    //     var headEntryRealtime = headView.getBigUint64(0, true); // true for little-endian
+
+                //     console.log("Head Entry Realtime:", headEntryRealtime); // Log immediately after assignment
+                    
+                //     return tailEntryRealtimeBlob.arrayBuffer(); // Return the next Promise
+                // }).then(tailBuf => {
+                //     console.log('**+**');
+                
+                //     let tailView = new DataView(tailBuf);
+                //     var tailEntryRealtime = tailView.getBigUint64(0, true); // true for little-endian
+
+                //     console.log("Tail Entry Realtime:", tailEntryRealtime);
+                //     console.log("Head Entry Realtime in second then:", headEntryRealtime); // Check value here
+
+                //     console.log('¡!!!!!!!¡');
+
+                    
+                // }).catch(error => {
+                //     console.error('Error occurred:', error);
+                // });
+                
+
+                
+
+
+
+                
+                
+                
+                
+                // function getTimestamp(file) {
+                    //     return new Promise((resolve, reject) => {
+                //         const reader = new FileReader();
+                        
+                //         reader.onload = function(event) {
+                //             const timestampBytes = new Uint8Array(event.target.result);
+                //             let timestamp = 0;
+
+                //             for (let i = 0; i < timestampBytes.length; i++) {
+                //                 timestamp |= (timestampBytes[i] << (i * 8));
+                //             }
+                //             resolve(timestamp);
+                //         };
+                
+                //         reader.onerror = function() {
+                //             reject(new Error("Error reading file."));
+                //         };
+
+                //         console.log(timestamp)
+                //         reader.readAsArrayBuffer(file.slice(184, 192));
+                //     });
+                // }
+                
+                // // Usage
+                // getTimestamp(file).then(timestamp => {
+                //     console.log(timestamp);
+                // }).catch(error => {
+                    //     console.error(error);
+                    // });
+                    
+
+
+
+
+
+
+
+
+                // // As I can't for the love of god figure out a way to read them in sync with
+                // // the rest of the script, I'll just extend the solution that works for one by
+                // // conjoining the values to parse them with mind-twisting function and later 
+                // // separate them as ints with math.
+                // const headEntryRealtimeBlobTailEntryRealtimeBlob = file.slice(184, 200);
+                // console.log(tailEntryRealtimeBlob);
+                // console.log(tailEntryRealtimeBlob.bytes());
+                // console.log('---');
+                
+                // const reader = new FileReader();
+                
+                
+                
+                
+                // reader.onload = function(event) {
+                //     const arrayBuffer = event.target.result;
+                //     const dataView = new DataView(arrayBuffer);
+                //     var time = dataView.getBigInt64(0, true); // true for little-endian
+                //     var time = Number(time)
+                //     console.log(time); // Do something with the time variable
+                //     console.log(headEntryRealtimeBlob)
+                
+                
+                
+                
+                //     const shareFromInput = document.getElementById('share-from');
+                //     const shareToInput = document.getElementById('share-to');
+
+                //     const logTimestamps = () => {
+                    //         const shareFrom = new Date(shareFromInput.value).getTime();
+                //         const shareTo = new Date(shareToInput.value).getTime();
+                        
+                //         console.log(`Share from (Unix timestamp): ${shareFrom}`);
+                //         console.log('+++')
+                //         console.log(`Share to (Unix timestamp): ${shareTo}`);
+                
+                
+                
+
+                
+
+                
+                //     };
+                
+                //     // Call the function to log the timestamps
+                //     logTimestamps();
+                
+                
+                
+                
+                
+                
+                // };
+                
+                // reader.readAsArrayBuffer(headEntryRealtimeBlob);  // DELETE ASYNC
+                
+            }
+        },
+        false,
+    );
+
+
+    
+    </script>
+
+    <!-- <script>static_url_output.value = ""</script> -->
+
+    <div id="quick_settings_panel">
+        <!-- A single-line panel with icons allowing quick interface adjustments -->
+        <!-- C                           Open external  -->
+        <!-- Color -->
+    </div>
+
+    <div id="uploaded_logs_division" style="display: none;">
+        <pre id="logs" class="scanlines" style="font-family: 'Source Code Pro', '3270', monospace; overflow-x:auto; overflow-y: auto; max-height: 12em;">
+        </pre>
+        <!-- Logs will be shown here
+        <details><summary>Log</summary>New log message</details> -->
+
+        <!-- <output id="static_url_output" style="white-space: nowrap; overflow-x: auto; width: 200px;">
+            U
+        </output> -->
+
+        <style>
+            .link_share_clarification {
+                color: gray;
+                margin-top: 8px;
+            }
+        </style>
+
+        <div id="static_url_output_div">
+            <h3 style="margin-bottom: 5px; display: inline-block">Copy permanent link</h3><h3 id="static_url_output_length" style="margin-bottom: 5px; display: inline-block; float: right; background-color: white; color: black; border-radius: 6px; padding: 1px 15px"><output id="static_url_output_length_output">x</output> symbols</h3>
+            <br>
+            <div style="display: inline-block width: 100%;">
+                <input id="static_url_output" type="text" style="width: calc(100% - 100px);" readonly value="" autocomplete="off">
+                </input>
+            <button style="width: 50px; cursor: pointer; border:#ffffff 2px solid; border-radius: 15px; padding: 8px 20px; background-color: #000000; color: #ffffff;" id="copy-button" onclick="navigator.clipboard.writeText(static_url_output.value)"><i class="fa-regular fa-clipboard"></i></button>
+            </div>
+            <p class="link_share_clarification">The data is encoded in the URL itself and is not dependent on any server storage</p>
+        </div>
+            <div id="static_url_output_div">
+            <h3 style="margin-bottom: 5px; display: inline-block">Request short link</h3><h3 id="static_url_output_length" style="margin-bottom: 5px; display: inline-block; float: right; background-color: white; color: black; border-radius: 6px; padding: 1px 15px"><output id="static_short_url_output_length_output">x</output>/1,000 kB</h3>
+            <br>
+            <div style="display: inline-block width: 100%;">
+                <input id="static_short_url_output" type="text" style="width: calc(100% - 100px); text-align: left;" placeholder="Coming soon..." readonly value="" autocomplete="off">
+                </input>
+            <button style="width: 50px; cursor: pointer; border:#ffffff 2px solid; border-radius: 15px; padding: 8px 20px; background-color: #000000; color: #ffffff;" id="copy-button"><i class="fa-regular fa-clipboard"></i></button>
+            </div>
+            <p class="link_share_clarification">The data is temporarily <span title="No permanent timeframe for storage rotation: oldest files are automatically deleted when it runs out of allocated space"><u>[?]</u></span> stored on my server. Your IP will be logged to prevent spam</p>
+        </div>
+    </div>
+    
+
+</body>
+</html>
