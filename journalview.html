@@ -333,7 +333,62 @@
     <label>Share logs from app<span id="ending_s">s</span>: <output id="amount_of_apps_to_share">all</output> </label>
     <input id="apps_to_share_logs_of" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="sources" title="t" multiple style="padding: 5px 10px"></input>
 
+
+    <script src="wasm_exec.js"></script>
+
     <script>
+
+
+        document.addEventListener('keydown', (event) => {
+        if (event.altKey) {
+            switch (event.key) {
+            case 'q':
+                document.body.style.fontFamily = 'Lexend';
+                console.log(document.body.style.fontFamily)
+                break;
+            case 'w':
+                document.body.style.fontFamily = 'Noto Sans';
+                console.log(document.body.style.fontFamily)
+                break;
+            case 'a':
+                document.body.style.fontFamily = 'sans';
+                console.log(document.body.style.fontFamily)
+                break;
+            case 'r':
+                document.body.style.fontFamily = 'system-ui';
+                console.log(document.body.style.fontFamily)
+                break;
+            case 'z':
+                document.body.style.fontFamily = 'monospace';
+                console.log(document.body.style.fontFamily)
+                break;
+            case 'x':  
+                document.body.style.fontFamily = 'Source Code Pro';
+                console.log(document.body.style.fontFamily)
+                break;
+            case 'c':
+                document.body.style.fontFamily = "'3270'";
+                console.log(document.body.style.fontFamily, '3270')
+                break;
+            case 'v':
+                document.body.style.fontFamily = "rubik";
+                console.log(document.body.style.fontFamily)
+                break;
+            }
+        }
+        });
+
+
+        // const go = new Go();
+        // go.argv = ["kanzi", "-c", "-i", ""];
+
+        // WebAssembly.instantiateStreaming(fetch("kanzi.wasm"), go.importObject).then(
+        // (results) => {
+        //     go.run(results.instance);
+        // },
+        // );
+        
+    
     const inputElement = document.getElementById('apps_to_share_logs_of');
 
     inputElement.addEventListener('input', function() {
