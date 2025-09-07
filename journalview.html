@@ -268,7 +268,7 @@
         console.log(navigator)
     </script>
     
-    <p style="padding: 10px; text-align: center"><label for="file-picker" class="upload-btn" style="cursor: pointer; border:#ffffff 2px solid; border-radius: 40px; padding: 10px 20px; font-weight: bold;">Select the /var/log directory to <i class="fa-solid fa-upload"></i></label>
+    <p style="padding: 10px; text-align: center"><label for="file-picker" class="upload-btn" style="cursor: pointer; border:#ffffff 2.5px solid; border-radius: 40px; padding: 10px 20px; font-weight: bold;">Select the /var/log directory to <i class="fa-solid fa-upload"></i></label>
         <input
         type="file"
         id="file-picker"
@@ -379,15 +379,19 @@
         });
 
 
-        // const go = new Go();
-        // go.argv = ["kanzi", "-c", "-i", ""];
-
-        // WebAssembly.instantiateStreaming(fetch("kanzi.wasm"), go.importObject).then(
-        // (results) => {
-        //     go.run(results.instance);
-        // },
-        // );
+        const go = new Go();
+        go.argv = ["kanzi", "-c", "-i", ""];
+        go.stdin = new Uint8Array([65,66,67,68]);  //not working
         
+        WebAssembly.instantiateStreaming(fetch("kanzi.wasm"), go.importObject).then(
+            (results) => {
+                go.run(results.instance);
+                console.log(go);
+            },
+        );
+            // TODO: Implement Kanzi compression. Figure out how to pass bytes to
+            // the script and get stdout back.
+    
     
     const inputElement = document.getElementById('apps_to_share_logs_of');
 
