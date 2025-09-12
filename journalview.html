@@ -174,6 +174,7 @@
                     font-weight: 500;
                     transition: background 0.2s, color 0.2s, border 0.2s;
                     box-shadow: 0 2px 8px #0002;
+                    font-family: "Lexend", iosevka, sans;
                 }
 
                 /* Try to fix autosuggestion style overwrite? 
@@ -453,13 +454,18 @@
                 console.log(element.__REALTIME_TIMESTAMP)
                 var color1 = "<font color=\"white\">"
                 var color2 = "</font>"
-                if (element.PRIORITY == 0 || element.PRIORITY == 1 || element.PRIORITY == 2 || element.PRIORITY == 3) { color1 = "<font color=\"red\">"; color2 = "</font>" }
-                if (element.PRIORITY == 4) { color1 = "<font color=\"yellow\">"; color2 = "</font>" }
-                if (element.PRIORITY == 5) { color1 = "<font color=\"white\"><strong>"; color2 = "</strong></font>" }
-                if (element.PRIORITY == 7) { color1 = "<font color=\"gray\">"; color2 = "</font>" }
+                if ('PRIORITY' in element) {   
+                    if (element.PRIORITY == 0 || element.PRIORITY == 1 || element.PRIORITY == 2 || element.PRIORITY == 3) { color1 = "<font color=\"red\">"; color2 = "</font>" }
+                    if (element.PRIORITY == 4) { color1 = "<font color=\"yellow\">"; color2 = "</font>" }
+                    if (element.PRIORITY == 5) { color1 = "<font color=\"white\"><strong>"; color2 = "</strong></font>" }
+                    if (element.PRIORITY == 7) { color1 = "<font color=\"gray\">"; color2 = "</font>" }
+                } else {
+                    color1 = "<font color=\"blue\">"
+                }
+                // TODO: figure out why blue logs with no _PID or with _PID=1 do not show up
                 var verbose = ""
                 for (const key in element) { if (element.hasOwnProperty(key)) { verbose += "    " + key + "=" + element[key] + "\n" } }
-                logsElement.innerHTML += '<details><summary>' + color1 + (new Date(Math.floor(parseInt(element.__REALTIME_TIMESTAMP) / 1000))).toLocaleString('en-US', {month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false}).replace(/,/g, '') + ' ' + element._HOSTNAME + ' ' + element.SYSLOG_IDENTIFIER + '[' + element._PID + ']: ' + element.MESSAGE + color2 + '</summary>' + verbose + '</details>'; 
+                logsElement.innerHTML += '<details><summary>' + color1 + (new Date(Math.floor(parseInt(element.__REALTIME_TIMESTAMP) / 1000))).toLocaleString('en-US', {month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false}).replace(/,/g, '') + ' ' + element._HOSTNAME + ' ' + element.SYSLOG_IDENTIFIER + ('_PID' in element ? ('[' + element._PID + ']: ') : ':') + element.MESSAGE + color2 + '</summary>' + verbose + '</details>'; 
                 console.log(element.MESSAGE)
             });
             uploaded_logs_division.style.display = "";
@@ -563,7 +569,7 @@
                     delete element.SYSLOG_TIMESTAMP  
                     delete element._SOURCE_REALTIME_TIMESTAMP
                     delete element[""]
-                    element.__REALTIME_TIMESTAMP = element.__REALTIME_TIMESTAMP.toString().slice(-6)
+                    // element.__REALTIME_TIMESTAMP = element.__REALTIME_TIMESTAMP.toString().slice(-6)
                 }
                 list_of_apps_to_share_logs_from = []
                 apps_to_share_logs_of.value.split(',').forEach(element => { list_of_apps_to_share_logs_from.push(element.trim()) });
