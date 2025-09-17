@@ -243,7 +243,7 @@
             const now = new Date();
             timeFrom = new Date(now);
             timeFrom.setMinutes(now.getMinutes() - 15)
-            console.log(timeFrom)
+            // console.log(timeFrom)
 
             // Build YYYY-MM-DDThh:mm in local time
             const pad = n => String(n).padStart(2, '0');
@@ -266,7 +266,7 @@
         // Set on load
         window.addEventListener('DOMContentLoaded', setNowAsValue);
 
-        console.log(navigator)
+        console.log("Navigator:", navigator)
     </script>
     
     <p style="padding: 10px; text-align: center"><label for="file-picker" class="upload-btn" style="cursor: pointer; border:#ffffff 2.5px solid; border-radius: 40px; padding: 10px 20px; font-weight: bold;">Select the /var/log directory to <i class="fa-solid fa-upload"></i></label>
@@ -380,16 +380,16 @@
         });
 
 
-        const go = new Go();
-        go.argv = ["kanzi", "-c", "-i", ""];
-        go.stdin = new Uint8Array([65,66,67,68]);  //not working
+        // const go = new Go();
+        // go.argv = ["kanzi", "-c", "-i", ""];
+        // go.stdin = new Uint8Array([65,66,67,68]);  //not working
         
-        WebAssembly.instantiateStreaming(fetch("kanzi.wasm"), go.importObject).then(
-            (results) => {
-                go.run(results.instance);
-                console.log(go);
-            },
-        );
+        // WebAssembly.instantiateStreaming(fetch("kanzi.wasm"), go.importObject).then(
+        //     (results) => {
+        //         go.run(results.instance);
+        //         console.log(go);
+        //     },
+        // );
             // TODO: Implement Kanzi compression. Figure out how to pass bytes to
             // the script and get stdout back.
     
@@ -398,12 +398,12 @@
 
     inputElement.addEventListener('input', function() {
         var words = apps_to_share_logs_of.value.trim().split(/\s+/).filter(Boolean);
-        console.log(words)
+        // console.log(words)
         const numWords = words.length;
 
-        console.log(numWords); // Output: 7
+        // console.log(numWords); // Output: 7
         amount_of_apps_to_share.textContent = numWords > 0 ? numWords : "all";
-        console.log('User entered a symbol!');
+        // console.log('User entered a symbol!');
         ending_s.textContent = numWords > 1 || numWords == 0 ? 's' : '';
     });
     </script>
@@ -415,16 +415,16 @@
         window.baseX = baseX
 
         const urlParams = new URLSearchParams(window.location.search);
-        console.log(urlParams)
+        console.log("urlParams:", urlParams)
 
         if (urlParams.has('sources')) {
             const share_logs_from = urlParams.get('sources').split(',');
-            console.log(share_logs_from)
+            // console.log(share_logs_from)
             apps_to_share_logs_of.value = share_logs_from.join(' ');
             amount_of_apps_to_share.textContent = share_logs_from.length > 0 ? share_logs_from.length : "all";
         }
         var fragment = window.location.hash.substring(1);
-        console.log(fragment)
+        // console.log(fragment)
         
         var BASE81F = "!$&'()*+,-./0123456789:;=?@ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz~"
         var bs81f = window.baseX(BASE81F)
@@ -432,7 +432,7 @@
         var imported_logs = urlParams.get('fragment');
         if (fragment) {
             fragment = bs81f.decode(fragment)
-            console.log('fragment:', fragment)
+            // console.log('fragment:', fragment)
 
             
             
@@ -451,7 +451,7 @@
             const logsElement = document.getElementById('logs');
             
             extracted_logs.forEach(element => {            
-                console.log(element.__REALTIME_TIMESTAMP)
+                // console.log(element.__REALTIME_TIMESTAMP)
                 var color1 = "<font color=\"white\">"
                 var color2 = "</font>"
                 if ('PRIORITY' in element) {   
@@ -466,7 +466,7 @@
                 var verbose = ""
                 for (const key in element) { if (element.hasOwnProperty(key)) { verbose += "    " + key + "=" + element[key] + "\n" } }
                 logsElement.innerHTML += '<details><summary>' + color1 + (new Date(Math.floor(parseInt(element.__REALTIME_TIMESTAMP) / 1000))).toLocaleString('en-US', {month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false}).replace(/,/g, '') + ' ' + element._HOSTNAME + ' ' + element.SYSLOG_IDENTIFIER + ('_PID' in element ? ('[' + element._PID + ']: ') : ':') + element.MESSAGE + color2 + '</summary>' + verbose + '</details>'; 
-                console.log(element.MESSAGE)
+                // console.log(element.MESSAGE)
             });
             uploaded_logs_division.style.display = "";
             static_url_output.value = document.URL  // TODO: check for URL format
@@ -552,7 +552,7 @@
                     }
                 }
                 if (lossy_compression_checkbox.checked == true) {
-                    console.log("lossy compression")
+                    // console.log("lossy compression")
                     delete element.__SEQNUM
                     delete element.__SEQNUM_ID
                     delete element._BOOT_ID
@@ -574,14 +574,14 @@
                 list_of_apps_to_share_logs_from = []
                 apps_to_share_logs_of.value.split(',').forEach(element => { list_of_apps_to_share_logs_from.push(element.trim()) });
                 if (list_of_apps_to_share_logs_from[0] != "") {
-                    console.log(list_of_apps_to_share_logs_from.length, "apps to share logs from:", list_of_apps_to_share_logs_from)                
+                    // console.log(list_of_apps_to_share_logs_from.length, "apps to share logs from:", list_of_apps_to_share_logs_from)                
                     if (list_of_apps_to_share_logs_from.includes(element.SYSLOG_IDENTIFIER) == false) {
-                        console.log("Excluded element: ", element)
+                        // console.log("Excluded element: ", element)
                         extracted_logs = extracted_logs.filter(log => list_of_apps_to_share_logs_from.includes(log.SYSLOG_IDENTIFIER));
                         return
                     }
                 }
-                console.log(element.__REALTIME_TIMESTAMP)
+                // console.log(element.__REALTIME_TIMESTAMP)
                 color1 = "<font color=\"white\">"
                 color2 = "</font>"
                 if (element.PRIORITY == 0 || element.PRIORITY == 1 || element.PRIORITY == 2 || element.PRIORITY == 3) { color1 = "<font color=\"red\">"; color2 = "</font>" }
@@ -591,7 +591,7 @@
                 verbose = ""
                 for (const key in element) { if (element.hasOwnProperty(key)) { verbose += "    " + (key == "MESSAGE" || key == "SYSLOG_IDENTIFIER" || key == "PRIORITY" ? "<font color=\"white\">" : "<font color=\"lightgreen\">") + (key == "MESSAGE" ? "<strong>" : "") + key + "=" + element[key] + (key == "MESSAGE" ? "</strong>" : "") + (key == "MESSAGE" || key == "SYSLOG_IDENTIFIER" || key == "PRIORITY" ? "</font>" : "") + "\n" } }
                 logsElement.innerHTML += '<details><summary>' + color1 + (new Date(Math.floor(parseInt(element.__REALTIME_TIMESTAMP) / 1000))).toLocaleString('en-US', {month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false}).replace(/,/g, '') + ' ' + element._HOSTNAME + ' ' + element.SYSLOG_IDENTIFIER + '[' + element._PID + ']: ' + element.MESSAGE + color2 + '</summary>' + verbose + '</details>'; 
-                console.log(element.MESSAGE)
+                // console.log(element.MESSAGE)
 
             });
             // TODO: BRING THIS SHIT TO A SEPARATE FUCKING FUNCTION for a 100th time I add features to the wrong one
@@ -693,8 +693,8 @@
             for (var file of event.target.files) {
                 if (file.webkitRelativePath.startsWith("log/journal/")) {
                     logging_system = "journald"
-                    console.log('is journald')
-                    console.log(file.webkitRelativePath, 'is journald')
+                    // console.log('is journald')
+                    // console.log(file.webkitRelativePath, 'is journald')
                 }
             }
             if (logging_system == "unknown") {
@@ -708,11 +708,10 @@
             if (logging_system == "journald") {
                 console.log('IJDIJD')
                 const files = Array.from(event.target.files);
-                console.log(files)
+                console.log("All files:", files)
                 filteredFiles = files.filter(file => file.webkitRelativePath.startsWith('log/journal/'));
-                console.log(filteredFiles)
             }
-            console.log(filteredFiles)
+            console.log("Filtered files:", filteredFiles)
             
             var numFiles = filteredFiles.length;
             console.log('Number of files:', numFiles);
@@ -721,70 +720,70 @@
 
             for (const file of filteredFiles) {
 
-                console.log("FILE: ", file)
-                console.log(file.webkitRelativePath)
+                // console.log("FILE: ", file)
+                // console.log(file.webkitRelativePath)
                 let item = document.createElement("li");
                 item.textContent = file.webkitRelativePath;
 
                 const headEntryRealtimeBlob = file.slice(184, 192);
-                console.log(headEntryRealtimeBlob);
-                console.log('---');
+                // console.log(headEntryRealtimeBlob);
+                // console.log('---');
 
                 const tailEntryRealtimeBlob = file.slice(192, 200);
-                console.log(tailEntryRealtimeBlob);
-                console.log('---');
+                // console.log(tailEntryRealtimeBlob);
+                // console.log('---');
 
-                console.log('-+-');
+                // console.log('-+-');
 
                 const wholeFileAsBlob = file.slice(0);
 
                 headEntryRealtimeBlob.arrayBuffer().then(buf => {
                     let bytes = new Uint8Array(buf);
-                    console.log(bytes /*...*/);
-                    console.log('*****')
+                    // console.log(bytes /*...*/);
+                    // console.log('*****')
                     var x = 1
                     var view = new DataView(buf);
                     var value = view.getBigUint64(0, true); // true for little-endian
-                    console.log(value);
+                    // console.log(value);
                     var headEntryRealtime = value;
 
                     tailEntryRealtimeBlob.arrayBuffer().then(buf => {
-                        console.log('**+**')
+                        // console.log('**+**')
                         var bytes = new Uint8Array(buf);
-                        console.log(bytes /*...*/);
-                        console.log(x + 1)
+                        // console.log(bytes /*...*/);
+                        // console.log(x + 1)
 
                         var view = new DataView(buf);
                         var value = view.getBigUint64(0, true); // true for little-endian
-                        console.log(value);
+                        // console.log(value);
                         var tailEntryRealtime = value;
 
-                        console.log(headEntryRealtime);
-                        console.log(tailEntryRealtime);
-                        console.log('¡!!!!!!!¡');
+                        // console.log(headEntryRealtime);
+                        // console.log(tailEntryRealtime);
+                        // console.log('¡!!!!!!!¡');
 
-                        console.log(headEntryRealtime <= shareTo && tailEntryRealtime >= shareFrom)
-                        console.log(headEntryRealtime, shareTo, tailEntryRealtime, shareFrom)
-                        console.log(typeof headEntryRealtime)
-                        console.log(typeof shareTo)
+                        // console.log(headEntryRealtime <= shareTo && tailEntryRealtime >= shareFrom)
+                        // console.log(headEntryRealtime, shareTo, tailEntryRealtime, shareFrom)
+                        // console.log(typeof headEntryRealtime)
+                        // console.log(typeof shareTo)
 
                         if (headEntryRealtime <= shareTo && tailEntryRealtime >= shareFrom) {
                             console.log('File is relevant to the selected timeframe', file.webkitRelativePath);
 
                             wholeFileAsBlob.arrayBuffer().then(buf => {
                                 let bytes = new Uint8Array(buf);
-                                console.log(bytes)
-                                console.log(typeof bytes)
+                                // console.log(bytes)
+                                // console.log(typeof bytes)
                                 knownEntryArrayOffsets = [];
-                                console.log('aoe: ', bytes.slice(98, 106))
+                                // console.log('aoe: ', bytes.slice(98, 106))
                                 amountOfEntries = bytes[152] * 256 ** 0 + bytes[153] * 256 ** 1 + bytes[154] * 256 ** 2 + bytes[155] * 256 ** 3 + bytes[156] * 256 ** 4 + bytes[157] * 256 ** 5 + bytes[158] * 256 ** 6 + bytes[159] * 256 ** 7;
                                 processedEntries = 0;
 
                                 entryArrayOffset = bytes[176] * 256 ** 0 + bytes[177] * 256 ** 1 + bytes[178] * 256 ** 2 + bytes[179] * 256 ** 3 + bytes[180] * 256 ** 4 + bytes[181] * 256 ** 5 + bytes[182] * 256 ** 6 + bytes[183] * 256 ** 7;
-                                console.log(entryArrayOffset)
-                                console.log("////****\\\\\\")
+                                // console.log(entryArrayOffset)
+                                // console.log("////****\\\\\\")
 
-                                console.log('06:', bytes[entryArrayOffset])
+                                // console.log('06:', bytes[entryArrayOffset])
                                 entryArraySize = bytes[entryArrayOffset + 8] + bytes[entryArrayOffset + 9] * 256 + bytes[entryArrayOffset + 10] * 256 ** 2
                                 nextEntryArrayOffset = convertBytesToInt(bytes.slice(entryArrayOffset + 16, entryArrayOffset + 24), "le64")
 
@@ -798,9 +797,9 @@
                                     nextEntryArrayOffset = convertBytesToInt(bytes.slice(nextEntryArrayOffset + 16, nextEntryArrayOffset + 24), "le64")
                                     entryArraySize = bytes[nextEntryArrayOffset + 8] + bytes[nextEntryArrayOffset + 9] * 256 + bytes[nextEntryArrayOffset + 10] * 256 ** 2
                                     
-                                    console.log('Entry Array Size:', entryArraySize)
-                                    console.log('Next Entry Array Offset:', nextEntryArrayOffset)
-                                    console.log('Known Entry Array Offsets:', knownEntryArrayOffsets)
+                                    // console.log('Entry Array Size:', entryArraySize)
+                                    // console.log('Next Entry Array Offset:', nextEntryArrayOffset)
+                                    // console.log('Known Entry Array Offsets:', knownEntryArrayOffsets)
 
                                 }
                                 
@@ -866,39 +865,39 @@
 
                                 for (const offset of knownEntryArrayOffsets) {
                                     // Iterating through known logs (collections of 01 data objects)
-                                    console.log('03:', bytes[offset])
+                                    // console.log('03:', bytes[offset])
                                     data_offsets = []
                                     data_entries = []
                                     size = bytes[offset + 8] + bytes[offset + 9] * 256 + bytes[offset + 10] * 256 ** 2
                                     seqnum = convertBytesToInt(bytes.slice(offset + 16, offset + 24), "le64")
-                                    console.log('Working with realtime: ', bytes.slice(offset + 24, offset + 32))
+                                    // console.log('Working with realtime: ', bytes.slice(offset + 24, offset + 32))
                                     realtime = convertBytesToInt(bytes.slice(offset + 24, offset + 32), "le64")
                                     monotonic = convertBytesToInt(bytes.slice(offset + 32, offset + 40), "le64")
                                     boot_id = bytes.slice(offset + 40, offset + 56)
                                     xor_hash = convertBytesToInt(bytes.slice(offset + 56, offset + 64), "le64")
 
-                                    console.log(bytes.slice(offset, offset + 128).toString())
+                                    // console.log(bytes.slice(offset, offset + 128).toString())
 
-                                    console.log('Size:', size)
-                                    console.log('Seqnum:', seqnum)
-                                    console.log('Realtime:', realtime)
-                                    console.log('Monotonic:', monotonic)
-                                    console.log('Boot ID:', boot_id)
-                                    console.log('Xor Hash:', xor_hash)
+                                    // console.log('Size:', size)
+                                    // console.log('Seqnum:', seqnum)
+                                    // console.log('Realtime:', realtime)
+                                    // console.log('Monotonic:', monotonic)
+                                    // console.log('Boot ID:', boot_id)
+                                    // console.log('Xor Hash:', xor_hash)
                                     
                                     data_objects = (size - 56) / 4  // assuming 32, TODO
 
                                     if (!(realtime >= shareFrom && realtime <= shareTo)) {
                                         processedEntries++;
-                                        console.log('Realtime is not in the selected timeframe')
+                                        // console.log('Realtime is not in the selected timeframe')
                                         
                                         var progressBar = document.getElementById('progress');
                                         progressBar.value = Number(processedFiles / numFiles * 100 + processedEntries / amountOfEntries / numFiles * 100);
-                                        console.log('Progress bar is: ', progressBar)
-                                        console.log('Processed entries:', processedEntries);
-                                        console.log('Amount of entries:', amountOfEntries);
+                                        // console.log('Progress bar is: ', progressBar)
+                                        // console.log('Processed entries:', processedEntries);
+                                        // console.log('Amount of entries:', amountOfEntries);
 
-                                        console.log('Setting progress bar to: ', Number(processedFiles / numFiles * 100 + processedEntries / amountOfEntries / numFiles * 100));
+                                        // console.log('Setting progress bar to: ', Number(processedFiles / numFiles * 100 + processedEntries / amountOfEntries / numFiles * 100));
 
                                         // Check if, by chance, all relevant logs are already extracted
 
@@ -917,31 +916,31 @@
                                     for (let i = 0; i < data_objects; i++) {
                                         data_offset_offset = offset + 56 + i * 4
                                         data_offset = convertBytesToInt(bytes.slice(data_offset_offset, data_offset_offset + 4), "le32")
-                                        console.log('Data offset:', data_offset)
+                                        // console.log('Data offset:', data_offset)
                                         data_offsets.push(data_offset)
 
-                                        console.log('01:', bytes[data_offset])
+                                        // console.log('01:', bytes[data_offset])
                                         size = bytes[data_offset + 8] + bytes[data_offset + 9] * 256 + bytes[data_offset + 10] * 256 ** 2
-                                        console.log('hash is: ', bytes.slice(data_offset + 16, data_offset + 24).toString())
+                                        // console.log('hash is: ', bytes.slice(data_offset + 16, data_offset + 24).toString())
                                         hash = convertBytesToInt(bytes.slice(data_offset + 16, data_offset + 24), "le64")
                                         next_hash_offset = convertBytesToInt(bytes.slice(data_offset + 24, data_offset + 32), "le64")
                                         next_field_offset = convertBytesToInt(bytes.slice(data_offset + 32, data_offset + 40), "le64")
                                         entry_offset = convertBytesToInt(bytes.slice(data_offset + 40, data_offset + 48), "le64")
                                         entry_array_offset = convertBytesToInt(bytes.slice(data_offset + 48, data_offset + 56), "le64")
                                         n_entries = convertBytesToInt(bytes.slice(data_offset + 56, data_offset + 64), "le64")
-                                        console.log('Size:', size)
-                                        console.log('Hash:', hash)
-                                        console.log('Next Hash Offset:', next_hash_offset)
-                                        console.log('Next Field Offset:', next_field_offset)
-                                        console.log('Entry Offset:', entry_offset)
-                                        console.log('Entry Array Offset:', entry_array_offset)
-                                        console.log('N Entries:', n_entries)
+                                        // console.log('Size:', size)
+                                        // console.log('Hash:', hash)
+                                        // console.log('Next Hash Offset:', next_hash_offset)
+                                        // console.log('Next Field Offset:', next_field_offset)
+                                        // console.log('Entry Offset:', entry_offset)
+                                        // console.log('Entry Array Offset:', entry_array_offset)
+                                        // console.log('N Entries:', n_entries)
                                         tail_entry_array_offset = convertBytesToInt(bytes.slice(data_offset + 64, data_offset + 68), "le32")
                                         tail_entry_array_n_entries = convertBytesToInt(bytes.slice(data_offset + 68, data_offset + 72), "le32")
                                         payload = bytes.slice(data_offset + 72, data_offset + size)
                                         const decoder = new TextDecoder('utf-8');
                                         const string = decoder.decode(payload);
-                                        console.log('String:', string)
+                                        // console.log('String:', string)
                                         data_entries.push(string)
                                     }
 
@@ -960,16 +959,16 @@
                                     entry[key] = value;
                                     });
                                     
-                                    console.log('Entry:', entry)
+                                    // console.log('Entry:', entry)
                                     
                                     extracted_logs.push(entry)
 
                                     processedEntries++;
 
-                                    console.log('Processed entries:', processedEntries);
-                                    console.log('Amount of entries:', amountOfEntries);
+                                    // console.log('Processed entries:', processedEntries);
+                                    // console.log('Amount of entries:', amountOfEntries);
 
-                                    progressBar.value = Number(processedFiles / numFiles * 100 + processedEntries / amountOfEntries / numFiles  * 100);
+                                    // progressBar.value = Number(processedFiles / numFiles * 100 + processedEntries / amountOfEntries / numFiles  * 100);
                                     
                                     // const startTime = Date.now();
                                     // while (Date.now() - startTime < 15000) {
@@ -979,7 +978,7 @@
                                     
                                     
                                 processedFiles++;
-                                console.log(processedFiles, '_/_', numFiles);
+                                // console.log(processedFiles, '_/_', numFiles);
                                 progressBar.value = Number(processedFiles / numFiles * 100);
 
                                 if (processedFiles === numFiles) {
@@ -1014,7 +1013,7 @@
                         });
                         
                     } else {
-                            console.log("Irrelevant file");
+                            // console.log("Irrelevant file");
 
                             // processedFiles++;
                             // console.log(processedFiles, '_/_', numFiles);
