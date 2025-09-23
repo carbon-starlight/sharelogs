@@ -5,6 +5,9 @@ Sharing your system logs online may be annoying: you either upload a bunch of sc
 > [!WARNING]
 > This tool is in public alpha phase. Don't expect generated URLs to be compatible with future versions.
 
+Try it online: https://raw.githack.com/carbon-starlight/sharelogs/main/journalview.html | short link: https://tinyurl.com/y874d745
+
+
 ## TODO: 
 * I'm working on a switch to a better compressing algorithm called Kanzi: it will make permanent URLs 30-50% smaller than the one currenly utilized.
   - I actually need help with figuring out how to run the `kanzi.wasm` compressor from client-side JS: in particular, I can't figure out a way to pass files/byte arrays to it. If you know your way around wasm, your contribution is welcome.
