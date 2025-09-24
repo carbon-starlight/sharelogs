@@ -1,0 +1,86 @@
+2025-09-23T04:39:26.086277+04:00 q4os-desktop anacron[23934]: Job `cron.daily' started
+2025-09-23T04:39:26.119142+04:00 q4os-desktop anacron[24595]: Updated timestamp for job `cron.daily' to 2025-09-23
+2025-09-23T04:39:26.157076+04:00 q4os-desktop anacron[23934]: Job `cron.daily' terminated
+2025-09-23T04:44:26.113304+04:00 q4os-desktop anacron[23934]: Job `cron.weekly' started
+2025-09-23T04:44:26.146549+04:00 q4os-desktop anacron[24722]: Updated timestamp for job `cron.weekly' to 2025-09-23
+2025-09-23T04:44:34.919960+04:00 q4os-desktop anacron[23934]: Job `cron.weekly' terminated (mailing output)
+2025-09-23T04:44:34.921176+04:00 q4os-desktop anacron[23934]: Can't find sendmail at /usr/sbin/sendmail, not mailing output
+2025-09-23T04:49:26.110076+04:00 q4os-desktop anacron[23934]: Job `cron.monthly' started
+2025-09-23T04:49:26.130939+04:00 q4os-desktop anacron[23934]: Job `cron.monthly' terminated
+2025-09-23T04:49:26.131005+04:00 q4os-desktop anacron[23934]: Normal exit (3 jobs run)
+2025-09-23T04:49:26.131428+04:00 q4os-desktop anacron[25119]: Updated timestamp for job `cron.monthly' to 2025-09-23
+2025-09-23T07:30:50.028898+04:00 q4os-desktop anacron[25321]: Anacron 2.3 started on 2025-09-23
+2025-09-23T07:30:50.031852+04:00 q4os-desktop anacron[25321]: Normal exit (0 jobs run)
+2025-09-23T08:33:13.516798+04:00 q4os-desktop anacron[25356]: Anacron 2.3 started on 2025-09-23
+2025-09-23T08:33:13.516913+04:00 q4os-desktop anacron[25356]: Normal exit (0 jobs run)
+2025-09-23T09:34:13.542087+04:00 q4os-desktop anacron[25397]: Anacron 2.3 started on 2025-09-23
+2025-09-23T09:34:13.542621+04:00 q4os-desktop anacron[25397]: Normal exit (0 jobs run)
+2025-09-23T10:33:50.033063+04:00 q4os-desktop anacron[25523]: Anacron 2.3 started on 2025-09-23
+2025-09-23T10:33:50.034146+04:00 q4os-desktop anacron[25523]: Normal exit (0 jobs run)
+2025-09-23T11:35:00.001000+04:00 q4os-desktop anacron[25562]: Anacron 2.3 started on 2025-09-23
+2025-09-23T11:35:00.001564+04:00 q4os-desktop anacron[25562]: Normal exit (0 jobs run)
+2025-09-23T12:33:13.535656+04:00 q4os-desktop anacron[25596]: Anacron 2.3 started on 2025-09-23
+2025-09-23T12:33:13.535763+04:00 q4os-desktop anacron[25596]: Normal exit (0 jobs run)
+2025-09-23T13:31:50.035163+04:00 q4os-desktop anacron[25631]: Anacron 2.3 started on 2025-09-23
+2025-09-23T13:31:50.035672+04:00 q4os-desktop anacron[25631]: Normal exit (0 jobs run)
+2025-09-23T14:33:30.007890+04:00 q4os-desktop anacron[25666]: Anacron 2.3 started on 2025-09-23
+2025-09-23T14:33:30.008009+04:00 q4os-desktop anacron[25666]: Normal exit (0 jobs run)
+2025-09-23T15:33:13.550685+04:00 q4os-desktop anacron[25701]: Anacron 2.3 started on 2025-09-23
+2025-09-23T15:33:13.550748+04:00 q4os-desktop anacron[25701]: Normal exit (0 jobs run)
+2025-09-23T16:33:13.556172+04:00 q4os-desktop anacron[25738]: Anacron 2.3 started on 2025-09-23
+2025-09-23T16:33:13.556390+04:00 q4os-desktop anacron[25738]: Normal exit (0 jobs run)
+2025-09-23T17:31:59.984990+04:00 q4os-desktop anacron[25770]: Anacron 2.3 started on 2025-09-23
+2025-09-23T17:31:59.985467+04:00 q4os-desktop anacron[25770]: Normal exit (0 jobs run)
+2025-09-23T18:33:13.536053+04:00 q4os-desktop anacron[25805]: Anacron 2.3 started on 2025-09-23
+2025-09-23T18:33:13.536138+04:00 q4os-desktop anacron[25805]: Normal exit (0 jobs run)
+2025-09-23T19:34:50.009813+04:00 q4os-desktop anacron[25844]: Anacron 2.3 started on 2025-09-23
+2025-09-23T19:34:50.016204+04:00 q4os-desktop anacron[25844]: Normal exit (0 jobs run)
+2025-09-23T20:35:00.012597+04:00 q4os-desktop anacron[25968]: Anacron 2.3 started on 2025-09-23
+2025-09-23T20:35:00.015160+04:00 q4os-desktop anacron[25968]: Normal exit (0 jobs run)
+2025-09-23T21:31:00.000940+04:00 q4os-desktop anacron[26000]: Anacron 2.3 started on 2025-09-23
+2025-09-23T21:31:00.007466+04:00 q4os-desktop anacron[26000]: Normal exit (0 jobs run)
+2025-09-23T22:31:59.984758+04:00 q4os-desktop anacron[26034]: Anacron 2.3 started on 2025-09-23
+2025-09-23T22:31:59.985318+04:00 q4os-desktop anacron[26034]: Normal exit (0 jobs run)
+2025-09-24T03:15:27.969059+04:00 q4os-desktop anacron[556]: Anacron 2.3 started on 2025-09-24
+2025-09-24T03:15:27.969062+04:00 q4os-desktop anacron[556]: Will run job `cron.daily' in 5 min.
+2025-09-24T03:15:27.969065+04:00 q4os-desktop anacron[556]: Jobs will be executed sequentially
+2025-09-24T03:15:46.723986+04:00 q4os-desktop anacron[556]: Received SIGUSR1
+2025-09-24T03:15:46.724203+04:00 q4os-desktop anacron[556]: Exited
+2025-09-24T03:16:25.562967+04:00 q4os-desktop anacron[554]: Anacron 2.3 started on 2025-09-24
+2025-09-24T03:16:25.562971+04:00 q4os-desktop anacron[554]: Will run job `cron.daily' in 5 min.
+2025-09-24T03:16:25.562974+04:00 q4os-desktop anacron[554]: Jobs will be executed sequentially
+2025-09-23T23:16:55.283211+04:00 q4os-desktop systemd-timesyncd[411]: Contacted time server 128.0.27.167:123 (2.debian.pool.ntp.org).
+2025-09-23T23:16:55.422437+04:00 q4os-desktop systemd-timesyncd[411]: Initial clock synchronization to Tue 2025-09-23 23:16:55.280240 +04.
+2025-09-24T03:24:47.630428+04:00 q4os-desktop anacron[549]: Anacron 2.3 started on 2025-09-24
+2025-09-24T03:24:47.630443+04:00 q4os-desktop anacron[549]: Will run job `cron.daily' in 5 min.
+2025-09-24T03:24:47.630447+04:00 q4os-desktop anacron[549]: Jobs will be executed sequentially
+2025-09-23T23:25:19.051142+04:00 q4os-desktop systemd-timesyncd[383]: Contacted time server 37.23.249.69:123 (2.debian.pool.ntp.org).
+2025-09-23T23:25:19.160584+04:00 q4os-desktop systemd-timesyncd[383]: Initial clock synchronization to Tue 2025-09-23 23:25:19.047194 +04.
+2025-09-23T23:29:48.753106+04:00 q4os-desktop anacron[549]: Job `cron.daily' started
+2025-09-23T23:29:48.780895+04:00 q4os-desktop anacron[1199]: Updated timestamp for job `cron.daily' to 2025-09-23
+2025-09-23T23:29:48.817846+04:00 q4os-desktop anacron[549]: Job `cron.daily' terminated
+2025-09-23T23:29:48.818461+04:00 q4os-desktop anacron[549]: Normal exit (1 job run)
+2025-09-23T23:32:52.203630+04:00 q4os-desktop anacron[1229]: Anacron 2.3 started on 2025-09-23
+2025-09-23T23:32:52.204696+04:00 q4os-desktop anacron[1229]: Will run job `cron.daily' in 5 min.
+2025-09-23T23:32:52.205660+04:00 q4os-desktop anacron[1229]: Jobs will be executed sequentially
+2025-09-23T23:37:52.206703+04:00 q4os-desktop anacron[1229]: Job `cron.daily' started
+2025-09-23T23:37:52.212567+04:00 q4os-desktop anacron[1762]: Updated timestamp for job `cron.daily' to 2025-09-23
+2025-09-23T23:37:52.225907+04:00 q4os-desktop anacron[1229]: Job `cron.daily' terminated
+2025-09-23T23:37:52.226008+04:00 q4os-desktop anacron[1229]: Normal exit (1 job run)
+2025-09-24T04:19:49.917585+04:00 q4os-desktop anacron[554]: Anacron 2.3 started on 2025-09-24
+2025-09-24T04:19:49.917609+04:00 q4os-desktop anacron[554]: Will run job `cron.daily' in 5 min.
+2025-09-24T04:19:49.917614+04:00 q4os-desktop anacron[554]: Jobs will be executed sequentially
+2025-09-24T00:20:20.878512+04:00 q4os-desktop systemd-timesyncd[381]: Contacted time server 92.255.126.22:123 (2.debian.pool.ntp.org).
+2025-09-24T00:20:20.986364+04:00 q4os-desktop systemd-timesyncd[381]: Initial clock synchronization to Wed 2025-09-24 00:20:20.875487 +04.
+2025-09-24T00:24:50.351647+04:00 q4os-desktop anacron[554]: Job `cron.daily' started
+2025-09-24T00:24:50.369135+04:00 q4os-desktop anacron[1505]: Updated timestamp for job `cron.daily' to 2025-09-24
+2025-09-24T00:24:50.401604+04:00 q4os-desktop anacron[554]: Job `cron.daily' terminated
+2025-09-24T00:24:50.401721+04:00 q4os-desktop anacron[554]: Normal exit (1 job run)
+2025-09-24T06:23:40.699448+04:00 q4os-desktop anacron[468]: Anacron 2.3 started on 2025-09-24
+2025-09-24T06:23:40.699481+04:00 q4os-desktop anacron[468]: Normal exit (0 jobs run)
+2025-09-24T03:23:53.262832+04:00 q4os-desktop systemd-timesyncd[385]: Contacted time server 89.208.34.110:123 (2.debian.pool.ntp.org).
+2025-09-24T03:23:53.524902+04:00 q4os-desktop systemd-timesyncd[385]: Initial clock synchronization to Wed 2025-09-24 03:23:53.256587 +04.
+2025-09-24T07:24:44.607978+04:00 q4os-desktop anacron[428]: Anacron 2.3 started on 2025-09-24
+2025-09-24T07:24:44.608007+04:00 q4os-desktop anacron[428]: Normal exit (0 jobs run)
+2025-09-24T03:25:15.817466+04:00 q4os-desktop systemd-timesyncd[401]: Contacted time server 89.208.34.110:123 (2.debian.pool.ntp.org).
+2025-09-24T03:25:15.957070+04:00 q4os-desktop systemd-timesyncd[401]: Initial clock synchronization to Wed 2025-09-24 03:25:15.810354 +04.

@@ -1,0 +1,196 @@
+(EE) 
+(EE) Backtrace:
+(EE) 0: /usr/lib/xorg/Xorg (?+0x0) [0x641232]
+(EE) 1: linux-gate.so.1 (?+0x0) [0xb7f26570]
+(EE) unw_get_proc_name failed: no unwind info found [-10]
+(EE) 2: /usr/lib/xorg/modules/drivers/qxl_drv.so (?+0x0) [0xb70d6cc8]
+(EE) unw_get_proc_name failed: no unwind info found [-10]
+(EE) 3: /usr/lib/xorg/modules/drivers/qxl_drv.so (?+0x0) [0xb70d86d5]
+(EE) unw_get_proc_name failed: no unwind info found [-10]
+(EE) 4: /usr/lib/xorg/modules/drivers/qxl_drv.so (?+0x0) [0xb70de2e8]
+(EE) unw_get_proc_name failed: no unwind info found [-10]
+(EE) 5: /usr/lib/xorg/modules/drivers/qxl_drv.so (?+0x0) [0xb70e5270]
+(EE) 6: /usr/lib/xorg/Xorg (?+0x0) [0x61cef8]
+(EE) 7: /usr/lib/xorg/Xorg (?+0x0) [0x61d70e]
+(EE) unw_get_proc_name failed: no unwind info found [-10]
+(EE) 8: /usr/lib/xorg/modules/drivers/qxl_drv.so (?+0x0) [0xb70e4421]
+(EE) 9: /usr/lib/xorg/Xorg (?+0x0) [0x5ad982]
+(EE) 10: /usr/lib/xorg/Xorg (?+0x0) [0x55f58b]
+(EE) 11: /usr/lib/xorg/Xorg (?+0x0) [0x4c42e7]
+(EE) 12: /usr/lib/xorg/Xorg (?+0x0) [0x4c873c]
+(EE) 13: /usr/lib/xorg/Xorg (?+0x0) [0x4b0b5b]
+(EE) 14: /lib/i386-linux-gnu/libc.so.6 (?+0x0) [0xb76232d5]
+(EE) 15: /lib/i386-linux-gnu/libc.so.6 (?+0x0) [0xb7623398]
+(EE) 16: /usr/lib/xorg/Xorg (?+0x0) [0x4b0b97]
+(EE) 
+(EE) Segmentation fault at address 0x0
+(EE) 
+Fatal server error:
+(EE) Caught signal 11 (Segmentation fault). Server aborting
+(EE) 
+(EE) 
+Please consult the The X.Org Foundation support 
+	 at http://wiki.x.org
+ for help. 
+(EE) Please also check the log file at "/var/log/Xorg.0.log" for additional information.
+(EE) 
+(EE) Server terminated with error (1). Closing log file.
+X connection to :0 broken (explicit kill or server shutdown).
+Sep 23 04:48:30 tdm[694] error: X server for display :0 terminated unexpectedly
+
+X.Org X Server 1.21.1.7
+X Protocol Version 11, Revision 0
+Current Operating System: Linux q4os-desktop 6.1.0-22-686-pae #1 SMP PREEMPT_DYNAMIC Debian 6.1.94-1 (2024-06-21) i686
+Kernel command line: BOOT_IMAGE=/boot/vmlinuz-6.1.0-22-686-pae root=UUID=04f82e4e-8c23-4584-b801-8717dced8964 ro quiet loglevel=3 systemd.log_color=0 systemd.show_status=1
+xorg-server 2:21.1.7-3+deb12u8 (https://www.debian.org/support) 
+Current version of pixman: 0.42.2
+	Before reporting problems, check http://wiki.x.org
+	to make sure that you have the latest version.
+Markers: (--) probed, (**) from config file, (==) default setting,
+	(++) from command line, (!!) notice, (II) informational,
+	(WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+(==) Log file: "/var/log/Xorg.0.log", Time: Tue Sep 23 04:48:32 2025
+(==) Using config directory: "/etc/X11/xorg.conf.d"
+(==) Using system config directory "/usr/share/X11/xorg.conf.d"
+(II) [KMS] Kernel modesetting enabled.
+resizing primary to 1024x768
+primary is 0x14e9310
+[cryptocardwatcher] Another instance of this program is already running!
+[cryptocardwatcher] Lockfile detected at '/var/lock/cryptocardwatcher.lock'
+[tdekbdledsync] Found 1 keyboard(s)
+[tdekbdledsync] Syncing keyboard: (AT Translated Set 2 keyboard)
+[FIXME] UNCLASSIFIED DEVICE name: wakeup14 type: (null) subsystem: wakeup driver: button [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXPWRBN:00/wakeup/wakeup14] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup21 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/QEMU0002:00/wakeup/wakeup21] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup0 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:00/wakeup/wakeup0] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup1 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:01/wakeup/wakeup1] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup2 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:02/wakeup/wakeup2] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup3 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:03/wakeup/wakeup3] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup4 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:04/wakeup/wakeup4] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup5 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:05/wakeup/wakeup5] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup6 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:06/wakeup/wakeup6] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup7 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:07/wakeup/wakeup7] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup8 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:08/wakeup/wakeup8] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup9 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:09/wakeup/wakeup9] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup10 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:0a/wakeup/wakeup10] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup11 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:0b/wakeup/wakeup11] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup12 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:0c/wakeup/wakeup12] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup13 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/wakeup/wakeup13] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup18 type: (null) subsystem: wakeup driver: uhci_hcd [Node Path: (null)] [Syspath: /sys/devices/pci0000:00/0000:00:05.0/wakeup/wakeup18] [8086:2934]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup19 type: (null) subsystem: wakeup driver: uhci_hcd [Node Path: (null)] [Syspath: /sys/devices/pci0000:00/0000:00:05.1/wakeup/wakeup19] [8086:2935]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup20 type: (null) subsystem: wakeup driver: uhci_hcd [Node Path: (null)] [Syspath: /sys/devices/pci0000:00/0000:00:05.2/wakeup/wakeup20] [8086:2936]
+[FIXME] UNCLASSIFIED DEVICE name: virtio0 type: (null) subsystem: virtio driver: virtio_console [Node Path: (null)] [Syspath: /sys/devices/pci0000:00/0000:00:06.0/virtio0] [1af4:1003]
+[FIXME] UNCLASSIFIED DEVICE name: vport0p1 type: (null) subsystem: virtio-ports driver: virtio_console [Node Path: /dev/vport0p1] [Syspath: /sys/devices/pci0000:00/0000:00:06.0/virtio0/virtio-ports/vport0p1] [1af4:1003]
+[FIXME] UNCLASSIFIED DEVICE name: vport0p2 type: (null) subsystem: virtio-ports driver: virtio_console [Node Path: /dev/vport0p2] [Syspath: /sys/devices/pci0000:00/0000:00:06.0/virtio0/virtio-ports/vport0p2] [1af4:1003]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup15 type: (null) subsystem: wakeup driver: atkbd [Node Path: (null)] [Syspath: /sys/devices/platform/i8042/serio0/wakeup/wakeup15] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup17 type: (null) subsystem: wakeup driver: alarmtimer [Node Path: (null)] [Syspath: /sys/devices/pnp0/00:04/rtc/rtc0/alarmtimer.0.auto/wakeup/wakeup17] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup16 type: (null) subsystem: wakeup driver: rtc_cmos [Node Path: (null)] [Syspath: /sys/devices/pnp0/00:04/wakeup/wakeup16] [(null):(null)]
+Xlib:  extension "DPMS" missing on display ":0".
+Xlib:  extension "DPMS" missing on display ":0".
+Xlib:  extension "DPMS" missing on display ":0".
+Xlib:  extension "DPMS" missing on display ":0".
+[2025/09/23 04:48:33.949] ASSERT: "primary_set" in ./tderandr/libtderandr.cpp (1481)
+TDECryptographicCardDevice: PCSC SCardEstablishContext cannot connect to resource manager (8010001D)(EE) 
+(EE) Backtrace:
+(EE) 0: /usr/lib/xorg/Xorg (OsLookupColor+0x142) [0x62c242]
+(EE) 1: linux-gate.so.1 (?+0x0) [0xb7ee7570]
+(EE) unw_get_proc_name failed: no unwind info found [-10]
+(EE) 2: /usr/lib/xorg/modules/drivers/qxl_drv.so (?+0x0) [0xb7086cc8]
+(EE) unw_get_proc_name failed: no unwind info found [-10]
+(EE) 3: /usr/lib/xorg/modules/drivers/qxl_drv.so (?+0x0) [0xb70886d5]
+(EE) unw_get_proc_name failed: no unwind info found [-10]
+(EE) 4: /usr/lib/xorg/modules/drivers/qxl_drv.so (?+0x0) [0xb708e2e8]
+(EE) unw_get_proc_name failed: no unwind info found [-10]
+(EE) 5: /usr/lib/xorg/modules/drivers/qxl_drv.so (?+0x0) [0xb7095270]
+(EE) 6: /usr/lib/xorg/Xorg (miCopyRegion+0x78) [0x607f08]
+(EE) 7: /usr/lib/xorg/Xorg (miDoCopy+0x54e) [0x60871e]
+(EE) unw_get_proc_name failed: no unwind info found [-10]
+(EE) 8: /usr/lib/xorg/modules/drivers/qxl_drv.so (?+0x0) [0xb7094421]
+(EE) 9: /usr/lib/xorg/Xorg (DamageRegionAppend+0x38a2) [0x598982]
+(EE) 10: /usr/lib/xorg/Xorg (SendGraphicsExpose+0x2b7) [0x4aaaa7]
+(EE) 11: /usr/lib/xorg/Xorg (SendErrorToClient+0x417) [0x4af2e7]
+(EE) 12: /usr/lib/xorg/Xorg (InitFonts+0x42c) [0x4b373c]
+(EE) 13: /usr/lib/xorg/Xorg (miPolyFillRect+0x80f) [0x49bb5b]
+(EE) 14: /lib/i386-linux-gnu/libc.so.6 (__libc_init_first+0x85) [0xb76232d5]
+(EE) 15: /lib/i386-linux-gnu/libc.so.6 (__libc_start_main+0x88) [0xb7623398]
+(EE) 16: /usr/lib/xorg/Xorg (_start+0x27) [0x49bb97]
+(EE) 
+(EE) Segmentation fault at address 0x0
+(EE) 
+Fatal server error:
+(EE) Caught signal 11 (Segmentation fault). Server aborting
+(EE) 
+(EE) 
+Please consult the The X.Org Foundation support 
+	 at http://wiki.x.org
+ for help. 
+(EE) Please also check the log file at "/var/log/Xorg.0.log" for additional information.
+(EE) 
+(EE) Server terminated with error (1). Closing log file.
+X connection to :0 broken (explicit kill or server shutdown).
+Sep 23 04:56:54 tdm[694] error: X server for display :0 terminated unexpectedly
+
+X.Org X Server 1.21.1.7
+X Protocol Version 11, Revision 0
+Current Operating System: Linux q4os-desktop 6.1.0-22-686-pae #1 SMP PREEMPT_DYNAMIC Debian 6.1.94-1 (2024-06-21) i686
+Kernel command line: BOOT_IMAGE=/boot/vmlinuz-6.1.0-22-686-pae root=UUID=04f82e4e-8c23-4584-b801-8717dced8964 ro quiet loglevel=3 systemd.log_color=0 systemd.show_status=1
+xorg-server 2:21.1.7-3+deb12u8 (https://www.debian.org/support) 
+Current version of pixman: 0.42.2
+	Before reporting problems, check http://wiki.x.org
+	to make sure that you have the latest version.
+Markers: (--) probed, (**) from config file, (==) default setting,
+	(++) from command line, (!!) notice, (II) informational,
+	(WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+(==) Log file: "/var/log/Xorg.0.log", Time: Tue Sep 23 04:56:54 2025
+(==) Using config directory: "/etc/X11/xorg.conf.d"
+(==) Using system config directory "/usr/share/X11/xorg.conf.d"
+(II) [KMS] Kernel modesetting enabled.
+resizing primary to 1024x768
+primary is 0x1a87310
+[cryptocardwatcher] Another instance of this program is already running!
+[cryptocardwatcher] Lockfile detected at '/var/lock/cryptocardwatcher.lock'
+[FIXME] UNCLASSIFIED DEVICE name: wakeup14 type: (null) subsystem: wakeup driver: button [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXPWRBN:00/wakeup/wakeup14] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup21 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/QEMU0002:00/wakeup/wakeup21] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup0 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:00/wakeup/wakeup0] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup1 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:01/wakeup/wakeup1] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup2 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:02/wakeup/wakeup2] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup3 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:03/wakeup/wakeup3] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup4 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:04/wakeup/wakeup4] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup5 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:05/wakeup/wakeup5] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup6 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:06/wakeup/wakeup6] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup7 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:07/wakeup/wakeup7] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup8 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:08/wakeup/wakeup8] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup9 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:09/wakeup/wakeup9] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup10 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:0a/wakeup/wakeup10] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup11 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:0b/wakeup/wakeup11] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup12 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:0c/wakeup/wakeup12] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup13 type: (null) subsystem: wakeup driver: (null) [Node Path: (null)] [Syspath: /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/wakeup/wakeup13] [(null):(null)]
+[tdekbdledsync] Found 1 keyboard(s)
+[tdekbdledsync] Syncing keyboard: (AT Translated Set 2 keyboard)
+[FIXME] UNCLASSIFIED DEVICE name: wakeup18 type: (null) subsystem: wakeup driver: uhci_hcd [Node Path: (null)] [Syspath: /sys/devices/pci0000:00/0000:00:05.0/wakeup/wakeup18] [8086:2934]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup19 type: (null) subsystem: wakeup driver: uhci_hcd [Node Path: (null)] [Syspath: /sys/devices/pci0000:00/0000:00:05.1/wakeup/wakeup19] [8086:2935]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup20 type: (null) subsystem: wakeup driver: uhci_hcd [Node Path: (null)] [Syspath: /sys/devices/pci0000:00/0000:00:05.2/wakeup/wakeup20] [8086:2936]
+[FIXME] UNCLASSIFIED DEVICE name: virtio0 type: (null) subsystem: virtio driver: virtio_console [Node Path: (null)] [Syspath: /sys/devices/pci0000:00/0000:00:06.0/virtio0] [1af4:1003]
+[FIXME] UNCLASSIFIED DEVICE name: vport0p1 type: (null) subsystem: virtio-ports driver: virtio_console [Node Path: /dev/vport0p1] [Syspath: /sys/devices/pci0000:00/0000:00:06.0/virtio0/virtio-ports/vport0p1] [1af4:1003]
+[FIXME] UNCLASSIFIED DEVICE name: vport0p2 type: (null) subsystem: virtio-ports driver: virtio_console [Node Path: /dev/vport0p2] [Syspath: /sys/devices/pci0000:00/0000:00:06.0/virtio0/virtio-ports/vport0p2] [1af4:1003]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup15 type: (null) subsystem: wakeup driver: atkbd [Node Path: (null)] [Syspath: /sys/devices/platform/i8042/serio0/wakeup/wakeup15] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup17 type: (null) subsystem: wakeup driver: alarmtimer [Node Path: (null)] [Syspath: /sys/devices/pnp0/00:04/rtc/rtc0/alarmtimer.0.auto/wakeup/wakeup17] [(null):(null)]
+[FIXME] UNCLASSIFIED DEVICE name: wakeup16 type: (null) subsystem: wakeup driver: rtc_cmos [Node Path: (null)] [Syspath: /sys/devices/pnp0/00:04/wakeup/wakeup16] [(null):(null)]
+Xlib:  extension "DPMS" missing on display ":0".
+Xlib:  extension "DPMS" missing on display ":0".
+Xlib:  extension "DPMS" missing on display ":0".
+Xlib:  extension "DPMS" missing on display ":0".
+[2025/09/23 04:56:55.402] ASSERT: "primary_set" in ./tderandr/libtderandr.cpp (1481)
+TDECryptographicCardDevice: PCSC SCardEstablishContext cannot connect to resource manager (8010001D)Sep 24 03:15:28 tdm_config[623] info: Cannot open master configuration file /etc/trinity/tdm/tdmdistrc
+
+X.Org X Server 1.21.1.7
+X Protocol Version 11, Revision 0
+Current Operating System: Linux q4os-desktop 6.1.0-26-686-pae #1 SMP PREEMPT_DYNAMIC Debian 6.1.112-1 (2024-09-30) i686
+Kernel command line: BOOT_IMAGE=/boot/vmlinuz-6.1.0-26-686-pae root=UUID=04f82e4e-8c23-4584-b801-8717dced8964 ro quiet loglevel=3 systemd.log_color=0 systemd.show_status=1
+xorg-server 2:21.1.7-3+deb12u8 (https://www.debian.org/support) 
+Current version of pixman: 0.42.2
+	Before reporting problems, check http://wiki.x.org
+	to make sure that you have the latest version.
+Markers: (--) probed, (**) from config file, (==) default setting,
+	(++) from command line, (!!) notice, (II) informational,
+	(WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+(==) Log file: "/var/log/Xorg.0.log", Time: Wed Sep 24 03:15:28 2025

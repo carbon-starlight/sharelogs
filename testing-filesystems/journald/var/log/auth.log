@@ -1,0 +1,158 @@
+2025-09-23T04:40:36.026624+04:00 q4os-desktop sudo: pam_unix(sudo:auth): authentication failure; logname= uid=1000 euid=0 tty= ruser=user rhost=  user=user
+2025-09-23T04:40:39.535683+04:00 q4os-desktop sudo:     user : PWD=/home/user ; USER=root ; COMMAND=/opt/trinity/bin/tdecmshell tde-clock.desktop
+2025-09-23T04:40:39.536504+04:00 q4os-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2025-09-23T04:48:31.305659+04:00 q4os-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-23T04:48:31.583365+04:00 q4os-desktop polkitd[428]: Unregistered Authentication Agent for unix-session:c5 (system bus name :1.184, object path /org/trinitydesktop/PolKit1AuthAgent, locale en_US.UTF-8) (disconnected from bus)
+2025-09-23T04:48:31.714148+04:00 q4os-desktop tdm: pam_unix(tdm-trinity:session): session closed for user user
+2025-09-23T04:48:31.959703+04:00 q4os-desktop systemd-logind[683]: Session c5 logged out. Waiting for processes to exit.
+2025-09-23T04:48:41.829644+04:00 q4os-desktop tdm: pam_unix(tdm-trinity:session): session opened for user user(uid=1000) by (uid=0)
+2025-09-23T04:48:41.870701+04:00 q4os-desktop systemd-logind[683]: New session c6 of user user.
+2025-09-23T04:48:46.276358+04:00 q4os-desktop polkitd[428]: Registered Authentication Agent for unix-session:c6 (system bus name :1.233 [polkit-agent-tde], object path /org/trinitydesktop/PolKit1AuthAgent, locale en_US.UTF-8)
+2025-09-23T04:49:11.919527+04:00 q4os-desktop dbus-daemon[425]: [system] Failed to activate service 'org.bluez': timed out (service_start_timeout=25000ms)
+2025-09-23T04:56:54.338604+04:00 q4os-desktop polkitd[428]: Unregistered Authentication Agent for unix-session:c6 (system bus name :1.233, object path /org/trinitydesktop/PolKit1AuthAgent, locale en_US.UTF-8) (disconnected from bus)
+2025-09-23T04:56:54.517735+04:00 q4os-desktop tdm: pam_unix(tdm-trinity:session): session closed for user user
+2025-09-23T04:56:54.544723+04:00 q4os-desktop systemd-logind[683]: Session c6 logged out. Waiting for processes to exit.
+2025-09-23T04:57:14.671133+04:00 q4os-desktop systemd-logind[683]: Removed session c6.
+2025-09-23T22:58:16.860253+04:00 q4os-desktop tdm: pam_unix(tdm-trinity:session): session opened for user user(uid=1000) by (uid=0)
+2025-09-23T22:58:16.873963+04:00 q4os-desktop systemd-logind[683]: New session c7 of user user.
+2025-09-23T22:58:22.097470+04:00 q4os-desktop polkitd[428]: Registered Authentication Agent for unix-session:c7 (system bus name :1.284 [polkit-agent-tde], object path /org/trinitydesktop/PolKit1AuthAgent, locale en_US.UTF-8)
+2025-09-23T22:58:47.751778+04:00 q4os-desktop dbus-daemon[425]: [system] Failed to activate service 'org.bluez': timed out (service_start_timeout=25000ms)
+2025-09-24T03:15:27.969173+04:00 q4os-desktop systemd-logind[564]: New seat seat0.
+2025-09-24T03:15:27.969177+04:00 q4os-desktop systemd-logind[564]: Watching system buttons on /dev/input/event3 (Power Button)
+2025-09-24T03:15:27.969181+04:00 q4os-desktop systemd-logind[564]: Watching system buttons on /dev/input/event0 (AT Translated Set 2 keyboard)
+2025-09-24T03:15:27.969184+04:00 q4os-desktop systemd-logind[564]: Watching system buttons on /dev/input/event5 (ACPI Virtual Keyboard Device)
+2025-09-24T03:15:28.027751+04:00 q4os-desktop polkitd[562]: Loading rules from directory /etc/polkit-1/rules.d
+2025-09-24T03:15:28.028198+04:00 q4os-desktop polkitd[562]: Loading rules from directory /usr/share/polkit-1/rules.d
+2025-09-24T03:15:28.028723+04:00 q4os-desktop polkitd[562]: Finished loading, compiling and executing 5 rules
+2025-09-24T03:15:28.029342+04:00 q4os-desktop polkitd[562]: Acquired the name org.freedesktop.PolicyKit1 on the system bus
+2025-09-24T03:15:46.646445+04:00 q4os-desktop systemd-logind[564]: The system will power off now!
+2025-09-24T03:15:46.671161+04:00 q4os-desktop systemd-logind[564]: System is powering down.
+2025-09-24T03:16:25.571846+04:00 q4os-desktop systemd-logind[563]: New seat seat0.
+2025-09-24T03:16:25.573347+04:00 q4os-desktop systemd-logind[563]: Watching system buttons on /dev/input/event3 (Power Button)
+2025-09-24T03:16:25.573453+04:00 q4os-desktop systemd-logind[563]: Watching system buttons on /dev/input/event0 (AT Translated Set 2 keyboard)
+2025-09-24T03:16:25.573521+04:00 q4os-desktop systemd-logind[563]: Watching system buttons on /dev/input/event5 (ACPI Virtual Keyboard Device)
+2025-09-24T03:16:25.574958+04:00 q4os-desktop polkitd[560]: Loading rules from directory /etc/polkit-1/rules.d
+2025-09-24T03:16:25.575516+04:00 q4os-desktop polkitd[560]: Loading rules from directory /usr/share/polkit-1/rules.d
+2025-09-24T03:16:25.585988+04:00 q4os-desktop polkitd[560]: Finished loading, compiling and executing 5 rules
+2025-09-24T03:16:25.589252+04:00 q4os-desktop polkitd[560]: Acquired the name org.freedesktop.PolicyKit1 on the system bus
+2025-09-24T03:16:36.101692+04:00 q4os-desktop tdm: pam_unix(tdm-trinity:session): session opened for user user(uid=1000) by (uid=0)
+2025-09-24T03:16:36.134933+04:00 q4os-desktop systemd-logind[563]: New session c1 of user user.
+2025-09-24T03:16:36.152554+04:00 q4os-desktop (systemd): pam_unix(systemd-user:session): session opened for user user(uid=1000) by (uid=0)
+2025-09-24T03:16:41.081201+04:00 q4os-desktop polkitd[560]: Registered Authentication Agent for unix-session:c1 (system bus name :1.53 [polkit-agent-tde], object path /org/trinitydesktop/PolKit1AuthAgent, locale en_US.UTF-8)
+2025-09-23T23:17:01.392248+04:00 q4os-desktop dbus-daemon[556]: [system] Failed to activate service 'org.bluez': timed out (service_start_timeout=25000ms)
+2025-09-23T23:18:34.338094+04:00 q4os-desktop sudo:     user : PWD=/home/user ; USER=root ; COMMAND=/opt/trinity/bin/tdecmshell displayconfig
+2025-09-23T23:18:34.346201+04:00 q4os-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2025-09-24T03:24:47.635446+04:00 q4os-desktop polkitd[555]: Loading rules from directory /etc/polkit-1/rules.d
+2025-09-24T03:24:47.636054+04:00 q4os-desktop polkitd[555]: Loading rules from directory /usr/share/polkit-1/rules.d
+2025-09-24T03:24:47.641434+04:00 q4os-desktop polkitd[555]: Finished loading, compiling and executing 5 rules
+2025-09-24T03:24:47.642101+04:00 q4os-desktop polkitd[555]: Acquired the name org.freedesktop.PolicyKit1 on the system bus
+2025-09-24T03:24:47.668213+04:00 q4os-desktop systemd-logind[558]: New seat seat0.
+2025-09-24T03:24:47.669246+04:00 q4os-desktop systemd-logind[558]: Watching system buttons on /dev/input/event3 (Power Button)
+2025-09-24T03:24:47.669351+04:00 q4os-desktop systemd-logind[558]: Watching system buttons on /dev/input/event0 (AT Translated Set 2 keyboard)
+2025-09-24T03:24:47.669424+04:00 q4os-desktop systemd-logind[558]: Watching system buttons on /dev/input/event5 (ACPI Virtual Keyboard Device)
+2025-09-24T03:24:56.322196+04:00 q4os-desktop tdm: pam_unix(tdm-trinity:session): session opened for user user(uid=1000) by (uid=0)
+2025-09-24T03:24:56.385129+04:00 q4os-desktop systemd-logind[558]: New session c1 of user user.
+2025-09-24T03:24:56.397602+04:00 q4os-desktop (systemd): pam_unix(systemd-user:session): session opened for user user(uid=1000) by (uid=0)
+2025-09-24T03:25:01.109759+04:00 q4os-desktop polkitd[555]: Registered Authentication Agent for unix-session:c1 (system bus name :1.53 [polkit-agent-tde], object path /org/trinitydesktop/PolKit1AuthAgent, locale en_US.UTF-8)
+2025-09-23T23:25:23.157225+04:00 q4os-desktop dbus-daemon[551]: [system] Failed to activate service 'org.bluez': timed out (service_start_timeout=25000ms)
+2025-09-23T23:33:26.927007+04:00 q4os-desktop sudo:     user : PWD=/tmp ; USER=root ; COMMAND=/usr/lib/q4os/qapt-get -o Debug::NoLocking=true -q -V --assume-no dist-upgrade
+2025-09-23T23:33:26.983621+04:00 q4os-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2025-09-23T23:33:27.956360+04:00 q4os-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-23T23:34:03.353195+04:00 q4os-desktop sudo:     user : PWD=/home/user ; USER=root ; COMMAND=/opt/trinity/bin/tdecmshell displayconfig
+2025-09-23T23:34:03.354600+04:00 q4os-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2025-09-23T23:36:23.063214+04:00 q4os-desktop polkitd[555]: Unregistered Authentication Agent for unix-session:c1 (system bus name :1.53, object path /org/trinitydesktop/PolKit1AuthAgent, locale en_US.UTF-8)
+2025-09-23T23:36:24.268283+04:00 q4os-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-23T23:36:24.489710+04:00 q4os-desktop tdm: pam_unix(tdm-trinity:session): session closed for user user
+2025-09-23T23:36:24.507885+04:00 q4os-desktop systemd-logind[558]: Session c1 logged out. Waiting for processes to exit.
+2025-09-23T23:36:27.829298+04:00 q4os-desktop tdm: pam_unix(tdm-trinity:session): session opened for user user(uid=1000) by (uid=0)
+2025-09-23T23:36:27.838307+04:00 q4os-desktop systemd-logind[558]: New session c2 of user user.
+2025-09-23T23:36:32.414302+04:00 q4os-desktop polkitd[555]: Registered Authentication Agent for unix-session:c2 (system bus name :1.70 [polkit-agent-tde], object path /org/trinitydesktop/PolKit1AuthAgent, locale en_US.UTF-8)
+2025-09-23T23:36:44.785972+04:00 q4os-desktop systemd-logind[558]: Removed session c1.
+2025-09-23T23:39:22.768887+04:00 q4os-desktop dbus-daemon[551]: [system] Failed to activate service 'org.bluez': timed out (service_start_timeout=25000ms)
+2025-09-23T23:43:14.282125+04:00 q4os-desktop sudo:     user : TTY=pts/2 ; PWD=/tmp/tmp.C2KOBBBweG-q4appsetup2 ; USER=root ; ENV=LC_ALL= LANG=C ; COMMAND=/usr/lib/q4os/qdpkg --audit
+2025-09-23T23:43:14.324806+04:00 q4os-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2025-09-23T23:43:14.432469+04:00 q4os-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-23T23:43:14.457261+04:00 q4os-desktop sudo:     user : TTY=pts/2 ; PWD=/tmp/tmp.C2KOBBBweG-q4appsetup2 ; USER=root ; ENV=LC_ALL= LANG=C ; COMMAND=/usr/lib/q4os/qapt-get check
+2025-09-23T23:43:14.458290+04:00 q4os-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2025-09-23T23:43:14.899408+04:00 q4os-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-23T23:43:14.920204+04:00 q4os-desktop sudo:     user : PWD=/tmp/tmp.C2KOBBBweG-q4appsetup2 ; USER=root ; COMMAND=/usr/lib/q4os/qapt-key del_tmpsetup_key
+2025-09-23T23:43:14.926299+04:00 q4os-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2025-09-23T23:43:14.928193+04:00 q4os-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-23T23:43:14.936618+04:00 q4os-desktop sudo:     user : PWD=/tmp/tmp.C2KOBBBweG-q4appsetup2 ; USER=root ; COMMAND=/bin/dash /usr/share/apps/q4os_system/bin/appsetup2_helper.sh 1
+2025-09-23T23:43:14.937806+04:00 q4os-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2025-09-23T23:43:14.941662+04:00 q4os-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-23T23:43:14.949479+04:00 q4os-desktop sudo:     user : PWD=/tmp/tmp.C2KOBBBweG-q4appsetup2 ; USER=root ; COMMAND=/bin/dash /usr/share/apps/q4os_system/bin/appsetup2_helper.sh 2
+2025-09-23T23:43:14.950705+04:00 q4os-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2025-09-23T23:43:14.952355+04:00 q4os-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-23T23:43:14.967277+04:00 q4os-desktop sudo:     user : TTY=pts/2 ; PWD=/tmp/tmp.C2KOBBBweG-q4appsetup2 ; USER=root ; ENV=DEBCONF_FRONTEND=noninteractive DEBIAN_FRONTEND=noninteractive ; COMMAND=/usr/lib/q4os/qapt-get -o Debug::NoLocking=true --assume-yes --allow-unauthenticated --allow-downgrades -o DPkg::Options::=--force-overwrite -o DPkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold -o Acquire::http::Dl-Limit=0 --dry-run install filezilla
+2025-09-23T23:43:14.968563+04:00 q4os-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2025-09-23T23:43:16.197088+04:00 q4os-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-23T23:43:16.213751+04:00 q4os-desktop sudo:     user : TTY=pts/2 ; PWD=/tmp/tmp.C2KOBBBweG-q4appsetup2 ; USER=root ; ENV=DEBCONF_FRONTEND=noninteractive DEBIAN_FRONTEND=noninteractive ; COMMAND=/usr/lib/q4os/qapt-get -o Debug::NoLocking=true --assume-yes --allow-unauthenticated --allow-downgrades -o DPkg::Options::=--force-overwrite -o DPkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold -o Acquire::http::Dl-Limit=0 --download-only install filezilla
+2025-09-23T23:43:16.215477+04:00 q4os-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2025-09-23T23:43:20.619143+04:00 q4os-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-23T23:43:20.631071+04:00 q4os-desktop sudo:     user : PWD=/tmp/tmp.C2KOBBBweG-q4appsetup2 ; USER=root ; COMMAND=/usr/lib/q4os/qapt-key del_tmpsetup_key
+2025-09-23T23:43:20.631379+04:00 q4os-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2025-09-23T23:43:20.633778+04:00 q4os-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-23T23:43:20.645610+04:00 q4os-desktop sudo:     user : TTY=pts/2 ; PWD=/tmp/tmp.C2KOBBBweG-q4appsetup2 ; USER=root ; ENV=DEBCONF_FRONTEND=noninteractive DEBIAN_FRONTEND=noninteractive ; COMMAND=/usr/lib/q4os/qapt-get --assume-yes --allow-unauthenticated --allow-downgrades -o DPkg::Options::=--force-overwrite -o DPkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold -o Acquire::http::Dl-Limit=0 install filezilla
+2025-09-23T23:43:20.646409+04:00 q4os-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2025-09-23T23:43:27.668692+04:00 q4os-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-23T23:43:27.723545+04:00 q4os-desktop sudo:     user : PWD=/tmp/tmp.C2KOBBBweG-q4appsetup2 ; USER=root ; COMMAND=/bin/dash /usr/share/apps/q4os_system/bin/appsetup2_helper.sh 1
+2025-09-23T23:43:27.726874+04:00 q4os-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2025-09-23T23:43:27.732109+04:00 q4os-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-23T23:43:27.777131+04:00 q4os-desktop sudo:     user : PWD=/tmp/tmp.C2KOBBBweG-q4appsetup2 ; USER=root ; COMMAND=/bin/dash /usr/share/apps/q4os_system/bin/appsetup2_helper.sh 13 /tmp/tmp.C2KOBBBweG-q4appsetup2/filezilla.rgst
+2025-09-23T23:43:27.780085+04:00 q4os-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2025-09-23T23:43:27.793326+04:00 q4os-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-24T04:19:49.917725+04:00 q4os-desktop systemd-logind[562]: New seat seat0.
+2025-09-24T04:19:49.917729+04:00 q4os-desktop systemd-logind[562]: Watching system buttons on /dev/input/event3 (Power Button)
+2025-09-24T04:19:49.917743+04:00 q4os-desktop systemd-logind[562]: Watching system buttons on /dev/input/event0 (AT Translated Set 2 keyboard)
+2025-09-24T04:19:49.917748+04:00 q4os-desktop systemd-logind[562]: Watching system buttons on /dev/input/event5 (ACPI Virtual Keyboard Device)
+2025-09-24T04:19:49.948673+04:00 q4os-desktop polkitd[560]: Loading rules from directory /etc/polkit-1/rules.d
+2025-09-24T04:19:49.949193+04:00 q4os-desktop polkitd[560]: Loading rules from directory /usr/share/polkit-1/rules.d
+2025-09-24T04:19:49.961478+04:00 q4os-desktop polkitd[560]: Finished loading, compiling and executing 5 rules
+2025-09-24T04:19:49.962283+04:00 q4os-desktop polkitd[560]: Acquired the name org.freedesktop.PolicyKit1 on the system bus
+2025-09-24T04:19:57.772973+04:00 q4os-desktop tdm: pam_unix(tdm-trinity:session): session opened for user user(uid=1000) by (uid=0)
+2025-09-24T04:19:57.832732+04:00 q4os-desktop systemd-logind[562]: New session c1 of user user.
+2025-09-24T04:19:57.851921+04:00 q4os-desktop (systemd): pam_unix(systemd-user:session): session opened for user user(uid=1000) by (uid=0)
+2025-09-24T04:20:03.503780+04:00 q4os-desktop polkitd[560]: Registered Authentication Agent for unix-session:c1 (system bus name :1.53 [polkit-agent-tde], object path /org/trinitydesktop/PolKit1AuthAgent, locale en_US.UTF-8)
+2025-09-24T00:20:24.019257+04:00 q4os-desktop dbus-daemon[556]: [system] Failed to activate service 'org.bluez': timed out (service_start_timeout=25000ms)
+2025-09-24T00:20:33.913859+04:00 q4os-desktop sudo:     user : PWD=/home/user ; USER=root ; COMMAND=/opt/trinity/bin/tdecmshell displayconfig
+2025-09-24T00:20:33.916359+04:00 q4os-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2025-09-24T00:20:49.412651+04:00 q4os-desktop sudo: pam_unix(sudo:session): session closed for user root
+2025-09-24T00:21:17.571452+04:00 q4os-desktop sudo:     user : TTY=pts/1 ; PWD=/home/user ; USER=root ; COMMAND=/usr/bin/su -
+2025-09-24T00:21:17.579406+04:00 q4os-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2025-09-24T00:21:17.584706+04:00 q4os-desktop su[1364]: (to root) root on pts/2
+2025-09-24T00:21:17.603793+04:00 q4os-desktop su[1364]: pam_unix(su-l:session): session opened for user root(uid=0) by user(uid=0)
+2025-09-24T00:34:10.702834+04:00 q4os-desktop dbus-daemon[556]: [system] Failed to activate service 'org.bluez': timed out (service_start_timeout=25000ms)
+2025-09-24T01:07:04.641736+04:00 q4os-desktop su[1364]: pam_unix(su-l:session): session closed for user root
+2025-09-24T06:23:40.699581+04:00 q4os-desktop systemd-logind[477]: New seat seat0.
+2025-09-24T06:23:40.699589+04:00 q4os-desktop systemd-logind[477]: Watching system buttons on /dev/input/event0 (AT Translated Set 2 keyboard)
+2025-09-24T06:23:40.699591+04:00 q4os-desktop systemd-logind[477]: Watching system buttons on /dev/input/event3 (Power Button)
+2025-09-24T06:23:40.699594+04:00 q4os-desktop systemd-logind[477]: Watching system buttons on /dev/input/event5 (ACPI Virtual Keyboard Device)
+2025-09-24T06:23:40.743466+04:00 q4os-desktop polkitd[475]: Loading rules from directory /etc/polkit-1/rules.d
+2025-09-24T06:23:40.762704+04:00 q4os-desktop polkitd[475]: Loading rules from directory /usr/share/polkit-1/rules.d
+2025-09-24T06:23:40.762884+04:00 q4os-desktop polkitd[475]: Finished loading, compiling and executing 5 rules
+2025-09-24T06:23:40.762952+04:00 q4os-desktop polkitd[475]: Acquired the name org.freedesktop.PolicyKit1 on the system bus
+2025-09-24T06:23:49.557188+04:00 q4os-desktop tdm: pam_unix(tdm-trinity:session): session opened for user user(uid=1000) by (uid=0)
+2025-09-24T06:23:49.608452+04:00 q4os-desktop systemd-logind[477]: New session c1 of user user.
+2025-09-24T06:23:49.630959+04:00 q4os-desktop (systemd): pam_unix(systemd-user:session): session opened for user user(uid=1000) by (uid=0)
+2025-09-24T06:24:05.000663+04:00 q4os-desktop polkitd[475]: Registered Authentication Agent for unix-session:c1 (system bus name :1.53 [polkit-agent-tde], object path /org/trinitydesktop/PolKit1AuthAgent, locale en_US.UTF-8)
+2025-09-24T03:23:57.951924+04:00 q4os-desktop dbus-daemon[470]: [system] Failed to activate service 'org.bluez': timed out (service_start_timeout=25000ms)
+2025-09-24T03:24:19.960818+04:00 q4os-desktop systemd-logind[477]: Power key pressed short.
+2025-09-24T03:24:19.976882+04:00 q4os-desktop systemd-logind[477]: Suspending...
+2025-09-24T07:24:44.608065+04:00 q4os-desktop systemd-logind[437]: New seat seat0.
+2025-09-24T07:24:44.695448+04:00 q4os-desktop polkitd[435]: Loading rules from directory /etc/polkit-1/rules.d
+2025-09-24T07:24:44.695510+04:00 q4os-desktop polkitd[435]: Loading rules from directory /usr/share/polkit-1/rules.d
+2025-09-24T07:24:44.704435+04:00 q4os-desktop polkitd[435]: Finished loading, compiling and executing 5 rules
+2025-09-24T07:24:44.705912+04:00 q4os-desktop polkitd[435]: Acquired the name org.freedesktop.PolicyKit1 on the system bus
+2025-09-24T07:24:44.819436+04:00 q4os-desktop systemd-logind[437]: Watching system buttons on /dev/input/event3 (Power Button)
+2025-09-24T07:24:44.819594+04:00 q4os-desktop systemd-logind[437]: Watching system buttons on /dev/input/event0 (AT Translated Set 2 keyboard)
+2025-09-24T07:24:44.834737+04:00 q4os-desktop systemd-logind[437]: Watching system buttons on /dev/input/event5 (ACPI Virtual Keyboard Device)
+2025-09-24T07:24:52.946214+04:00 q4os-desktop tdm: pam_unix(tdm-trinity:session): session opened for user user(uid=1000) by (uid=0)
+2025-09-24T07:24:52.999076+04:00 q4os-desktop systemd-logind[437]: New session c1 of user user.
+2025-09-24T07:24:53.020076+04:00 q4os-desktop (systemd): pam_unix(systemd-user:session): session opened for user user(uid=1000) by (uid=0)
+2025-09-24T07:24:58.690744+04:00 q4os-desktop polkitd[435]: Registered Authentication Agent for unix-session:c1 (system bus name :1.53 [polkit-agent-tde], object path /org/trinitydesktop/PolKit1AuthAgent, locale en_US.UTF-8)
+2025-09-24T03:25:19.905641+04:00 q4os-desktop dbus-daemon[430]: [system] Failed to activate service 'org.bluez': timed out (service_start_timeout=25000ms)
+2025-09-24T04:09:03.501219+04:00 q4os-desktop dbus-daemon[430]: [system] Failed to activate service 'org.bluez': timed out (service_start_timeout=25000ms)
+2025-09-24T04:18:47.760158+04:00 q4os-desktop sudo: pam_unix(sudo:auth): authentication failure; logname= uid=1000 euid=0 tty=/dev/pts/1 ruser=user rhost=  user=user
+2025-09-24T04:18:52.413678+04:00 q4os-desktop sudo:     user : TTY=pts/1 ; PWD=/var/log ; USER=root ; COMMAND=/usr/bin/tar -czvf /home/user/Documents/logs_backup.tar.gz -C /var log
+2025-09-24T04:18:52.432072+04:00 q4os-desktop sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)

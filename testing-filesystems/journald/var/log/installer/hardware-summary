@@ -1,0 +1,668 @@
+uname -a: Linux q4os-desktop 6.1.0-22-686 #1 SMP PREEMPT_DYNAMIC Debian 6.1.94-1 (2024-06-21) i686 GNU/Linux
+lspci -knn: 00:00.0 Host bridge [0600]: Intel Corporation 440FX - 82441FX PMC [Natoma] [8086:1237] (rev 02)
+lspci -knn: 	Subsystem: Red Hat, Inc. Qemu virtual machine [1af4:1100]
+lspci -knn: 00:01.0 ISA bridge [0601]: Intel Corporation 82371SB PIIX3 ISA [Natoma/Triton II] [8086:7000]
+lspci -knn: 	Subsystem: Red Hat, Inc. Qemu virtual machine [1af4:1100]
+lspci -knn: 00:01.1 IDE interface [0101]: Intel Corporation 82371SB PIIX3 IDE [Natoma/Triton II] [8086:7010]
+lspci -knn: 	Subsystem: Red Hat, Inc. Qemu virtual machine [1af4:1100]
+lspci -knn: 	Kernel driver in use: ata_piix
+lspci -knn: 	Kernel modules: ata_piix, ata_generic
+lspci -knn: 00:01.3 Bridge [0680]: Intel Corporation 82371AB/EB/MB PIIX4 ACPI [8086:7113] (rev 03)
+lspci -knn: 	Subsystem: Red Hat, Inc. Qemu virtual machine [1af4:1100]
+lspci -knn: 00:02.0 VGA compatible controller [0300]: Red Hat, Inc. QXL paravirtual graphic card [1b36:0100] (rev 05)
+lspci -knn: 	Subsystem: Red Hat, Inc. QEMU Virtual Machine [1af4:1100]
+lspci -knn: 00:03.0 Ethernet controller [0200]: Realtek Semiconductor Co., Ltd. RTL-8100/8101L/8139 PCI Fast Ethernet Adapter [10ec:8139] (rev 20)
+lspci -knn: 	Subsystem: Red Hat, Inc. QEMU Virtual Machine [1af4:1100]
+lspci -knn: 00:04.0 Audio device [0403]: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) High Definition Audio Controller [8086:2668] (rev 01)
+lspci -knn: 	Subsystem: Red Hat, Inc. QEMU Virtual Machine [1af4:1100]
+lspci -knn: 00:05.0 USB controller [0c03]: Intel Corporation 82801I (ICH9 Family) USB UHCI Controller #1 [8086:2934] (rev 03)
+lspci -knn: 	Subsystem: Red Hat, Inc. QEMU Virtual Machine [1af4:1100]
+lspci -knn: 	Kernel driver in use: uhci_hcd
+lspci -knn: 	Kernel modules: uhci_hcd
+lspci -knn: 00:05.1 USB controller [0c03]: Intel Corporation 82801I (ICH9 Family) USB UHCI Controller #2 [8086:2935] (rev 03)
+lspci -knn: 	Subsystem: Red Hat, Inc. QEMU Virtual Machine [1af4:1100]
+lspci -knn: 	Kernel driver in use: uhci_hcd
+lspci -knn: 	Kernel modules: uhci_hcd
+lspci -knn: 00:05.2 USB controller [0c03]: Intel Corporation 82801I (ICH9 Family) USB UHCI Controller #3 [8086:2936] (rev 03)
+lspci -knn: 	Subsystem: Red Hat, Inc. QEMU Virtual Machine [1af4:1100]
+lspci -knn: 	Kernel driver in use: uhci_hcd
+lspci -knn: 	Kernel modules: uhci_hcd
+lspci -knn: 00:05.7 USB controller [0c03]: Intel Corporation 82801I (ICH9 Family) USB2 EHCI Controller #1 [8086:293a] (rev 03)
+lspci -knn: 	Subsystem: Red Hat, Inc. QEMU Virtual Machine [1af4:1100]
+lspci -knn: 	Kernel driver in use: ehci-pci
+lspci -knn: 	Kernel modules: ehci_pci
+lspci -knn: 00:06.0 Communication controller [0780]: Red Hat, Inc. Virtio console [1af4:1003]
+lspci -knn: 	Subsystem: Red Hat, Inc. Device [1af4:0003]
+lspci -knn: 	Kernel driver in use: virtio-pci
+lspci -knn: 	Kernel modules: virtio_pci
+lspci -knn: 00:07.0 Unclassified device [00ff]: Red Hat, Inc. Virtio memory balloon [1af4:1002]
+lspci -knn: 	Subsystem: Red Hat, Inc. Device [1af4:0005]
+lspci -knn: 	Kernel driver in use: virtio-pci
+lspci -knn: 	Kernel modules: virtio_pci
+usb-list: 
+usb-list: Bus 01 Device 01: EHCI Host Controller [1d6b:0002]
+usb-list:    Level 00 Parent 00 Port 00  Class 09(hub  ) Subclass 00 Protocol 00
+usb-list:    Manufacturer: Linux 6.1.0-22-686 ehci_hcd
+usb-list:    Interface 00: Class 09(hub  ) Subclass 00 Protocol 00 Driver hub
+usb-list: 
+usb-list: Bus 02 Device 01: UHCI Host Controller [1d6b:0001]
+usb-list:    Level 00 Parent 00 Port 00  Class 09(hub  ) Subclass 00 Protocol 00
+usb-list:    Manufacturer: Linux 6.1.0-22-686 uhci_hcd
+usb-list:    Interface 00: Class 09(hub  ) Subclass 00 Protocol 00 Driver hub
+usb-list: 
+usb-list: Bus 02 Device 02: QEMU USB CCID [08e6:4433]
+usb-list:    Level 01 Parent 01 Port 00  Class 00(>ifc ) Subclass 00 Protocol 00
+usb-list:    Manufacturer: QEMU
+usb-list:    Interface 00: Class 0b(smcrd) Subclass 00 Protocol 00 Driver <none>
+usb-list: 
+usb-list: Bus 03 Device 01: UHCI Host Controller [1d6b:0001]
+usb-list:    Level 00 Parent 00 Port 00  Class 09(hub  ) Subclass 00 Protocol 00
+usb-list:    Manufacturer: Linux 6.1.0-22-686 uhci_hcd
+usb-list:    Interface 00: Class 09(hub  ) Subclass 00 Protocol 00 Driver hub
+usb-list: 
+usb-list: Bus 04 Device 01: UHCI Host Controller [1d6b:0001]
+usb-list:    Level 00 Parent 00 Port 00  Class 09(hub  ) Subclass 00 Protocol 00
+usb-list:    Manufacturer: Linux 6.1.0-22-686 uhci_hcd
+usb-list:    Interface 00: Class 09(hub  ) Subclass 00 Protocol 00 Driver hub
+lsmod: Module                  Size  Used by
+lsmod: fuse                  110592  0
+lsmod: dm_mod                118784  0
+lsmod: md_mod                139264  0
+lsmod: xfs                  1228800  0
+lsmod: jfs                   180224  0
+lsmod: btrfs                1376256  0
+lsmod: xor                    28672  1 btrfs
+lsmod: raid6_pq              106496  1 btrfs
+lsmod: zstd_compress         245760  1 btrfs
+lsmod: libcrc32c              16384  2 btrfs,xfs
+lsmod: ext4                  671744  1
+lsmod: crc16                  16384  1 ext4
+lsmod: mbcache                16384  1 ext4
+lsmod: jbd2                  106496  1 ext4
+lsmod: crc32c_generic         16384  3
+lsmod: vfat                   24576  0
+lsmod: fat                    69632  1 vfat
+lsmod: isofs                  40960  0
+lsmod: usb_storage            57344  0
+lsmod: sd_mod                 53248  3
+lsmod: t10_pi                 16384  1 sd_mod
+lsmod: crc64_rocksoft         20480  1 t10_pi
+lsmod: crc64                  20480  1 crc64_rocksoft
+lsmod: sr_mod                 24576  0
+lsmod: cdrom                  53248  2 sr_mod,isofs
+lsmod: crc_t10dif             20480  1 t10_pi
+lsmod: crct10dif_common       16384  1 crc_t10dif
+lsmod: virtio_console         32768  0
+lsmod: virtio_balloon         24576  0
+lsmod: ata_generic            16384  0
+lsmod: ata_piix               36864  2
+lsmod: uhci_hcd               45056  0
+lsmod: ehci_pci               20480  0
+lsmod: libata                253952  2 ata_piix,ata_generic
+lsmod: ehci_hcd               69632  1 ehci_pci
+lsmod: usbcore               212992  4 usb_storage,ehci_hcd,uhci_hcd,ehci_pci
+lsmod: scsi_mod              188416  4 sd_mod,usb_storage,libata,sr_mod
+lsmod: crc32_pclmul           16384  0
+lsmod: virtio_pci             20480  0
+lsmod: virtio_pci_legacy_dev    16384  1 virtio_pci
+lsmod: virtio_pci_modern_dev    16384  1 virtio_pci
+lsmod: virtio                 16384  3 virtio_balloon,virtio_console,virtio_pci
+lsmod: virtio_ring            32768  3 virtio_balloon,virtio_console,virtio_pci
+lsmod: usb_common             16384  3 ehci_hcd,uhci_hcd,usbcore
+lsmod: scsi_common            16384  4 usb_storage,libata,sr_mod,scsi_mod
+df: Filesystem           1K-blocks      Used Available Use% Mounted on
+df: tmpfs                    30748       172     30576   1% /run
+df: devtmpfs                144328         0    144328   0% /dev
+df: /dev/sda1             19945072   2351564  16555020  12% /target
+df: /dev/sda1             19945072   2351564  16555020  12% /dev/.static/dev
+df: devtmpfs                144328         0    144328   0% /target/dev
+free:               total        used        free      shared  buff/cache   available
+free: Mem:         307468       64032      149840       35472       93596      198168
+free: Swap:        526332       88228      438104
+/proc/cmdline: BOOT_IMAGE=/install.386/vmlinuz preseed/file=/cdrom/simple-cdd/default.preseed vga=788 initrd=/install.386/initrd.gz quiet 
+/proc/cpuinfo: processor	: 0
+/proc/cpuinfo: vendor_id	: GenuineIntel
+/proc/cpuinfo: cpu family	: 6
+/proc/cpuinfo: model		: 165
+/proc/cpuinfo: model name	: Intel(R) Core(TM) i5-10300H CPU @ 2.50GHz
+/proc/cpuinfo: stepping	: 2
+/proc/cpuinfo: microcode	: 0xfc
+/proc/cpuinfo: cpu MHz		: 2496.004
+/proc/cpuinfo: cache size	: 16384 KB
+/proc/cpuinfo: physical id	: 0
+/proc/cpuinfo: siblings	: 8
+/proc/cpuinfo: core id		: 0
+/proc/cpuinfo: cpu cores	: 4
+/proc/cpuinfo: apicid		: 0
+/proc/cpuinfo: initial apicid	: 0
+/proc/cpuinfo: fdiv_bug	: no
+/proc/cpuinfo: f00f_bug	: no
+/proc/cpuinfo: coma_bug	: no
+/proc/cpuinfo: fpu		: yes
+/proc/cpuinfo: fpu_exception	: yes
+/proc/cpuinfo: cpuid level	: 22
+/proc/cpuinfo: wp		: yes
+/proc/cpuinfo: flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pdcm sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt xsaveopt xsavec xgetbv1 xsaves arat umip pku md_clear flush_l1d arch_capabilities
+/proc/cpuinfo: vmx flags	: vnmi preemption_timer posted_intr invvpid ept_x_only ept_ad ept_1gb flexpriority apicv tsc_offset vtpr mtf vapic ept vpid unrestricted_guest vapic_reg vid shadow_vmcs pml
+/proc/cpuinfo: bugs		: spectre_v1 spectre_v2 spec_store_bypass swapgs srbds mmio_stale_data retbleed eibrs_pbrsb bhi
+/proc/cpuinfo: bogomips	: 4992.00
+/proc/cpuinfo: clflush size	: 64
+/proc/cpuinfo: cache_alignment	: 64
+/proc/cpuinfo: address sizes	: 39 bits physical, 48 bits virtual
+/proc/cpuinfo: power management:
+/proc/cpuinfo: 
+/proc/cpuinfo: processor	: 1
+/proc/cpuinfo: vendor_id	: GenuineIntel
+/proc/cpuinfo: cpu family	: 6
+/proc/cpuinfo: model		: 165
+/proc/cpuinfo: model name	: Intel(R) Core(TM) i5-10300H CPU @ 2.50GHz
+/proc/cpuinfo: stepping	: 2
+/proc/cpuinfo: microcode	: 0xfc
+/proc/cpuinfo: cpu MHz		: 2496.004
+/proc/cpuinfo: cache size	: 16384 KB
+/proc/cpuinfo: physical id	: 0
+/proc/cpuinfo: siblings	: 8
+/proc/cpuinfo: core id		: 0
+/proc/cpuinfo: cpu cores	: 4
+/proc/cpuinfo: apicid		: 1
+/proc/cpuinfo: initial apicid	: 1
+/proc/cpuinfo: fdiv_bug	: no
+/proc/cpuinfo: f00f_bug	: no
+/proc/cpuinfo: coma_bug	: no
+/proc/cpuinfo: fpu		: yes
+/proc/cpuinfo: fpu_exception	: yes
+/proc/cpuinfo: cpuid level	: 22
+/proc/cpuinfo: wp		: yes
+/proc/cpuinfo: flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pdcm sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt xsaveopt xsavec xgetbv1 xsaves arat umip pku md_clear flush_l1d arch_capabilities
+/proc/cpuinfo: vmx flags	: vnmi preemption_timer posted_intr invvpid ept_x_only ept_ad ept_1gb flexpriority apicv tsc_offset vtpr mtf vapic ept vpid unrestricted_guest vapic_reg vid shadow_vmcs pml
+/proc/cpuinfo: bugs		: spectre_v1 spectre_v2 spec_store_bypass swapgs srbds mmio_stale_data retbleed eibrs_pbrsb bhi
+/proc/cpuinfo: bogomips	: 4992.00
+/proc/cpuinfo: clflush size	: 64
+/proc/cpuinfo: cache_alignment	: 64
+/proc/cpuinfo: address sizes	: 39 bits physical, 48 bits virtual
+/proc/cpuinfo: power management:
+/proc/cpuinfo: 
+/proc/cpuinfo: processor	: 2
+/proc/cpuinfo: vendor_id	: GenuineIntel
+/proc/cpuinfo: cpu family	: 6
+/proc/cpuinfo: model		: 165
+/proc/cpuinfo: model name	: Intel(R) Core(TM) i5-10300H CPU @ 2.50GHz
+/proc/cpuinfo: stepping	: 2
+/proc/cpuinfo: microcode	: 0xfc
+/proc/cpuinfo: cpu MHz		: 2496.004
+/proc/cpuinfo: cache size	: 16384 KB
+/proc/cpuinfo: physical id	: 0
+/proc/cpuinfo: siblings	: 8
+/proc/cpuinfo: core id		: 1
+/proc/cpuinfo: cpu cores	: 4
+/proc/cpuinfo: apicid		: 2
+/proc/cpuinfo: initial apicid	: 2
+/proc/cpuinfo: fdiv_bug	: no
+/proc/cpuinfo: f00f_bug	: no
+/proc/cpuinfo: coma_bug	: no
+/proc/cpuinfo: fpu		: yes
+/proc/cpuinfo: fpu_exception	: yes
+/proc/cpuinfo: cpuid level	: 22
+/proc/cpuinfo: wp		: yes
+/proc/cpuinfo: flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pdcm sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt xsaveopt xsavec xgetbv1 xsaves arat umip pku md_clear flush_l1d arch_capabilities
+/proc/cpuinfo: vmx flags	: vnmi preemption_timer posted_intr invvpid ept_x_only ept_ad ept_1gb flexpriority apicv tsc_offset vtpr mtf vapic ept vpid unrestricted_guest vapic_reg vid shadow_vmcs pml
+/proc/cpuinfo: bugs		: spectre_v1 spectre_v2 spec_store_bypass swapgs srbds mmio_stale_data retbleed eibrs_pbrsb bhi
+/proc/cpuinfo: bogomips	: 4992.00
+/proc/cpuinfo: clflush size	: 64
+/proc/cpuinfo: cache_alignment	: 64
+/proc/cpuinfo: address sizes	: 39 bits physical, 48 bits virtual
+/proc/cpuinfo: power management:
+/proc/cpuinfo: 
+/proc/cpuinfo: processor	: 3
+/proc/cpuinfo: vendor_id	: GenuineIntel
+/proc/cpuinfo: cpu family	: 6
+/proc/cpuinfo: model		: 165
+/proc/cpuinfo: model name	: Intel(R) Core(TM) i5-10300H CPU @ 2.50GHz
+/proc/cpuinfo: stepping	: 2
+/proc/cpuinfo: microcode	: 0xfc
+/proc/cpuinfo: cpu MHz		: 2496.004
+/proc/cpuinfo: cache size	: 16384 KB
+/proc/cpuinfo: physical id	: 0
+/proc/cpuinfo: siblings	: 8
+/proc/cpuinfo: core id		: 1
+/proc/cpuinfo: cpu cores	: 4
+/proc/cpuinfo: apicid		: 3
+/proc/cpuinfo: initial apicid	: 3
+/proc/cpuinfo: fdiv_bug	: no
+/proc/cpuinfo: f00f_bug	: no
+/proc/cpuinfo: coma_bug	: no
+/proc/cpuinfo: fpu		: yes
+/proc/cpuinfo: fpu_exception	: yes
+/proc/cpuinfo: cpuid level	: 22
+/proc/cpuinfo: wp		: yes
+/proc/cpuinfo: flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pdcm sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt xsaveopt xsavec xgetbv1 xsaves arat umip pku md_clear flush_l1d arch_capabilities
+/proc/cpuinfo: vmx flags	: vnmi preemption_timer posted_intr invvpid ept_x_only ept_ad ept_1gb flexpriority apicv tsc_offset vtpr mtf vapic ept vpid unrestricted_guest vapic_reg vid shadow_vmcs pml
+/proc/cpuinfo: bugs		: spectre_v1 spectre_v2 spec_store_bypass swapgs srbds mmio_stale_data retbleed eibrs_pbrsb bhi
+/proc/cpuinfo: bogomips	: 4992.00
+/proc/cpuinfo: clflush size	: 64
+/proc/cpuinfo: cache_alignment	: 64
+/proc/cpuinfo: address sizes	: 39 bits physical, 48 bits virtual
+/proc/cpuinfo: power management:
+/proc/cpuinfo: 
+/proc/cpuinfo: processor	: 4
+/proc/cpuinfo: vendor_id	: GenuineIntel
+/proc/cpuinfo: cpu family	: 6
+/proc/cpuinfo: model		: 165
+/proc/cpuinfo: model name	: Intel(R) Core(TM) i5-10300H CPU @ 2.50GHz
+/proc/cpuinfo: stepping	: 2
+/proc/cpuinfo: microcode	: 0xfc
+/proc/cpuinfo: cpu MHz		: 2496.004
+/proc/cpuinfo: cache size	: 16384 KB
+/proc/cpuinfo: physical id	: 0
+/proc/cpuinfo: siblings	: 8
+/proc/cpuinfo: core id		: 2
+/proc/cpuinfo: cpu cores	: 4
+/proc/cpuinfo: apicid		: 4
+/proc/cpuinfo: initial apicid	: 4
+/proc/cpuinfo: fdiv_bug	: no
+/proc/cpuinfo: f00f_bug	: no
+/proc/cpuinfo: coma_bug	: no
+/proc/cpuinfo: fpu		: yes
+/proc/cpuinfo: fpu_exception	: yes
+/proc/cpuinfo: cpuid level	: 22
+/proc/cpuinfo: wp		: yes
+/proc/cpuinfo: flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pdcm sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt xsaveopt xsavec xgetbv1 xsaves arat umip pku md_clear flush_l1d arch_capabilities
+/proc/cpuinfo: vmx flags	: vnmi preemption_timer posted_intr invvpid ept_x_only ept_ad ept_1gb flexpriority apicv tsc_offset vtpr mtf vapic ept vpid unrestricted_guest vapic_reg vid shadow_vmcs pml
+/proc/cpuinfo: bugs		: spectre_v1 spectre_v2 spec_store_bypass swapgs srbds mmio_stale_data retbleed eibrs_pbrsb bhi
+/proc/cpuinfo: bogomips	: 4992.00
+/proc/cpuinfo: clflush size	: 64
+/proc/cpuinfo: cache_alignment	: 64
+/proc/cpuinfo: address sizes	: 39 bits physical, 48 bits virtual
+/proc/cpuinfo: power management:
+/proc/cpuinfo: 
+/proc/cpuinfo: processor	: 5
+/proc/cpuinfo: vendor_id	: GenuineIntel
+/proc/cpuinfo: cpu family	: 6
+/proc/cpuinfo: model		: 165
+/proc/cpuinfo: model name	: Intel(R) Core(TM) i5-10300H CPU @ 2.50GHz
+/proc/cpuinfo: stepping	: 2
+/proc/cpuinfo: microcode	: 0xfc
+/proc/cpuinfo: cpu MHz		: 2496.004
+/proc/cpuinfo: cache size	: 16384 KB
+/proc/cpuinfo: physical id	: 0
+/proc/cpuinfo: siblings	: 8
+/proc/cpuinfo: core id		: 2
+/proc/cpuinfo: cpu cores	: 4
+/proc/cpuinfo: apicid		: 5
+/proc/cpuinfo: initial apicid	: 5
+/proc/cpuinfo: fdiv_bug	: no
+/proc/cpuinfo: f00f_bug	: no
+/proc/cpuinfo: coma_bug	: no
+/proc/cpuinfo: fpu		: yes
+/proc/cpuinfo: fpu_exception	: yes
+/proc/cpuinfo: cpuid level	: 22
+/proc/cpuinfo: wp		: yes
+/proc/cpuinfo: flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pdcm sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt xsaveopt xsavec xgetbv1 xsaves arat umip pku md_clear flush_l1d arch_capabilities
+/proc/cpuinfo: vmx flags	: vnmi preemption_timer posted_intr invvpid ept_x_only ept_ad ept_1gb flexpriority apicv tsc_offset vtpr mtf vapic ept vpid unrestricted_guest vapic_reg vid shadow_vmcs pml
+/proc/cpuinfo: bugs		: spectre_v1 spectre_v2 spec_store_bypass swapgs srbds mmio_stale_data retbleed eibrs_pbrsb bhi
+/proc/cpuinfo: bogomips	: 4992.00
+/proc/cpuinfo: clflush size	: 64
+/proc/cpuinfo: cache_alignment	: 64
+/proc/cpuinfo: address sizes	: 39 bits physical, 48 bits virtual
+/proc/cpuinfo: power management:
+/proc/cpuinfo: 
+/proc/cpuinfo: processor	: 6
+/proc/cpuinfo: vendor_id	: GenuineIntel
+/proc/cpuinfo: cpu family	: 6
+/proc/cpuinfo: model		: 165
+/proc/cpuinfo: model name	: Intel(R) Core(TM) i5-10300H CPU @ 2.50GHz
+/proc/cpuinfo: stepping	: 2
+/proc/cpuinfo: microcode	: 0xfc
+/proc/cpuinfo: cpu MHz		: 2496.004
+/proc/cpuinfo: cache size	: 16384 KB
+/proc/cpuinfo: physical id	: 0
+/proc/cpuinfo: siblings	: 8
+/proc/cpuinfo: core id		: 3
+/proc/cpuinfo: cpu cores	: 4
+/proc/cpuinfo: apicid		: 6
+/proc/cpuinfo: initial apicid	: 6
+/proc/cpuinfo: fdiv_bug	: no
+/proc/cpuinfo: f00f_bug	: no
+/proc/cpuinfo: coma_bug	: no
+/proc/cpuinfo: fpu		: yes
+/proc/cpuinfo: fpu_exception	: yes
+/proc/cpuinfo: cpuid level	: 22
+/proc/cpuinfo: wp		: yes
+/proc/cpuinfo: flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pdcm sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt xsaveopt xsavec xgetbv1 xsaves arat umip pku md_clear flush_l1d arch_capabilities
+/proc/cpuinfo: vmx flags	: vnmi preemption_timer posted_intr invvpid ept_x_only ept_ad ept_1gb flexpriority apicv tsc_offset vtpr mtf vapic ept vpid unrestricted_guest vapic_reg vid shadow_vmcs pml
+/proc/cpuinfo: bugs		: spectre_v1 spectre_v2 spec_store_bypass swapgs srbds mmio_stale_data retbleed eibrs_pbrsb bhi
+/proc/cpuinfo: bogomips	: 4992.00
+/proc/cpuinfo: clflush size	: 64
+/proc/cpuinfo: cache_alignment	: 64
+/proc/cpuinfo: address sizes	: 39 bits physical, 48 bits virtual
+/proc/cpuinfo: power management:
+/proc/cpuinfo: 
+/proc/cpuinfo: processor	: 7
+/proc/cpuinfo: vendor_id	: GenuineIntel
+/proc/cpuinfo: cpu family	: 6
+/proc/cpuinfo: model		: 165
+/proc/cpuinfo: model name	: Intel(R) Core(TM) i5-10300H CPU @ 2.50GHz
+/proc/cpuinfo: stepping	: 2
+/proc/cpuinfo: microcode	: 0xfc
+/proc/cpuinfo: cpu MHz		: 2496.004
+/proc/cpuinfo: cache size	: 16384 KB
+/proc/cpuinfo: physical id	: 0
+/proc/cpuinfo: siblings	: 8
+/proc/cpuinfo: core id		: 3
+/proc/cpuinfo: cpu cores	: 4
+/proc/cpuinfo: apicid		: 7
+/proc/cpuinfo: initial apicid	: 7
+/proc/cpuinfo: fdiv_bug	: no
+/proc/cpuinfo: f00f_bug	: no
+/proc/cpuinfo: coma_bug	: no
+/proc/cpuinfo: fpu		: yes
+/proc/cpuinfo: fpu_exception	: yes
+/proc/cpuinfo: cpuid level	: 22
+/proc/cpuinfo: wp		: yes
+/proc/cpuinfo: flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pdcm sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt xsaveopt xsavec xgetbv1 xsaves arat umip pku md_clear flush_l1d arch_capabilities
+/proc/cpuinfo: vmx flags	: vnmi preemption_timer posted_intr invvpid ept_x_only ept_ad ept_1gb flexpriority apicv tsc_offset vtpr mtf vapic ept vpid unrestricted_guest vapic_reg vid shadow_vmcs pml
+/proc/cpuinfo: bugs		: spectre_v1 spectre_v2 spec_store_bypass swapgs srbds mmio_stale_data retbleed eibrs_pbrsb bhi
+/proc/cpuinfo: bogomips	: 4992.00
+/proc/cpuinfo: clflush size	: 64
+/proc/cpuinfo: cache_alignment	: 64
+/proc/cpuinfo: address sizes	: 39 bits physical, 48 bits virtual
+/proc/cpuinfo: power management:
+/proc/cpuinfo: 
+/proc/ioports: 0000-0cf7 : PCI Bus 0000:00
+/proc/ioports:   0000-001f : dma1
+/proc/ioports:   0020-0021 : pic1
+/proc/ioports:   0040-0043 : timer0
+/proc/ioports:   0050-0053 : timer1
+/proc/ioports:   0060-0060 : keyboard
+/proc/ioports:   0064-0064 : keyboard
+/proc/ioports:   0070-0077 : rtc0
+/proc/ioports:   0080-008f : dma page reg
+/proc/ioports:   00a0-00a1 : pic2
+/proc/ioports:   00c0-00df : dma2
+/proc/ioports:   00f0-00ff : fpu
+/proc/ioports:   0170-0177 : 0000:00:01.1
+/proc/ioports:     0170-0177 : ata_piix
+/proc/ioports:   01f0-01f7 : 0000:00:01.1
+/proc/ioports:     01f0-01f7 : ata_piix
+/proc/ioports:   0376-0376 : 0000:00:01.1
+/proc/ioports:     0376-0376 : ata_piix
+/proc/ioports:   03c0-03df : vesafb
+/proc/ioports:   03f6-03f6 : 0000:00:01.1
+/proc/ioports:     03f6-03f6 : ata_piix
+/proc/ioports:   03f8-03ff : serial
+/proc/ioports:   0510-051b : QEMU0002:00
+/proc/ioports:   0600-063f : 0000:00:01.3
+/proc/ioports:     0600-0603 : ACPI PM1a_EVT_BLK
+/proc/ioports:     0604-0605 : ACPI PM1a_CNT_BLK
+/proc/ioports:     0608-060b : ACPI PM_TMR
+/proc/ioports:   0700-070f : 0000:00:01.3
+/proc/ioports: 0cf8-0cff : PCI conf1
+/proc/ioports: 0d00-ffff : PCI Bus 0000:00
+/proc/ioports:   afe0-afe3 : ACPI GPE0_BLK
+/proc/ioports:   c000-c0ff : 0000:00:03.0
+/proc/ioports:   c100-c13f : 0000:00:06.0
+/proc/ioports:   c140-c17f : 0000:00:07.0
+/proc/ioports:   c180-c19f : 0000:00:02.0
+/proc/ioports:   c1a0-c1bf : 0000:00:05.0
+/proc/ioports:     c1a0-c1bf : uhci_hcd
+/proc/ioports:   c1c0-c1df : 0000:00:05.1
+/proc/ioports:     c1c0-c1df : uhci_hcd
+/proc/ioports:   c1e0-c1ff : 0000:00:05.2
+/proc/ioports:     c1e0-c1ff : uhci_hcd
+/proc/ioports:   c200-c20f : 0000:00:01.1
+/proc/ioports:     c200-c20f : ata_piix
+/proc/iomem: 00000000-00000fff : Reserved
+/proc/iomem: 00001000-0009fbff : System RAM
+/proc/iomem: 0009fc00-0009ffff : Reserved
+/proc/iomem: 000a0000-000bffff : PCI Bus 0000:00
+/proc/iomem:   000a0000-000bffff : Video RAM area
+/proc/iomem: 000c0000-000c99ff : Video ROM
+/proc/iomem: 000ca000-000cadff : Adapter ROM
+/proc/iomem: 000cb000-000cd3ff : Adapter ROM
+/proc/iomem: 000f0000-000fffff : Reserved
+/proc/iomem:   000f0000-000fffff : System ROM
+/proc/iomem: 00100000-13fdffff : System RAM
+/proc/iomem:   08000000-0890d3df : Kernel code
+/proc/iomem:   0890e000-08c25fff : Kernel rodata
+/proc/iomem:   08c26000-08d5bcbf : Kernel data
+/proc/iomem:   08e5a000-08ecdfff : Kernel bss
+/proc/iomem: 13fe0000-13ffffff : Reserved
+/proc/iomem: 14000000-febfffff : PCI Bus 0000:00
+/proc/iomem:   f4000000-f7ffffff : 0000:00:02.0
+/proc/iomem:     f4000000-f4ffffff : vesafb
+/proc/iomem:   f8000000-fbffffff : 0000:00:02.0
+/proc/iomem:   fc000000-fc03ffff : 0000:00:03.0
+/proc/iomem:   fc050000-fc053fff : 0000:00:04.0
+/proc/iomem:   fc054000-fc055fff : 0000:00:02.0
+/proc/iomem:   fc056000-fc0560ff : 0000:00:03.0
+/proc/iomem:   fc057000-fc057fff : 0000:00:05.7
+/proc/iomem:     fc057000-fc057fff : ehci_hcd
+/proc/iomem:   fc058000-fc058fff : 0000:00:06.0
+/proc/iomem:   febf8000-febfbfff : 0000:00:06.0
+/proc/iomem:     febf8000-febfbfff : virtio-pci-modern
+/proc/iomem:   febfc000-febfffff : 0000:00:07.0
+/proc/iomem:     febfc000-febfffff : virtio-pci-modern
+/proc/iomem: fec00000-fec003ff : IOAPIC 0
+/proc/iomem: fee00000-fee00fff : Local APIC
+/proc/iomem: feffc000-feffffff : Reserved
+/proc/iomem: fffc0000-ffffffff : Reserved
+/proc/interrupts:            CPU0       CPU1       CPU2       CPU3       CPU4       CPU5       CPU6       CPU7       
+/proc/interrupts:   1:          0          0        453          0          0          0          0          0   IO-APIC   1-edge      i8042
+/proc/interrupts:   8:          0          0          0          0          0          0          0          0   IO-APIC   8-edge      rtc0
+/proc/interrupts:   9:          0          0          0          0          0          0          0          0   IO-APIC   9-fasteoi   acpi
+/proc/interrupts:  10:          0          0          0          0          0          0         27          0   IO-APIC  10-fasteoi   ehci_hcd:usb1, uhci_hcd:usb2
+/proc/interrupts:  11:          0          0          0          0          0          0          0          0   IO-APIC  11-fasteoi   uhci_hcd:usb3, uhci_hcd:usb4, virtio1
+/proc/interrupts:  12:          0          3          0          0          0          0          0          0   IO-APIC  12-edge      i8042
+/proc/interrupts:  14:          0          0          0          0     251959          0          0          0   IO-APIC  14-edge      ata_piix
+/proc/interrupts:  15:          0          0          0          0          0      16212          0          0   IO-APIC  15-edge      ata_piix
+/proc/interrupts:  24:          0          0          0          0          0          0          0          0   PCI-MSI 98304-edge      virtio0-config
+/proc/interrupts:  25:          0         26          0          0          0          0          0          0   PCI-MSI 98305-edge      virtio0-virtqueues
+/proc/interrupts: NMI:          0          0          0          0          0          0          0          0   Non-maskable interrupts
+/proc/interrupts: LOC:     267135     265149     266609     265094     265655     265058     267025     264568   Local timer interrupts
+/proc/interrupts: SPU:          0          0          0          0          0          0          0          0   Spurious interrupts
+/proc/interrupts: PMI:          0          0          0          0          0          0          0          0   Performance monitoring interrupts
+/proc/interrupts: IWI:          0          0          0          0          0          0          0          0   IRQ work interrupts
+/proc/interrupts: RTR:          0          0          0          0          0          0          0          0   APIC ICR read retries
+/proc/interrupts: RES:      11200       3791       8502       5120       9977       3885       9309       5076   Rescheduling interrupts
+/proc/interrupts: CAL:     140267      80827     119628      94982      77744      68757     120545     106357   Function call interrupts
+/proc/interrupts: TLB:       3732       4778       2700       3431       1719       5781       2395       3697   TLB shootdowns
+/proc/interrupts: TRM:          0          0          0          0          0          0          0          0   Thermal event interrupts
+/proc/interrupts: THR:          0          0          0          0          0          0          0          0   Threshold APIC interrupts
+/proc/interrupts: DFR:          0          0          0          0          0          0          0          0   Deferred Error APIC interrupts
+/proc/interrupts: MCE:          0          0          0          0          0          0          0          0   Machine check exceptions
+/proc/interrupts: MCP:          4          4          4          4          4          4          4          4   Machine check polls
+/proc/interrupts: HYP:          1          1          1          1          1          1          1          1   Hypervisor callback interrupts
+/proc/interrupts: ERR:          0
+/proc/interrupts: MIS:          0
+/proc/interrupts: PIN:          0          0          0          0          0          0          0          0   Posted-interrupt notification event
+/proc/interrupts: NPI:          0          0          0          0          0          0          0          0   Nested posted-interrupt event
+/proc/interrupts: PIW:          0          0          0          0          0          0          0          0   Posted-interrupt wakeup event
+/proc/meminfo: MemTotal:         307468 kB
+/proc/meminfo: MemFree:          149632 kB
+/proc/meminfo: MemAvailable:     197960 kB
+/proc/meminfo: Buffers:            4644 kB
+/proc/meminfo: Cached:            69264 kB
+/proc/meminfo: SwapCached:        23684 kB
+/proc/meminfo: Active:            59764 kB
+/proc/meminfo: Inactive:          39236 kB
+/proc/meminfo: Active(anon):      45244 kB
+/proc/meminfo: Inactive(anon):    15320 kB
+/proc/meminfo: Active(file):      14520 kB
+/proc/meminfo: Inactive(file):    23916 kB
+/proc/meminfo: Unevictable:           0 kB
+/proc/meminfo: Mlocked:               0 kB
+/proc/meminfo: HighTotal:             0 kB
+/proc/meminfo: HighFree:              0 kB
+/proc/meminfo: LowTotal:         307468 kB
+/proc/meminfo: LowFree:          149632 kB
+/proc/meminfo: SwapTotal:        526332 kB
+/proc/meminfo: SwapFree:         438104 kB
+/proc/meminfo: Zswap:                 0 kB
+/proc/meminfo: Zswapped:              0 kB
+/proc/meminfo: Dirty:              4564 kB
+/proc/meminfo: Writeback:             0 kB
+/proc/meminfo: AnonPages:         17244 kB
+/proc/meminfo: Mapped:             2880 kB
+/proc/meminfo: Shmem:             35472 kB
+/proc/meminfo: KReclaimable:      19788 kB
+/proc/meminfo: Slab:              41956 kB
+/proc/meminfo: SReclaimable:      19788 kB
+/proc/meminfo: SUnreclaim:        22168 kB
+/proc/meminfo: KernelStack:        1184 kB
+/proc/meminfo: PageTables:          468 kB
+/proc/meminfo: SecPageTables:         0 kB
+/proc/meminfo: NFS_Unstable:          0 kB
+/proc/meminfo: Bounce:                0 kB
+/proc/meminfo: WritebackTmp:          0 kB
+/proc/meminfo: CommitLimit:      680064 kB
+/proc/meminfo: Committed_AS:     128840 kB
+/proc/meminfo: VmallocTotal:     692344 kB
+/proc/meminfo: VmallocUsed:        9588 kB
+/proc/meminfo: VmallocChunk:          0 kB
+/proc/meminfo: Percpu:             1152 kB
+/proc/meminfo: HardwareCorrupted:     0 kB
+/proc/meminfo: AnonHugePages:         0 kB
+/proc/meminfo: ShmemHugePages:        0 kB
+/proc/meminfo: ShmemPmdMapped:        0 kB
+/proc/meminfo: FileHugePages:         0 kB
+/proc/meminfo: FilePmdMapped:         0 kB
+/proc/meminfo: HugePages_Total:       0
+/proc/meminfo: HugePages_Free:        0
+/proc/meminfo: HugePages_Rsvd:        0
+/proc/meminfo: HugePages_Surp:        0
+/proc/meminfo: Hugepagesize:       4096 kB
+/proc/meminfo: Hugetlb:               0 kB
+/proc/meminfo: DirectMap4k:       57216 kB
+/proc/meminfo: DirectMap4M:      270336 kB
+/proc/bus/input/devices: I: Bus=0011 Vendor=0001 Product=0001 Version=ab41
+/proc/bus/input/devices: N: Name="AT Translated Set 2 keyboard"
+/proc/bus/input/devices: P: Phys=isa0060/serio0/input0
+/proc/bus/input/devices: S: Sysfs=/devices/platform/i8042/serio0/input/input0
+/proc/bus/input/devices: U: Uniq=
+/proc/bus/input/devices: H: Handlers=sysrq kbd leds 
+/proc/bus/input/devices: B: PROP=0
+/proc/bus/input/devices: B: EV=120013
+/proc/bus/input/devices: B: KEY=4 2000000 3803078 f800d001 feffffdf ffefffff ffffffff fffffffe
+/proc/bus/input/devices: B: MSC=10
+/proc/bus/input/devices: B: LED=7
+/proc/bus/input/devices: 
+dmidecode: # dmidecode 3.4
+dmidecode: Getting SMBIOS data from sysfs.
+dmidecode: SMBIOS 3.0.0 present.
+dmidecode: Table at 0x000F5250.
+dmidecode: 
+dmidecode: Handle 0x0000, DMI type 0, 24 bytes
+dmidecode: BIOS Information
+dmidecode: 	Vendor: SeaBIOS
+dmidecode: 	Version: 1.16.3-2.fc40
+dmidecode: 	Release Date: 04/01/2014
+dmidecode: 	Address: 0xE8000
+dmidecode: 	Runtime Size: 96 kB
+dmidecode: 	ROM Size: 64 kB
+dmidecode: 	Characteristics:
+dmidecode: 		BIOS characteristics not supported
+dmidecode: 		Targeted content distribution is supported
+dmidecode: 	BIOS Revision: 0.0
+dmidecode: 
+dmidecode: Handle 0x0100, DMI type 1, 27 bytes
+dmidecode: System Information
+dmidecode: 	Manufacturer: QEMU
+dmidecode: 	Product Name: Standard PC (i440FX + PIIX, 1996)
+dmidecode: 	Version: pc-i440fx-8.2
+dmidecode: 	Serial Number: Not Specified
+dmidecode: 	UUID: 95cdbcb1-06c8-4d44-906b-03992334b531
+dmidecode: 	Wake-up Type: Power Switch
+dmidecode: 	SKU Number: Not Specified
+dmidecode: 	Family: Not Specified
+dmidecode: 
+dmidecode: Handle 0x0300, DMI type 3, 22 bytes
+dmidecode: Chassis Information
+dmidecode: 	Manufacturer: QEMU
+dmidecode: 	Type: Other
+dmidecode: 	Lock: Not Present
+dmidecode: 	Version: pc-i440fx-8.2
+dmidecode: 	Serial Number: Not Specified
+dmidecode: 	Asset Tag: Not Specified
+dmidecode: 	Boot-up State: Safe
+dmidecode: 	Power Supply State: Safe
+dmidecode: 	Thermal State: Safe
+dmidecode: 	Security Status: Unknown
+dmidecode: 	OEM Information: 0x00000000
+dmidecode: 	Height: Unspecified
+dmidecode: 	Number Of Power Cords: Unspecified
+dmidecode: 	Contained Elements: 0
+dmidecode: 	SKU Number: Not Specified
+dmidecode: 
+dmidecode: Handle 0x0400, DMI type 4, 48 bytes
+dmidecode: Processor Information
+dmidecode: 	Socket Designation: CPU 0
+dmidecode: 	Type: Central Processor
+dmidecode: 	Family: Other
+dmidecode: 	Manufacturer: QEMU
+dmidecode: 	ID: 52 06 0A 00 FF FB 8B 0F
+dmidecode: 	Version: pc-i440fx-8.2
+dmidecode: 	Voltage: Unknown
+dmidecode: 	External Clock: Unknown
+dmidecode: 	Max Speed: 2000 MHz
+dmidecode: 	Current Speed: 2000 MHz
+dmidecode: 	Status: Populated, Enabled
+dmidecode: 	Upgrade: Other
+dmidecode: 	L1 Cache Handle: Not Provided
+dmidecode: 	L2 Cache Handle: Not Provided
+dmidecode: 	L3 Cache Handle: Not Provided
+dmidecode: 	Serial Number: Not Specified
+dmidecode: 	Asset Tag: Not Specified
+dmidecode: 	Part Number: Not Specified
+dmidecode: 	Core Count: 4
+dmidecode: 	Core Enabled: 4
+dmidecode: 	Thread Count: 8
+dmidecode: 	Characteristics: None
+dmidecode: 
+dmidecode: Handle 0x1000, DMI type 16, 23 bytes
+dmidecode: Physical Memory Array
+dmidecode: 	Location: Other
+dmidecode: 	Use: System Memory
+dmidecode: 	Error Correction Type: Multi-bit ECC
+dmidecode: 	Maximum Capacity: 320 MB
+dmidecode: 	Error Information Handle: Not Provided
+dmidecode: 	Number Of Devices: 1
+dmidecode: 
+dmidecode: Handle 0x1100, DMI type 17, 40 bytes
+dmidecode: Memory Device
+dmidecode: 	Array Handle: 0x1000
+dmidecode: 	Error Information Handle: Not Provided
+dmidecode: 	Total Width: Unknown
+dmidecode: 	Data Width: Unknown
+dmidecode: 	Size: 320 MB
+dmidecode: 	Form Factor: DIMM
+dmidecode: 	Set: None
+dmidecode: 	Locator: DIMM 0
+dmidecode: 	Bank Locator: Not Specified
+dmidecode: 	Type: RAM
+dmidecode: 	Type Detail: Other
+dmidecode: 	Speed: Unknown
+dmidecode: 	Manufacturer: QEMU
+dmidecode: 	Serial Number: Not Specified
+dmidecode: 	Asset Tag: Not Specified
+dmidecode: 	Part Number: Not Specified
+dmidecode: 	Rank: Unknown
+dmidecode: 	Configured Memory Speed: Unknown
+dmidecode: 	Minimum Voltage: Unknown
+dmidecode: 	Maximum Voltage: Unknown
+dmidecode: 	Configured Voltage: Unknown
+dmidecode: 
+dmidecode: Handle 0x1300, DMI type 19, 31 bytes
+dmidecode: Memory Array Mapped Address
+dmidecode: 	Starting Address: 0x00000000000
+dmidecode: 	Ending Address: 0x00013FFFFFF
+dmidecode: 	Range Size: 320 MB
+dmidecode: 	Physical Array Handle: 0x1000
+dmidecode: 	Partition Width: 1
+dmidecode: 
+dmidecode: Handle 0x2000, DMI type 32, 11 bytes
+dmidecode: System Boot Information
+dmidecode: 	Status: No errors detected
+dmidecode: 
+dmidecode: Handle 0x7F00, DMI type 127, 4 bytes
+dmidecode: End Of Table
+dmidecode: 
