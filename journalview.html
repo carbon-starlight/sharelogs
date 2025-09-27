@@ -238,6 +238,12 @@
 
     <script>
         function setNowAsValue() {
+            if (window.manualSince) {
+                return
+            }
+            if (window.manualUntil) {
+                return
+            }
             const shareFrom = document.getElementById('share-from');
             const shareTo = document.getElementById('share-to');
             const now = new Date();
@@ -261,6 +267,8 @@
 
             shareTo.value = `${yyyy}-${mm}-${dd}T${hh}:${min}`;
             shareFrom.value = `${yyyyf}-${mmf}-${ddf}T${hhf}:${minf}`
+
+            console.log("Now was set as value")
         }
 
         // Set on load
@@ -375,6 +383,11 @@
                 document.body.style.fontFamily = "rubik";
                 console.log(document.body.style.fontFamily)
                 break;
+            case 'b':
+                document.body.style.fontFamily = "jost";
+                console.log(document.body.style.fontFamily)
+                break;
+            
             }
         }
         });
@@ -414,6 +427,21 @@
         import baseX from 'https://cdn.jsdelivr.net/npm/base-x@5.0.1/+esm' 
         window.baseX = baseX
 
+        // HOW TO: URL PARAMS
+
+        // Forum administrators may specify specific information
+        // that should be shared in the link leading to this page.
+        // 
+        // Query parameters look like this:
+        // (spaces are added for clarity and should be omitted)
+        // sharelogs.org / ? x=a & y=b & z=c,d,e
+        // ************* ^ @ ### @ ### @ #######
+        // Order of parameters doesn't matter
+
+        // Example of a URL with all params in use:
+        // sharelogs.org/index.html?sources=app1,app2&since=2023-01-01T00:00:00Z&until=2023-01-02T00:00:00Z 
+        // https://sharelogs.org/?since=2025-09-24T19:17:50&until=2025-09-24T20:17:50&sources=app1,app2&
+
         const urlParams = new URLSearchParams(window.location.search);
         console.log("urlParams:", urlParams)
 
@@ -422,6 +450,18 @@
             // console.log(share_logs_from)
             apps_to_share_logs_of.value = share_logs_from.join(' ');
             amount_of_apps_to_share.textContent = share_logs_from.length > 0 ? share_logs_from.length : "all";
+        }
+        if (urlParams.has('since')) {
+            const share_logs_from = urlParams.get('since');
+            console.log(share_logs_from)
+            document.getElementById('share-from').value = share_logs_from;
+            window.manualSince = share_logs_from
+        }
+        if (urlParams.has('until')) {
+            const share_logs_from = urlParams.get('until');
+            console.log(share_logs_from)
+            document.getElementById('share-to').value = share_logs_from;
+            window.manualUntil = share_logs_from
         }
         var fragment = window.location.hash.substring(1);
         // console.log(fragment)
@@ -976,6 +1016,7 @@
                                         // }
                                 }
                                     
+                                var progressBar = document.getElementById('progress');
                                     
                                 processedFiles++;
                                 // console.log(processedFiles, '_/_', numFiles);
