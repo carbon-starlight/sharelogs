@@ -17,3 +17,5 @@ Try it online: https://raw.githack.com/carbon-starlight/sharelogs/main/journalvi
 * More options for forum administrators: more ability to set sharing properties in URL parameters.
 * Server for getting temporal short URLs, termbin style.
 * Ability to password-protect contents of a short URL?
+* Sometimes huge binary blobs are encountered (core dumps?). Learn how to read.
+* Allow to insert custom instructions to read logs from arbitrary file to query. For software not utilising system-wide logging.
