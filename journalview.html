@@ -807,6 +807,7 @@
                         // console.log(typeof headEntryRealtime)
                         // console.log(typeof shareTo)
 
+                        // if (true) {
                         if (headEntryRealtime <= shareTo && tailEntryRealtime >= shareFrom) {
                             console.log('File is relevant to the selected timeframe', file.webkitRelativePath);
 
@@ -864,6 +865,8 @@
                                 //     }
 
                                 // }
+
+                                console.log("Known Entry Array Offsets:", knownEntryArrayOffsets)
 
                                 useBinarySearch = true
                                 // TODO: Check for off-by-one errors
@@ -1054,7 +1057,7 @@
                         });
                         
                     } else {
-                            // console.log("Irrelevant file");
+                            console.log("Irrelevant file; [from, to, head, tail]", file.webkitRelativePath, shareFrom, shareTo, headEntryRealtime, tailEntryRealtime);
 
                             // processedFiles++;
                             // console.log(processedFiles, '_/_', numFiles);
