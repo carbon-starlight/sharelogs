@@ -507,6 +507,7 @@
                 for (const key in element) { if (element.hasOwnProperty(key)) { verbose += "    " + key + "=" + element[key] + "\n" } }
                 logsElement.innerHTML += '<details><summary>' + color1 + (new Date(Math.floor(parseInt(element.__REALTIME_TIMESTAMP) / 1000))).toLocaleString('en-US', {month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false}).replace(/,/g, '') + ' ' + element._HOSTNAME + ' ' + element.SYSLOG_IDENTIFIER + ('_PID' in element ? ('[' + element._PID + ']: ') : ':') + element.MESSAGE + color2 + '</summary>' + verbose + '</details>'; 
                 // console.log(element.MESSAGE)
+                // NOT FIRST FORMATTER. Color logs from fragment in universal function
             });
             uploaded_logs_division.style.display = "";
             static_url_output.value = document.URL  // TODO: check for URL format
@@ -630,7 +631,10 @@
                 if (element.PRIORITY == 7) { color1 = "<font color=\"gray\">"; color2 = "</font>" }
                 verbose = ""
                 for (const key in element) { if (element.hasOwnProperty(key)) { verbose += "    " + (key == "MESSAGE" || key == "SYSLOG_IDENTIFIER" || key == "PRIORITY" ? "<font color=\"white\">" : "<font color=\"lightgreen\">") + (key == "MESSAGE" ? "<strong>" : "") + key + "=" + element[key] + (key == "MESSAGE" ? "</strong>" : "") + (key == "MESSAGE" || key == "SYSLOG_IDENTIFIER" || key == "PRIORITY" ? "</font>" : "") + "\n" } }
-                logsElement.innerHTML += '<details><summary>' + color1 + (new Date(Math.floor(parseInt(element.__REALTIME_TIMESTAMP) / 1000))).toLocaleString('en-US', {month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false}).replace(/,/g, '') + ' ' + element._HOSTNAME + ' ' + element.SYSLOG_IDENTIFIER + '[' + element._PID + ']: ' + element.MESSAGE + color2 + '</summary>' + verbose + '</details>'; 
+                // Nice coloring
+                // logsElement.innerHTML += '<details><summary>' + color1 + (new Date(Math.floor(parseInt(element.__REALTIME_TIMESTAMP) / 1000))).toLocaleString('en-US', {month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false}).replace(/,/g, '') + ' ' + element._HOSTNAME + ' ' + (element.SYSLOG_IDENTIFIER ? element.SYSLOG_IDENTIFIER : element._COMM) + '[' + element._PID + ']: ' + element.MESSAGE + color2 + '</summary>' + verbose + '</details>'; 
+                // Conventional coloring
+                logsElement.innerHTML += '<details><summary>' + (new Date(Math.floor(parseInt(element.__REALTIME_TIMESTAMP) / 1000))).toLocaleString('en-US', {month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false}).replace(/,/g, '') + ' ' + element._HOSTNAME + ' ' + (element.SYSLOG_IDENTIFIER ? element.SYSLOG_IDENTIFIER : element._COMM) + '[' + element._PID + ']: ' + color1 + element.MESSAGE + color2 + '</summary>' + verbose + '</details>'; 
                 // console.log(element.MESSAGE)
 
             });
@@ -681,6 +685,8 @@
 
                 compressedBlob.arrayBuffer().then((arrayBuffer) => {
                     const uint8Array = new Uint8Array(arrayBuffer);
+                    console.log(uint8Array)
+                    window.compressed_logs_ui8a = uint8Array
 
                     console.log("123456")
                     
@@ -1086,11 +1092,241 @@
     
     </script>
 
-    <div id="quick_settings_panel">
+
+
+    <style>
+        .button-group {
+            display: flex;
+            justify-content: flex-start; /* Change this to center or flex-end for other alignments */
+            padding: 0px;
+            padding-top: 20px;
+        }
+        .button-row {
+            display: flex;
+            justify-content: space-between; /* Distributes space between left, center, and right groups */
+            /* padding: 20px; */
+        }
+        .button {
+            background-color: black; /* Green */
+            border: none;
+            color: white;
+            padding: 10px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 1px; /* Add spacing between buttons */
+            transition: background-color 0.3s;
+            font-family: lexend, sans;
+            font-size: medium;
+        }
+        .button:hover {
+            background-color: gray;
+        }
+
+    </style>
+
+    <!-- <style>
+        .switch-container {
+            display: inline-block;
+            position: relative;
+        }
+        input[type="checkbox"] {
+            display: none; /* Hide the checkbox */
+        }
+        .switch-button {
+            background-color: black; /* Green for 'On' */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="checkbox"]:checked + .switch-button {
+            background-color: white;
+            color: black;
+        }
+        input[type="checkbox"]:checked + .switch-button::after {
+            content: 'OFF'; /* Change text to 'Off' when checked */
+        }
+        .switch-button::after {
+            content: 'ON'; /* Default text */
+        }
+    </style> -->
+
+
+
+    <div id="quick_settings_panel" class="button-row">
         <!-- A single-line panel with icons allowing quick interface adjustments -->
         <!-- C                           Open external  -->
         <!-- Color -->
+
+        <div class="button-group" style="justify-content: flex-start;">
+            <button class="button">
+                <i class="fa-solid fa-palette"></i>
+            </button>
+            <button class="button" id="sort-button">
+                <!-- <i class="fa-solid fa-arrow-down-1-9"></i> -->
+                <i class="fa-solid fa-arrow-down-9-1"></i>
+            </button>
+            <button class="button">
+                <i class="fa-solid fa-filter"></i>
+            </button>
+        </div>
+
+        <div class="button-group" style="justify-content: center;">
+            <button class="button" title="Show logs of level 7 (debug)" id="debug-button">
+                <i class="fa-solid fa-bug-slash"></i> <!-- 🐞︎ -->
+            </button>
+            <button class="button" title="Show logs of levels 5 and 6 (info and notice)" id="info-button">
+                <i class="fa-solid fa-circle-info"></i> <!-- 🛈 -->
+            </button>
+            <button class="button" title="Show logs of level 4 (warning)" id="warning-button">
+                <i class="fa-solid fa-triangle-exclamation"></i> <!-- ⚠ -->
+            </button>
+            <button class="button" title="Show logs of levels 0-3 (critical, alert and emergency)" id="critical-button">
+                <i class="fa-solid fa-radiation"></i> <!-- ☢ -->
+            </button>
+
+                <!-- <label class="switch-container">
+                    <input type="checkbox">
+                    <span class="switch-button"></span>
+                </label> -->
+        </div>
+
+        <div class="button-group" style="justify-content: flex-end;">
+            <!-- <button class="button">
+                
+            </button> -->
+            <button class="button" title="Expand the logs division full-screen" id="expand_logs_division_button">
+                <b>Expand&nbsp&nbsp</b><i class="fa-solid fa-expand"></i>
+                <!-- <i class="fa-solid fa-maximize"></i> -->
+            </button>
+        </div>
     </div>
+
+    <script>
+        // make it so when expand_logs_division_button is clicked, the logs division is expanded to full-screen
+        document.getElementById("expand_logs_division_button").addEventListener("click", function() {
+            if (document.getElementById("logs").style.width != "95vw") {
+                
+                document.getElementById("logs").style.width = "95vw";
+                document.getElementById("logs").style.height = "90vh";
+                document.getElementById("logs").style.maxHeight = "32em";
+                document.getElementById("logs").style.position = "relative";
+                document.getElementById("logs").style.left = "50%";
+                document.getElementById("logs").style.transform = "translateX(-50%)";
+                document.getElementById("expand_logs_division_button").style.background = "white";
+                document.getElementById("expand_logs_division_button").style.color = "black";
+            } else {
+                
+                document.getElementById("expand_logs_division_button").style.background = "black";
+                document.getElementById("expand_logs_division_button").style.color = "white";
+                document.getElementById("logs").style.width = "";
+                document.getElementById("logs").style.height = "";
+                document.getElementById("logs").style.maxHeight = "12em";
+                document.getElementById("logs").style.position = "";
+                document.getElementById("logs").style.left = "";
+                document.getElementById("logs").style.transform = "";
+            }
+        })
+
+        document.getElementById("debug-button").addEventListener("click", function() {
+            if (document.getElementById("debug-button").style.background == "white") {
+                document.getElementById("debug-button").style.background = "black";
+                document.getElementById("debug-button").style.color = "white";
+                window.showLevel7 = false;
+                console.log("window.showLevel7:", window.showLevel7)
+            } else {
+                document.getElementById("debug-button").style.background = "white";
+                document.getElementById("debug-button").style.color = "black";
+                window.showLevel7 = true;
+                console.log("window.showLevel7:", window.showLevel7)
+            }
+        })
+
+        document.getElementById("info-button").addEventListener("click", function() {
+            if (document.getElementById("info-button").style.background == "white") {
+                document.getElementById("info-button").style.background = "black";
+                document.getElementById("info-button").style.color = "white";
+                window.showLevel5And6 = false;
+                console.log("window.showLevel5And6:", window.showLevel5And6)
+            } else {
+                document.getElementById("info-button").style.background = "white";
+                document.getElementById("info-button").style.color = "black";
+                window.showLevel5And6 = true;
+                console.log("window.showLevel5And6:", window.showLevel5And6)
+            }
+        })
+
+        document.getElementById("warning-button").addEventListener("click", function() {
+            if (document.getElementById("warning-button").style.background == "white") {
+                document.getElementById("warning-button").style.background = "black";
+                document.getElementById("warning-button").style.color = "white";
+                window.showLevel4 = false;
+                console.log("window.showLevel4:", window.showLevel4)
+            } else {
+                document.getElementById("warning-button").style.background = "white";
+                document.getElementById("warning-button").style.color = "black";
+                window.showLevel4 = true;
+                console.log("window.showLevel4:", window.showLevel4)
+            }
+        })
+
+        document.getElementById("critical-button").addEventListener("click", function() {
+            if (document.getElementById("critical-button").style.background == "white") {
+                document.getElementById("critical-button").style.background = "black";
+                document.getElementById("critical-button").style.color = "white";
+                window.showLevel3 = false;
+                console.log("window.showLevel3:", window.showLevel3)
+            } else {
+                document.getElementById("critical-button").style.background = "white";
+                document.getElementById("critical-button").style.color = "black";
+                window.showLevel3 = true;
+                console.log("window.showLevel3:", window.showLevel3)
+                console.log(Object.keys(window));
+            }
+        })
+
+        document.getElementById("sort-button").addEventListener("click", function() {
+            if (document.getElementById("sort-button").style.background == "white") {
+                document.getElementById("sort-button").style.background = "black";
+                document.getElementById("sort-button").style.color = "white";
+                window.sort = false;
+                console.log("window.sort:", window.sort, extracted_logs)
+                
+                const logs = document.getElementById("logs");
+                const details = Array.from(logs.querySelectorAll("details")); // Get all <details> elements
+                details.reverse().forEach(detail => logs.appendChild(detail)); // Re-append to the parent
+            } else {
+                document.getElementById("sort-button").style.background = "white";
+                document.getElementById("sort-button").style.color = "black";
+                window.sort = true;
+                console.log("window.sort:", window.sort)
+
+                const logs = document.getElementById("logs");
+                const details = Array.from(logs.querySelectorAll("details")); // Get all <details> elements
+                details.reverse().forEach(detail => logs.appendChild(detail)); // Re-append to the parent
+            }
+        })
+
+    </script>
+
+    <!-- AI-written; check
+        0: emerg: (Emergency) - System is unusable.
+        1: alert: (Alert) - Action must be taken immediately.
+        2: crit: (Critical) - Critical conditions.
+        3: err: (Error) - Error conditions.
+        4: warning: (Warning) - Warning conditions.
+        5: notice: (Notice) - Normal but significant condition.
+        6: info: (Informational) - Informational messages.
+        7: debug: (Debug) - Debug-level messages. -->
+
 
     <div id="uploaded_logs_division" style="display: none;">
         <pre id="logs" class="scanlines" style="font-family: 'Source Code Pro', '3270', monospace; overflow-x:auto; overflow-y: auto; max-height: 12em;">
@@ -1123,6 +1359,123 @@
             </div>
             <p class="link_share_clarification">The data is temporarily <span title="No permanent timeframe for storage rotation: oldest files are automatically deleted when it runs out of allocated space"><u>[?]</u></span> stored on my server. Your IP will be logged to prevent spam</p>
         </div>
+    </div>
+
+
+
+    <details style="margin-top: 20px">
+        <summary>Advanced</summary>
+        <a href="#" id="downloadJsonButton">Download uncompressed logs as JSON</a>
+            <script>
+                document.getElementById("downloadJsonButton").addEventListener("click", function() {
+                    // Convert the array to a JSON string
+                    const jsonString = JSON.stringify(extracted_logs, null, 2); // Beautify the JSON
+                    console.log(jsonString)
+
+                    // Create a Blob object
+                    const blob = new Blob([jsonString], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    console.log(url, blob)
+                    
+                    // Create a temporary link element
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'data.json'; // The file name for the download
+
+                    // Programmatically click the link to trigger the download
+                    document.body.appendChild(a);
+                    a.click();
+
+                    // Clean up and remove the link
+                    a.remove();
+                    URL.revokeObjectURL(url);
+                });
+            </script>
+
+
+            <br><br>
+
+
+            <a href="#" id="downloadCompressed">Download compressed logs</a>
+            <script>
+                document.getElementById("downloadCompressed").addEventListener("click", function() {
+                    const blob = new Blob([window.compressed_logs_ui8a], { type: 'application/zip' });
+                    const url = URL.createObjectURL(blob);
+                    console.log("URL:", url, "Blob:", blob, "Uint8Array:", window.compressed_logs_ui8a)
+
+                    
+                    // Create a temporary link element
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'logs.zip'; // The file name for the download
+
+                    // Programmatically click the link to trigger the download
+                    document.body.appendChild(a);
+                    a.click();
+
+                    // Clean up and remove the link
+                    a.remove();
+                    URL.revokeObjectURL(url);
+                });
+            </script>
+
+
+            <br><br>
+
+
+            <a href="#" id="exportConfig">Export configuration to clipboard</a>
+
+
+    </details>
+
+
+
+    <style>
+        footer {
+            display: flex;
+            justify-content: space-around; /* Evenly distribute space */
+            padding: 20px; /* Padding for the footer */
+        }
+        footer a {
+            color: white; /* Link color */
+            text-decoration: none; /* Remove underline */
+            padding: 10px 15px; /* Padding for links */
+        }
+        footer a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+        
+    </style>
+
+    <footer>
+        <a href="#link3" onclick="document.getElementById('about').style.display = 'block';">About</a>
+        <a href="#link1" onclick="document.getElementById('source').style.display = 'block';">Source</a>
+        <a href="#link2" onclick="document.getElementById('issues').style.display = 'block';">File an issue</a>
+        <!-- Move "advanced" here? -->
+    </footer>
+
+    <div id="about" style="display: none;">
+        <h2 id="link3">About ShareLogs</h2>
+        <p>Sharing your system logs online may be 
+            annoying: you either upload a bunch of 
+            screenshots (if forum configuration allows 
+            you to) or pipe them to a text file 
+            using complex terminal commands (coloring 
+            and metadata not preserved). This tool 
+            aims to make uploading logs without loosing 
+            highlighting and metadata as easy as possible 
+            for any non-tech savvy user.</p>
+        <p>I aim to include extensive instruments for 
+            technical forum administrators to fine-tune
+            what data and how should be shared directly
+            in the link leading here to take
+            load off people who are bad with computers
+            and allow them to upload in a few clicks.
+        </p>
+        <h3>FAQ</h3>
+        <p>Q: How is the data encoded?<br>
+            A: Extracted data is taken as JSON, compressed 
+            with Kanzi and >write why base81/7?<</p>
     </div>
 </body>
 </html>
