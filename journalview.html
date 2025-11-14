@@ -14,7 +14,7 @@
             background-color: #F6F6F6;
             color: #444;
             padding: 0 10px;
-            background-color: black;
+            background-color: #111;
             color: white;
             /* font-family: '3270'; */
             font-family: lexend, noto-sans, sans;
@@ -211,7 +211,7 @@
                     } */
                     
                     
-                    </style>
+    </style>
 
 
 
@@ -393,16 +393,16 @@
         });
 
 
-        // const go = new Go();
-        // go.argv = ["kanzi", "-c", "-i", ""];
-        // go.stdin = new Uint8Array([65,66,67,68]);  //not working
+        const go = new Go();
+        go.argv = ["kanzi", "-c", "-i", ".."];
+        go.stdin = new Uint8Array([65,66,67,68]);  //not working
         
-        // WebAssembly.instantiateStreaming(fetch("kanzi.wasm"), go.importObject).then(
-        //     (results) => {
-        //         go.run(results.instance);
-        //         console.log(go);
-        //     },
-        // );
+        WebAssembly.instantiateStreaming(fetch("kanzi.wasm"), go.importObject).then(
+            (results) => {
+                go.run(results.instance);
+                console.log(go);
+            },
+        );
             // TODO: Implement Kanzi compression. Figure out how to pass bytes to
             // the script and get stdout back.
     
@@ -440,7 +440,9 @@
 
         // Example of a URL with all params in use:
         // sharelogs.org/index.html?sources=app1,app2&since=2023-01-01T00:00:00Z&until=2023-01-02T00:00:00Z 
-        // https://sharelogs.org/?since=2025-09-24T19:17:50&until=2025-09-24T20:17:50&sources=app1,app2&
+        // https://sharelogs.org/?since=2025-09-24T19:17:50&until=2025-09-24T20:17:50&sources=app1,app2&levels=0,1,2,3,4&censor=yes&compress=yes&path=/var/log/dnf5.log&regex=2025-10-03.*lr_headercb.*&
+        //                       ▓░░░░░▒░░░░░░░░░░░░░░░░░░░▓░░░░░▒░░░░░░░░░░░░░░░░░░░▓░░░░░░░▒░░░░▒░░░░▓░░░░░░░░▒░▒░▒░▒░▓░░░░░░▒░░░▓░░░░░░░░▒░░░▓░░░░▒░░░░░░░░░░░░░░░░░▓░░░░░▒░░░░░░░░░░░░░░░░░░░░░░░░░▓
+        //                       ██████🭩████
 
         const urlParams = new URLSearchParams(window.location.search);
         console.log("urlParams:", urlParams)
@@ -463,6 +465,45 @@
             document.getElementById('share-to').value = share_logs_from;
             window.manualUntil = share_logs_from
         }
+        if (urlParams.has('levels')) {
+            const levels = urlParams.get('levels').split(',');
+            console.log(levels)
+            if (levels.includes("1") || levels.includes("2") || levels.includes("3")) {
+                window.share_critical = true;
+            }
+            if (levels.includes("4")) {
+                window.share_warning = true;
+            }
+            if (levels.includes("5") || levels.includes("6")) {
+                window.share_info = true;
+            }
+            if (levels.includes("7")) {
+                window.share_debug = true;
+            }
+        }
+        if (urlParams.has('censor')) {
+            const censor = urlParams.get('censor');
+            console.log(censor)
+            if (censor == "yes") {
+                window.censor = true;
+                document.getElementById('remove_sensitive_checkbox').checked = true
+            } else {
+                window.censor = false;
+                document.getElementById('remove_sensitive_checkbox').checked = false
+            }
+        }
+        if (urlParams.has('compress')) {
+            const compress = urlParams.get('compress');
+            console.log(compress)
+            if (compress == "yes") {
+                window.compress = true;
+                document.getElementById('lossy_compression_checkbox').checked = true
+            } else {
+                window.compress = false;
+                document.getElementById('lossy_compression_checkbox').checked = false
+            }
+        }
+
         var fragment = window.location.hash.substring(1);
         // console.log(fragment)
         
@@ -611,6 +652,7 @@
                     delete element._SOURCE_REALTIME_TIMESTAMP
                     delete element[""]
                     // element.__REALTIME_TIMESTAMP = element.__REALTIME_TIMESTAMP.toString().slice(-6)
+                    // delete element.__REALTIME_TIMESTAMP
                 }
                 list_of_apps_to_share_logs_from = []
                 apps_to_share_logs_of.value.split(',').forEach(element => { list_of_apps_to_share_logs_from.push(element.trim()) });
@@ -619,6 +661,34 @@
                     if (list_of_apps_to_share_logs_from.includes(element.SYSLOG_IDENTIFIER) == false) {
                         // console.log("Excluded element: ", element)
                         extracted_logs = extracted_logs.filter(log => list_of_apps_to_share_logs_from.includes(log.SYSLOG_IDENTIFIER));
+                        return
+                    }
+                }
+                if (document.getElementById('debug-checkbox').checked == false) {
+                    if (element.PRIORITY == 7) {
+                        extracted_logs = extracted_logs.filter(log => log.PRIORITY != 7);
+                        return
+                    }
+                }
+                if (document.getElementById('info-checkbox').checked == false) {
+                    if (element.PRIORITY == 5 || element.PRIORITY == 6) {
+                        extracted_logs = extracted_logs.filter(log => log.PRIORITY != 5);
+                        extracted_logs = extracted_logs.filter(log => log.PRIORITY != 6);
+                        return
+                    }
+                }
+                if (document.getElementById('warning-checkbox').checked == false) {
+                    if (element.PRIORITY == 4) {
+                        extracted_logs = extracted_logs.filter(log => log.PRIORITY != 4);
+                        return
+                    }
+                }
+                if (document.getElementById('critical-checkbox').checked == false) {
+                    if (element.PRIORITY == 0 || element.PRIORITY == 1 || element.PRIORITY == 2 || element.PRIORITY == 3) {
+                        extracted_logs = extracted_logs.filter(log => log.PRIORITY != 0);
+                        extracted_logs = extracted_logs.filter(log => log.PRIORITY != 1);
+                        extracted_logs = extracted_logs.filter(log => log.PRIORITY != 2);
+                        extracted_logs = extracted_logs.filter(log => log.PRIORITY != 3);
                         return
                     }
                 }
@@ -651,6 +721,7 @@
             // way 1: compression stream
 
             const arr = extracted_logs;
+            console.log('arr', arr)
 
             // Convert array to JSON blob, get a byte stream, compress, and get a Blob
             const json = JSON.stringify(arr);
@@ -660,6 +731,11 @@
             console.log('compressedStream:', compressedStream)
             const compressedBlob = new Response(compressedStream).blob().then((compressedBlob) => {
                 
+                const PKcompressedDataDefault = pako.deflate(json);
+                console.log('PKcompressedDataDefault length; PKcompressedDataDefault:', PKcompressedDataDefault.length, PKcompressedDataDefault);
+
+                const PKcompressedData = pako.deflate(json, { level: 9 });
+                console.log('PKcompressedData length; source length; PKcompressedData; source:', PKcompressedData.length, json.length, PKcompressedData, json);
                 
                 
                 
@@ -1159,6 +1235,25 @@
         }
     </style> -->
 
+    <style>
+        .hidden-checkbox {
+            display: none; /* Hide the actual checkbox */
+        }
+        /* .button input:checked + i {
+            color: black; 
+            background-color: white; 
+        }
+        .button input:checked {
+            background-color: white; 
+            color: black; 
+        } */
+        label:has(input[type="checkbox"]:checked) {
+            background-color: white;
+            color: black;
+        }
+    </style>
+
+
 
 
     <div id="quick_settings_panel" class="button-row">
@@ -1180,18 +1275,37 @@
         </div>
 
         <div class="button-group" style="justify-content: center;">
+            <!--
             <button class="button" title="Show logs of level 7 (debug)" id="debug-button">
-                <i class="fa-solid fa-bug-slash"></i> <!-- 🐞︎ -->
+                <i class="fa-solid fa-bug-slash"></i> <! -- 🐞︎ -- >
             </button>
             <button class="button" title="Show logs of levels 5 and 6 (info and notice)" id="info-button">
-                <i class="fa-solid fa-circle-info"></i> <!-- 🛈 -->
+                <i class="fa-solid fa-circle-info"></i> <! -- 🛈 -- >
             </button>
             <button class="button" title="Show logs of level 4 (warning)" id="warning-button">
-                <i class="fa-solid fa-triangle-exclamation"></i> <!-- ⚠ -->
+                <i class="fa-solid fa-triangle-exclamation"></i> <! -- ⚠ -- >
             </button>
             <button class="button" title="Show logs of levels 0-3 (critical, alert and emergency)" id="critical-button">
-                <i class="fa-solid fa-radiation"></i> <!-- ☢ -->
+                <i class="fa-solid fa-radiation"></i> <! -- ☢ -- >
             </button>
+            -->
+
+            <label class="button" title="Show logs of level 7 (debug)">
+                <input type="checkbox" id="debug-checkbox" class="hidden-checkbox">
+                <i class="fa-solid fa-bug-slash"></i> <!-- 🐞︎ -->
+            </label>
+            <label class="button" title="Show logs of levels 5 and 6 (info and notice)">
+                <input type="checkbox" id="info-checkbox" class="hidden-checkbox">
+                <i class="fa-solid fa-circle-info"></i> <!-- 🛈 -->
+            </label>
+            <label class="button" title="Show logs of level 4 (warning)">
+                <input type="checkbox" id="warning-checkbox" class="hidden-checkbox">
+                <i class="fa-solid fa-triangle-exclamation"></i> <!-- ⚠ -->
+            </label>
+            <label class="button" title="Show logs of levels 0-3 (critical, alert and emergency)">
+                <input type="checkbox" id="critical-checkbox" class="hidden-checkbox">
+                <i class="fa-solid fa-radiation"></i> <!-- ☢ -->
+            </label>
 
                 <!-- <label class="switch-container">
                     <input type="checkbox">
@@ -1363,72 +1477,6 @@
 
 
 
-    <details style="margin-top: 20px">
-        <summary>Advanced</summary>
-        <a href="#" id="downloadJsonButton">Download uncompressed logs as JSON</a>
-            <script>
-                document.getElementById("downloadJsonButton").addEventListener("click", function() {
-                    // Convert the array to a JSON string
-                    const jsonString = JSON.stringify(extracted_logs, null, 2); // Beautify the JSON
-                    console.log(jsonString)
-
-                    // Create a Blob object
-                    const blob = new Blob([jsonString], { type: 'application/json' });
-                    const url = URL.createObjectURL(blob);
-                    console.log(url, blob)
-                    
-                    // Create a temporary link element
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'data.json'; // The file name for the download
-
-                    // Programmatically click the link to trigger the download
-                    document.body.appendChild(a);
-                    a.click();
-
-                    // Clean up and remove the link
-                    a.remove();
-                    URL.revokeObjectURL(url);
-                });
-            </script>
-
-
-            <br><br>
-
-
-            <a href="#" id="downloadCompressed">Download compressed logs</a>
-            <script>
-                document.getElementById("downloadCompressed").addEventListener("click", function() {
-                    const blob = new Blob([window.compressed_logs_ui8a], { type: 'application/zip' });
-                    const url = URL.createObjectURL(blob);
-                    console.log("URL:", url, "Blob:", blob, "Uint8Array:", window.compressed_logs_ui8a)
-
-                    
-                    // Create a temporary link element
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'logs.zip'; // The file name for the download
-
-                    // Programmatically click the link to trigger the download
-                    document.body.appendChild(a);
-                    a.click();
-
-                    // Clean up and remove the link
-                    a.remove();
-                    URL.revokeObjectURL(url);
-                });
-            </script>
-
-
-            <br><br>
-
-
-            <a href="#" id="exportConfig">Export configuration to clipboard</a>
-
-
-    </details>
-
-
 
     <style>
         footer {
@@ -1448,9 +1496,10 @@
     </style>
 
     <footer>
-        <a href="#link3" onclick="document.getElementById('about').style.display = 'block';">About</a>
-        <a href="#link1" onclick="document.getElementById('source').style.display = 'block';">Source</a>
-        <a href="#link2" onclick="document.getElementById('issues').style.display = 'block';">File an issue</a>
+        <a onclick="document.getElementById('about').style.display == 'none' ? document.getElementById('about').style.display = 'block' : document.getElementById('about').style.display = 'block'; document.getElementById('advanced').style.display = 'none';">About</a>
+        <a href="https://github.com/carbon-starlight/sharelogs">Source</a>
+        <a href="https://github.com/carbon-starlight/sharelogs/issues">File an issue</a>
+        <a onclick="document.getElementById('advanced').style.display == 'none' ? document.getElementById('advanced').style.display = 'block' : document.getElementById('advanced').style.display = 'none'; document.getElementById('about').style.display = 'none';">Advanced</a>
         <!-- Move "advanced" here? -->
     </footer>
 
@@ -1477,5 +1526,72 @@
             A: Extracted data is taken as JSON, compressed 
             with Kanzi and >write why base81/7?<</p>
     </div>
+
+    <div id="advanced" style="display: none;">
+        <a href="#" id="downloadJsonButton">Download uncompressed logs as JSON</a>
+        <p>As they would be presented by <code>journalctl --output json</code>. Logs from other formats get converted to this.</p>
+        <script>
+            document.getElementById("downloadJsonButton").addEventListener("click", function() {
+                // Convert the array to a JSON string
+                const jsonString = JSON.stringify(extracted_logs, null, 2); // Beautify the JSON
+                console.log(jsonString)
+
+                // Create a Blob object
+                const blob = new Blob([jsonString], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                console.log(url, blob)
+                
+                // Create a temporary link element
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'data.json'; // The file name for the download
+
+                // Programmatically click the link to trigger the download
+                document.body.appendChild(a);
+                a.click();
+
+                // Clean up and remove the link
+                a.remove();
+                URL.revokeObjectURL(url);
+            });
+        </script>
+
+
+        <br><br>
+
+
+        <a href="#" id="downloadCompressed">Download compressed logs</a>
+        <p>Uses compression used for the link.</p>
+        <script>
+            document.getElementById("downloadCompressed").addEventListener("click", function() {
+                const blob = new Blob([window.compressed_logs_ui8a], { type: 'application/zip' });
+                const url = URL.createObjectURL(blob);
+                console.log("URL:", url, "Blob:", blob, "Uint8Array:", window.compressed_logs_ui8a)
+
+                
+                // Create a temporary link element
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'logs.zip'; // The file name for the download
+
+                // Programmatically click the link to trigger the download
+                document.body.appendChild(a);
+                a.click();
+
+                // Clean up and remove the link
+                a.remove();
+                URL.revokeObjectURL(url);
+            });
+        </script>
+
+
+        <br><br>
+
+
+        <a href="#" id="exportConfig">Export configuration to clipboard</a>
+        <p>This URL can be used by forum administrators to preset what and how should be shared</p>
+    </div>
+
+
 </body>
 </html>
