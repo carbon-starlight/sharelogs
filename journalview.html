@@ -756,6 +756,45 @@
                 var BASE81F = "!$&'()*+,-./0123456789:;=?@ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz~"
                 var bs81f = window.baseX(BASE81F)
                 console.log(bs81f)
+                var BASE77 = "!$&(+,-./0123456789:;=@ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz~"
+                var bs77 = window.baseX(BASE77)
+
+                // Breaking characters:
+                //                  Not trailing    Trailing only
+                // Telegram MD:     )†              , . ; :
+                // Fractal MD:      )† *‡           , . ; :
+                // Discourse MD:    )† *‡ ' ?‡      , . ;
+                // GitHub Forums:                   , . ; : ~
+                
+                // † unprepended with `(`
+                // ‡ when at least two
+
+                // Rarely supported legal charactres (to exclude): )*'?
+                // URL with .,:;~ should always be followed w/ a single alphaumeric char
+
+                // 1 KiB of data takes:
+                // base chrs
+                //  10  2466  ██████████████████████████████████████▌
+                //  16  2048  ████████████████████████████████
+                //  32  1639  █████████████████████████▋
+                //  58  1399  █████████████████████▉
+                //  62  1376  █████████████████████▌
+                //  64  1366  █████████████████████▍
+                //  77  1308  ████████████████████▌
+                //  81  1293  ████████████████████▎
+                // 128  1171  ██████████████████▎
+                // 256  1024  ████████████████
+                
+                // Calculated with: base^x=2^(8*1024)
+
+                // Bars are ⅛ per 8, generated with:
+
+                // # 🅮 2025 github.com/carbon-starlight
+                // units = int(input("Enter length: "))
+                // uib = 64  # units in bar
+                // print("█"*(units//uib), end="")
+                // blocks = ["", "▏","▎","▍","▌","▋","▊","▉","█"]
+                // print(blocks[round(units%uib * 8 / uib)])
 
                 console.log("12345A")
 
@@ -839,6 +878,9 @@
             console.log('Number of files:', numFiles);
             processedFiles = 0;
 
+            if (logging_system == "journald") {
+                
+            }
 
             for (const file of filteredFiles) {
 
@@ -1159,7 +1201,7 @@
                     });
 
                 });                 
-            }
+            }  // last in
         },
         false,
     );
