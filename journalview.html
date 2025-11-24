@@ -871,337 +871,356 @@
                 const files = Array.from(event.target.files);
                 console.log("All files:", files)
                 filteredFiles = files.filter(file => file.webkitRelativePath.startsWith('log/journal/'));
+                console.log("Filtered files:", filteredFiles)
+                
+                var numFiles = filteredFiles.length;
+                console.log('Number of files:', numFiles);
             }
-            console.log("Filtered files:", filteredFiles)
-            
-            var numFiles = filteredFiles.length;
-            console.log('Number of files:', numFiles);
             processedFiles = 0;
 
+            if (logging_system == "syslog") { console.log("a") } else { console.log(logging_system) }
+
             if (logging_system == "journald") {
-                
-            }
 
-            for (const file of filteredFiles) {
+                for (const file of filteredFiles) {
 
-                // console.log("FILE: ", file)
-                // console.log(file.webkitRelativePath)
-                let item = document.createElement("li");
-                item.textContent = file.webkitRelativePath;
+                    // console.log("FILE: ", file)
+                    // console.log(file.webkitRelativePath)
+                    let item = document.createElement("li");
+                    item.textContent = file.webkitRelativePath;
 
-                const headEntryRealtimeBlob = file.slice(184, 192);
-                // console.log(headEntryRealtimeBlob);
-                // console.log('---');
+                    const headEntryRealtimeBlob = file.slice(184, 192);
+                    // console.log(headEntryRealtimeBlob);
+                    // console.log('---');
 
-                const tailEntryRealtimeBlob = file.slice(192, 200);
-                // console.log(tailEntryRealtimeBlob);
-                // console.log('---');
+                    const tailEntryRealtimeBlob = file.slice(192, 200);
+                    // console.log(tailEntryRealtimeBlob);
+                    // console.log('---');
 
-                // console.log('-+-');
+                    // console.log('-+-');
 
-                const wholeFileAsBlob = file.slice(0);
+                    const wholeFileAsBlob = file.slice(0);
 
-                headEntryRealtimeBlob.arrayBuffer().then(buf => {
-                    let bytes = new Uint8Array(buf);
-                    // console.log(bytes /*...*/);
-                    // console.log('*****')
-                    var x = 1
-                    var view = new DataView(buf);
-                    var value = view.getBigUint64(0, true); // true for little-endian
-                    // console.log(value);
-                    var headEntryRealtime = value;
-
-                    tailEntryRealtimeBlob.arrayBuffer().then(buf => {
-                        // console.log('**+**')
-                        var bytes = new Uint8Array(buf);
+                    headEntryRealtimeBlob.arrayBuffer().then(buf => {
+                        let bytes = new Uint8Array(buf);
                         // console.log(bytes /*...*/);
-                        // console.log(x + 1)
-
+                        // console.log('*****')
+                        var x = 1
                         var view = new DataView(buf);
                         var value = view.getBigUint64(0, true); // true for little-endian
                         // console.log(value);
-                        var tailEntryRealtime = value;
+                        var headEntryRealtime = value;
 
-                        // console.log(headEntryRealtime);
-                        // console.log(tailEntryRealtime);
-                        // console.log('¡!!!!!!!¡');
+                        tailEntryRealtimeBlob.arrayBuffer().then(buf => {
+                            // console.log('**+**')
+                            var bytes = new Uint8Array(buf);
+                            // console.log(bytes /*...*/);
+                            // console.log(x + 1)
 
-                        // console.log(headEntryRealtime <= shareTo && tailEntryRealtime >= shareFrom)
-                        // console.log(headEntryRealtime, shareTo, tailEntryRealtime, shareFrom)
-                        // console.log(typeof headEntryRealtime)
-                        // console.log(typeof shareTo)
+                            var view = new DataView(buf);
+                            var value = view.getBigUint64(0, true); // true for little-endian
+                            // console.log(value);
+                            var tailEntryRealtime = value;
 
-                        // if (true) {
-                        if (headEntryRealtime <= shareTo && tailEntryRealtime >= shareFrom) {
-                            console.log('File is relevant to the selected timeframe', file.webkitRelativePath);
+                            // console.log(headEntryRealtime);
+                            // console.log(tailEntryRealtime);
+                            // console.log('¡!!!!!!!¡');
 
-                            wholeFileAsBlob.arrayBuffer().then(buf => {
-                                let bytes = new Uint8Array(buf);
-                                // console.log(bytes)
-                                // console.log(typeof bytes)
-                                knownEntryArrayOffsets = [];
-                                // console.log('aoe: ', bytes.slice(98, 106))
-                                amountOfEntries = bytes[152] * 256 ** 0 + bytes[153] * 256 ** 1 + bytes[154] * 256 ** 2 + bytes[155] * 256 ** 3 + bytes[156] * 256 ** 4 + bytes[157] * 256 ** 5 + bytes[158] * 256 ** 6 + bytes[159] * 256 ** 7;
-                                processedEntries = 0;
+                            // console.log(headEntryRealtime <= shareTo && tailEntryRealtime >= shareFrom)
+                            // console.log(headEntryRealtime, shareTo, tailEntryRealtime, shareFrom)
+                            // console.log(typeof headEntryRealtime)
+                            // console.log(typeof shareTo)
 
-                                entryArrayOffset = bytes[176] * 256 ** 0 + bytes[177] * 256 ** 1 + bytes[178] * 256 ** 2 + bytes[179] * 256 ** 3 + bytes[180] * 256 ** 4 + bytes[181] * 256 ** 5 + bytes[182] * 256 ** 6 + bytes[183] * 256 ** 7;
-                                // console.log(entryArrayOffset)
-                                // console.log("////****\\\\\\")
+                            // if (true) {
+                            if (headEntryRealtime <= shareTo && tailEntryRealtime >= shareFrom) {
+                                console.log('File is relevant to the selected timeframe', file.webkitRelativePath);
 
-                                // console.log('06:', bytes[entryArrayOffset])
-                                entryArraySize = bytes[entryArrayOffset + 8] + bytes[entryArrayOffset + 9] * 256 + bytes[entryArrayOffset + 10] * 256 ** 2
-                                nextEntryArrayOffset = convertBytesToInt(bytes.slice(entryArrayOffset + 16, entryArrayOffset + 24), "le64")
+                                wholeFileAsBlob.arrayBuffer().then(buf => {
+                                    let bytes = new Uint8Array(buf);
+                                    // console.log(bytes)
+                                    // console.log(typeof bytes)
+                                    knownEntryArrayOffsets = [];
+                                    // console.log('aoe: ', bytes.slice(98, 106))
+                                    amountOfEntries = bytes[152] * 256 ** 0 + bytes[153] * 256 ** 1 + bytes[154] * 256 ** 2 + bytes[155] * 256 ** 3 + bytes[156] * 256 ** 4 + bytes[157] * 256 ** 5 + bytes[158] * 256 ** 6 + bytes[159] * 256 ** 7;
+                                    processedEntries = 0;
 
-                                while (nextEntryArrayOffset != 0) {
+                                    entryArrayOffset = bytes[176] * 256 ** 0 + bytes[177] * 256 ** 1 + bytes[178] * 256 ** 2 + bytes[179] * 256 ** 3 + bytes[180] * 256 ** 4 + bytes[181] * 256 ** 5 + bytes[182] * 256 ** 6 + bytes[183] * 256 ** 7;
+                                    // console.log(entryArrayOffset)
+                                    // console.log("////****\\\\\\")
+
+                                    // console.log('06:', bytes[entryArrayOffset])
+                                    entryArraySize = bytes[entryArrayOffset + 8] + bytes[entryArrayOffset + 9] * 256 + bytes[entryArrayOffset + 10] * 256 ** 2
+                                    nextEntryArrayOffset = convertBytesToInt(bytes.slice(entryArrayOffset + 16, entryArrayOffset + 24), "le64")
+
+                                    while (nextEntryArrayOffset != 0) {
+                                            
+                                        // TODO: 32 or 64
+                                        for (let i = 0; i < (entryArraySize - 8) / 8; i++) {
+                                            knownEntryArrayOffsets.push(convertBytesToInt(bytes.slice(nextEntryArrayOffset + 24 + i * 4, nextEntryArrayOffset + 28 + i * 4), "le32"))
+                                        }
                                         
-                                    // TODO: 32 or 64
-                                    for (let i = 0; i < (entryArraySize - 8) / 8; i++) {
-                                        knownEntryArrayOffsets.push(convertBytesToInt(bytes.slice(nextEntryArrayOffset + 24 + i * 4, nextEntryArrayOffset + 28 + i * 4), "le32"))
+                                        nextEntryArrayOffset = convertBytesToInt(bytes.slice(nextEntryArrayOffset + 16, nextEntryArrayOffset + 24), "le64")
+                                        entryArraySize = bytes[nextEntryArrayOffset + 8] + bytes[nextEntryArrayOffset + 9] * 256 + bytes[nextEntryArrayOffset + 10] * 256 ** 2
+                                        
+                                        // console.log('Entry Array Size:', entryArraySize)
+                                        // console.log('Next Entry Array Offset:', nextEntryArrayOffset)
+                                        // console.log('Known Entry Array Offsets:', knownEntryArrayOffsets)
+
                                     }
                                     
-                                    nextEntryArrayOffset = convertBytesToInt(bytes.slice(nextEntryArrayOffset + 16, nextEntryArrayOffset + 24), "le64")
-                                    entryArraySize = bytes[nextEntryArrayOffset + 8] + bytes[nextEntryArrayOffset + 9] * 256 + bytes[nextEntryArrayOffset + 10] * 256 ** 2
-                                    
-                                    // console.log('Entry Array Size:', entryArraySize)
-                                    // console.log('Next Entry Array Offset:', nextEntryArrayOffset)
-                                    // console.log('Known Entry Array Offsets:', knownEntryArrayOffsets)
 
-                                }
-                                
+                                    // knownEntryArrayOffsets contains offsets to entries describing structure of 03 log entries
 
-                                // knownEntryArrayOffsets contains offsets to entries describing structure of 03 log entries
+                                    // TODO: cut off first useless EntryArrays with binary search
+                                    // index = Math.floor(length(knownEntryArrayOffsets) / 2)
+                                    // while (true) {
+                                    //     offset = knownEntryArrayOffsets[index]
+                                    //     realtime = convertBytesToInt(bytes.slice(offset + 24, offset + 32), "le64")
+                                    //     if (realtime < shareFrom) {
+                                    //         // we at the left from the first one
+                                    //         previouslyCheckedIndex = index
+                                    //         index = Math.floor(index * 1.5)
+                                    //     } else if (realtime > shareFrom) {
+                                    //         // we at the right from the first one
+                                    //         previouslyCheckedIndex = index
+                                    //         index = Math.floor(index / 2)
+                                    //     } else {
+                                    //         break
+                                    //     }
 
-                                // TODO: cut off first useless EntryArrays with binary search
-                                // index = Math.floor(length(knownEntryArrayOffsets) / 2)
-                                // while (true) {
-                                //     offset = knownEntryArrayOffsets[index]
-                                //     realtime = convertBytesToInt(bytes.slice(offset + 24, offset + 32), "le64")
-                                //     if (realtime < shareFrom) {
-                                //         // we at the left from the first one
-                                //         previouslyCheckedIndex = index
-                                //         index = Math.floor(index * 1.5)
-                                //     } else if (realtime > shareFrom) {
-                                //         // we at the right from the first one
-                                //         previouslyCheckedIndex = index
-                                //         index = Math.floor(index / 2)
-                                //     } else {
-                                //         break
-                                //     }
+                                    // }
 
-                                // }
+                                    console.log("Known Entry Array Offsets:", knownEntryArrayOffsets)
 
-                                console.log("Known Entry Array Offsets:", knownEntryArrayOffsets)
+                                    useBinarySearch = true
+                                    // TODO: Check for off-by-one errors
 
-                                useBinarySearch = true
-                                // TODO: Check for off-by-one errors
-
-                                if (useBinarySearch) {
-                                    var o = knownEntryArrayOffsets[Math.floor(knownEntryArrayOffsets.length / 2) - 2]
-                                    var r = convertBytesToInt(bytes.slice(o + 24, o + 32), "le64")
-                                    if (r < shareFrom) {
-                                        var o = knownEntryArrayOffsets[Math.floor(knownEntryArrayOffsets.length * 0.75) - 2]
+                                    if (useBinarySearch) {
+                                        var o = knownEntryArrayOffsets[Math.floor(knownEntryArrayOffsets.length / 2) - 2]
                                         var r = convertBytesToInt(bytes.slice(o + 24, o + 32), "le64")
                                         if (r < shareFrom) {
-                                            // o in the last ¼
-                                            knownEntryArrayOffsets = knownEntryArrayOffsets.slice(Math.floor(knownEntryArrayOffsets.length * 0.75) - 2)
+                                            var o = knownEntryArrayOffsets[Math.floor(knownEntryArrayOffsets.length * 0.75) - 2]
+                                            var r = convertBytesToInt(bytes.slice(o + 24, o + 32), "le64")
+                                            if (r < shareFrom) {
+                                                // o in the last ¼
+                                                knownEntryArrayOffsets = knownEntryArrayOffsets.slice(Math.floor(knownEntryArrayOffsets.length * 0.75) - 2)
+                                            } else {
+                                                // o in the first ¾, but not first ½
+                                                knownEntryArrayOffsets = knownEntryArrayOffsets.slice(Math.floor(knownEntryArrayOffsets.length / 2) - 2)
+                                            }
+                                        } else if (r > shareFrom) {
+                                            // o in the first ½
+                                            var o = knownEntryArrayOffsets[Math.floor(knownEntryArrayOffsets.length / 4) - 2]
+                                            var r = convertBytesToInt(bytes.slice(o + 24, o + 32), "le64")
+                                            if (r > shareFrom) {
+                                                // o in the first ¼
+                                                knownEntryArrayOffsets = knownEntryArrayOffsets
+                                            } else {
+                                                // o in the first ½, but not first ¼
+                                                knownEntryArrayOffsets = knownEntryArrayOffsets.slice(Math.floor(knownEntryArrayOffsets.length / 4) - 2)
+                                            }
                                         } else {
-                                            // o in the first ¾, but not first ½
-                                            knownEntryArrayOffsets = knownEntryArrayOffsets.slice(Math.floor(knownEntryArrayOffsets.length / 2) - 2)
+                                            // o is offset to the exact entry, remove everything before it
+                                            knownEntryArrayOffsets = knownEntryArrayOffsets.slice(knownEntryArrayOffsets.indexOf(o) - 1)
                                         }
-                                    } else if (r > shareFrom) {
-                                        // o in the first ½
-                                        var o = knownEntryArrayOffsets[Math.floor(knownEntryArrayOffsets.length / 4) - 2]
-                                        var r = convertBytesToInt(bytes.slice(o + 24, o + 32), "le64")
-                                        if (r > shareFrom) {
-                                            // o in the first ¼
-                                            knownEntryArrayOffsets = knownEntryArrayOffsets
-                                        } else {
-                                            // o in the first ½, but not first ¼
-                                            knownEntryArrayOffsets = knownEntryArrayOffsets.slice(Math.floor(knownEntryArrayOffsets.length / 4) - 2)
-                                        }
-                                    } else {
-                                        // o is offset to the exact entry, remove everything before it
-                                        knownEntryArrayOffsets = knownEntryArrayOffsets.slice(knownEntryArrayOffsets.indexOf(o) - 1)
                                     }
-                                }
-                                // alert(String(o + " " + knownEntryArrayOffsets.length + " " + knownEntryArrayOffsets.indexOf(o)))
+                                    // alert(String(o + " " + knownEntryArrayOffsets.length + " " + knownEntryArrayOffsets.indexOf(o)))
 
-                                // With this 4-sector binary search: 00:02.141
-                                // Without: 00:03.747 (Performance mode)
-                                    
-
-                                for (const offset of knownEntryArrayOffsets) {
-                                    // Iterating through known logs (collections of 01 data objects)
-                                    // console.log('03:', bytes[offset])
-                                    data_offsets = []
-                                    data_entries = []
-                                    size = bytes[offset + 8] + bytes[offset + 9] * 256 + bytes[offset + 10] * 256 ** 2
-                                    seqnum = convertBytesToInt(bytes.slice(offset + 16, offset + 24), "le64")
-                                    // console.log('Working with realtime: ', bytes.slice(offset + 24, offset + 32))
-                                    realtime = convertBytesToInt(bytes.slice(offset + 24, offset + 32), "le64")
-                                    monotonic = convertBytesToInt(bytes.slice(offset + 32, offset + 40), "le64")
-                                    boot_id = bytes.slice(offset + 40, offset + 56)
-                                    xor_hash = convertBytesToInt(bytes.slice(offset + 56, offset + 64), "le64")
-
-                                    // console.log(bytes.slice(offset, offset + 128).toString())
-
-                                    // console.log('Size:', size)
-                                    // console.log('Seqnum:', seqnum)
-                                    // console.log('Realtime:', realtime)
-                                    // console.log('Monotonic:', monotonic)
-                                    // console.log('Boot ID:', boot_id)
-                                    // console.log('Xor Hash:', xor_hash)
-                                    
-                                    data_objects = (size - 56) / 4  // assuming 32, TODO
-
-                                    if (!(realtime >= shareFrom && realtime <= shareTo)) {
-                                        processedEntries++;
-                                        // console.log('Realtime is not in the selected timeframe')
+                                    // With this 4-sector binary search: 00:02.141
+                                    // Without: 00:03.747 (Performance mode)
                                         
-                                        var progressBar = document.getElementById('progress');
-                                        progressBar.value = Number(processedFiles / numFiles * 100 + processedEntries / amountOfEntries / numFiles * 100);
-                                        // console.log('Progress bar is: ', progressBar)
+
+                                    for (const offset of knownEntryArrayOffsets) {
+                                        // Iterating through known logs (collections of 01 data objects)
+                                        // console.log('03:', bytes[offset])
+                                        data_offsets = []
+                                        data_entries = []
+                                        size = bytes[offset + 8] + bytes[offset + 9] * 256 + bytes[offset + 10] * 256 ** 2
+                                        seqnum = convertBytesToInt(bytes.slice(offset + 16, offset + 24), "le64")
+                                        // console.log('Working with realtime: ', bytes.slice(offset + 24, offset + 32))
+                                        realtime = convertBytesToInt(bytes.slice(offset + 24, offset + 32), "le64")
+                                        monotonic = convertBytesToInt(bytes.slice(offset + 32, offset + 40), "le64")
+                                        boot_id = bytes.slice(offset + 40, offset + 56)
+                                        xor_hash = convertBytesToInt(bytes.slice(offset + 56, offset + 64), "le64")
+
+                                        // console.log(bytes.slice(offset, offset + 128).toString())
+
+                                        // console.log('Size:', size)
+                                        // console.log('Seqnum:', seqnum)
+                                        // console.log('Realtime:', realtime)
+                                        // console.log('Monotonic:', monotonic)
+                                        // console.log('Boot ID:', boot_id)
+                                        // console.log('Xor Hash:', xor_hash)
+                                        
+                                        data_objects = (size - 56) / 4  // assuming 32, TODO
+
+                                        if (!(realtime >= shareFrom && realtime <= shareTo)) {
+                                            processedEntries++;
+                                            // console.log('Realtime is not in the selected timeframe')
+                                            
+                                            var progressBar = document.getElementById('progress');
+                                            progressBar.value = Number(processedFiles / numFiles * 100 + processedEntries / amountOfEntries / numFiles * 100);
+                                            // console.log('Progress bar is: ', progressBar)
+                                            // console.log('Processed entries:', processedEntries);
+                                            // console.log('Amount of entries:', amountOfEntries);
+
+                                            // console.log('Setting progress bar to: ', Number(processedFiles / numFiles * 100 + processedEntries / amountOfEntries / numFiles * 100));
+
+                                            // Check if, by chance, all relevant logs are already extracted
+
+                                            if (realtime > shareTo) {
+                                                console.log('All logs from given file are extracted')
+                                                amountOfEntries = processedEntries
+                                                break
+                                                // Assuming all logs are in order, right?
+                                            }
+
+                                            continue
+                                        }
+
+                                        // Iterating through data objects
+
+                                        for (let i = 0; i < data_objects; i++) {
+                                            data_offset_offset = offset + 56 + i * 4
+                                            data_offset = convertBytesToInt(bytes.slice(data_offset_offset, data_offset_offset + 4), "le32")
+                                            // console.log('Data offset:', data_offset)
+                                            data_offsets.push(data_offset)
+
+                                            // console.log('01:', bytes[data_offset])
+                                            size = bytes[data_offset + 8] + bytes[data_offset + 9] * 256 + bytes[data_offset + 10] * 256 ** 2
+                                            // console.log('hash is: ', bytes.slice(data_offset + 16, data_offset + 24).toString())
+                                            hash = convertBytesToInt(bytes.slice(data_offset + 16, data_offset + 24), "le64")
+                                            next_hash_offset = convertBytesToInt(bytes.slice(data_offset + 24, data_offset + 32), "le64")
+                                            next_field_offset = convertBytesToInt(bytes.slice(data_offset + 32, data_offset + 40), "le64")
+                                            entry_offset = convertBytesToInt(bytes.slice(data_offset + 40, data_offset + 48), "le64")
+                                            entry_array_offset = convertBytesToInt(bytes.slice(data_offset + 48, data_offset + 56), "le64")
+                                            n_entries = convertBytesToInt(bytes.slice(data_offset + 56, data_offset + 64), "le64")
+                                            // console.log('Size:', size)
+                                            // console.log('Hash:', hash)
+                                            // console.log('Next Hash Offset:', next_hash_offset)
+                                            // console.log('Next Field Offset:', next_field_offset)
+                                            // console.log('Entry Offset:', entry_offset)
+                                            // console.log('Entry Array Offset:', entry_array_offset)
+                                            // console.log('N Entries:', n_entries)
+                                            tail_entry_array_offset = convertBytesToInt(bytes.slice(data_offset + 64, data_offset + 68), "le32")
+                                            tail_entry_array_n_entries = convertBytesToInt(bytes.slice(data_offset + 68, data_offset + 72), "le32")
+                                            payload = bytes.slice(data_offset + 72, data_offset + size)
+                                            const decoder = new TextDecoder('utf-8');
+                                            const string = decoder.decode(payload);
+                                            // console.log('String:', string)
+                                            data_entries.push(string)
+                                        }
+
+                                        // Making the single log entry
+                                        const entry = {
+                                            "__SEQNUM": seqnum,
+                                            "__REALTIME_TIMESTAMP": realtime,
+                                            "__MONOTONIC_TIMESTAMP": monotonic,
+                                            "_BOOT_ID": boot_id,
+                                            
+                                        };
+
+                                        data_entries.forEach((entryStr) => {
+                                        const [key, ...rest] = entryStr.split('=');
+                                        const value = rest.join('=');
+                                        entry[key] = value;
+                                        });
+                                        
+                                        // console.log('Entry:', entry)
+                                        
+                                        extracted_logs.push(entry)
+
+                                        processedEntries++;
+
                                         // console.log('Processed entries:', processedEntries);
                                         // console.log('Amount of entries:', amountOfEntries);
 
-                                        // console.log('Setting progress bar to: ', Number(processedFiles / numFiles * 100 + processedEntries / amountOfEntries / numFiles * 100));
-
-                                        // Check if, by chance, all relevant logs are already extracted
-
-                                        if (realtime > shareTo) {
-                                            console.log('All logs from given file are extracted')
-                                            amountOfEntries = processedEntries
-                                            break
-                                            // Assuming all logs are in order, right?
-                                        }
-
-                                        continue
-                                    }
-
-                                    // Iterating through data objects
-
-                                    for (let i = 0; i < data_objects; i++) {
-                                        data_offset_offset = offset + 56 + i * 4
-                                        data_offset = convertBytesToInt(bytes.slice(data_offset_offset, data_offset_offset + 4), "le32")
-                                        // console.log('Data offset:', data_offset)
-                                        data_offsets.push(data_offset)
-
-                                        // console.log('01:', bytes[data_offset])
-                                        size = bytes[data_offset + 8] + bytes[data_offset + 9] * 256 + bytes[data_offset + 10] * 256 ** 2
-                                        // console.log('hash is: ', bytes.slice(data_offset + 16, data_offset + 24).toString())
-                                        hash = convertBytesToInt(bytes.slice(data_offset + 16, data_offset + 24), "le64")
-                                        next_hash_offset = convertBytesToInt(bytes.slice(data_offset + 24, data_offset + 32), "le64")
-                                        next_field_offset = convertBytesToInt(bytes.slice(data_offset + 32, data_offset + 40), "le64")
-                                        entry_offset = convertBytesToInt(bytes.slice(data_offset + 40, data_offset + 48), "le64")
-                                        entry_array_offset = convertBytesToInt(bytes.slice(data_offset + 48, data_offset + 56), "le64")
-                                        n_entries = convertBytesToInt(bytes.slice(data_offset + 56, data_offset + 64), "le64")
-                                        // console.log('Size:', size)
-                                        // console.log('Hash:', hash)
-                                        // console.log('Next Hash Offset:', next_hash_offset)
-                                        // console.log('Next Field Offset:', next_field_offset)
-                                        // console.log('Entry Offset:', entry_offset)
-                                        // console.log('Entry Array Offset:', entry_array_offset)
-                                        // console.log('N Entries:', n_entries)
-                                        tail_entry_array_offset = convertBytesToInt(bytes.slice(data_offset + 64, data_offset + 68), "le32")
-                                        tail_entry_array_n_entries = convertBytesToInt(bytes.slice(data_offset + 68, data_offset + 72), "le32")
-                                        payload = bytes.slice(data_offset + 72, data_offset + size)
-                                        const decoder = new TextDecoder('utf-8');
-                                        const string = decoder.decode(payload);
-                                        // console.log('String:', string)
-                                        data_entries.push(string)
-                                    }
-
-                                    // Making the single log entry
-                                    const entry = {
-                                        "__SEQNUM": seqnum,
-                                        "__REALTIME_TIMESTAMP": realtime,
-                                        "__MONOTONIC_TIMESTAMP": monotonic,
-                                        "_BOOT_ID": boot_id,
+                                        // progressBar.value = Number(processedFiles / numFiles * 100 + processedEntries / amountOfEntries / numFiles  * 100);
                                         
-                                    };
+                                        // const startTime = Date.now();
+                                        // while (Date.now() - startTime < 15000) {
+                                            // // do nothing
+                                            // }
+                                    }
+                                        
+                                    var progressBar = document.getElementById('progress');
+                                        
+                                    processedFiles++;
+                                    // console.log(processedFiles, '_/_', numFiles);
+                                    progressBar.value = Number(processedFiles / numFiles * 100);
 
-                                    data_entries.forEach((entryStr) => {
-                                    const [key, ...rest] = entryStr.split('=');
-                                    const value = rest.join('=');
-                                    entry[key] = value;
-                                    });
-                                    
-                                    // console.log('Entry:', entry)
-                                    
-                                    extracted_logs.push(entry)
+                                    if (processedFiles === numFiles) {
+                                        console.log('All files processed');
+                                        progressBar.style.display = 'none';
 
-                                    processedEntries++;
+                                        document.dispatchEvent(new CustomEvent('allLogsExtracted'));
 
-                                    // console.log('Processed entries:', processedEntries);
-                                    // console.log('Amount of entries:', amountOfEntries);
+                                    }
+                                    
 
-                                    // progressBar.value = Number(processedFiles / numFiles * 100 + processedEntries / amountOfEntries / numFiles  * 100);
-                                    
-                                    // const startTime = Date.now();
-                                    // while (Date.now() - startTime < 15000) {
-                                        // // do nothing
-                                        // }
-                                }
-                                    
-                                var progressBar = document.getElementById('progress');
-                                    
-                                processedFiles++;
+                                        // _packed_ struct DataObject {
+                                            //         ObjectHeader object;
+                                            //         le64_t hash;
+                                            //         le64_t next_hash_offset;
+                                            //         le64_t next_field_offset;
+                                            //         le64_t entry_offset; /* the first array entry we store inline */
+                                            //         le64_t entry_array_offset;
+                                            //         le64_t n_entries;
+                                            //         union {                                                         \
+                                        //                 struct {                                                \
+                                        //                         uint8_t payload[] ;                             \
+                                        //                 } regular;                                              \
+                                        //                 struct {                                                \
+                                        //                         le32_t tail_entry_array_offset;                 \
+                                        //                         le32_t tail_entry_array_n_entries;              \
+                                        //                         uint8_t payload[];                              \
+                                        //                 } compact;                                              \
+                                        //         };                                                              \
+                                        // };
+                                
+                            });
+                            
+                        } else {
+                                console.log("Irrelevant file; [from, to, head, tail]", file.webkitRelativePath, shareFrom, shareTo, headEntryRealtime, tailEntryRealtime);
+
+                                // processedFiles++;
                                 // console.log(processedFiles, '_/_', numFiles);
-                                progressBar.value = Number(processedFiles / numFiles * 100);
+                                // progressBar.value = Number(processedFiles / numFiles * 100);
+                                
+                                numFiles--;
 
                                 if (processedFiles === numFiles) {
-                                    console.log('All files processed');
-                                    progressBar.style.display = 'none';
+                                        console.log('All files processed');
+                                        progressBar.style.display = 'none';
+                                        allLogsWereExtracted = true;
 
-                                    document.dispatchEvent(new CustomEvent('allLogsExtracted'));
-
+                                        document.dispatchEvent(new CustomEvent('allLogsExtracted'));
+                                        
                                 }
-                                
-
-                                    // _packed_ struct DataObject {
-                                        //         ObjectHeader object;
-                                        //         le64_t hash;
-                                        //         le64_t next_hash_offset;
-                                        //         le64_t next_field_offset;
-                                        //         le64_t entry_offset; /* the first array entry we store inline */
-                                        //         le64_t entry_array_offset;
-                                        //         le64_t n_entries;
-                                        //         union {                                                         \
-                                    //                 struct {                                                \
-                                    //                         uint8_t payload[] ;                             \
-                                    //                 } regular;                                              \
-                                    //                 struct {                                                \
-                                    //                         le32_t tail_entry_array_offset;                 \
-                                    //                         le32_t tail_entry_array_n_entries;              \
-                                    //                         uint8_t payload[];                              \
-                                    //                 } compact;                                              \
-                                    //         };                                                              \
-                                    // };
-                            
+                            };
                         });
-                        
-                    } else {
-                            console.log("Irrelevant file; [from, to, head, tail]", file.webkitRelativePath, shareFrom, shareTo, headEntryRealtime, tailEntryRealtime);
 
-                            // processedFiles++;
-                            // console.log(processedFiles, '_/_', numFiles);
-                            // progressBar.value = Number(processedFiles / numFiles * 100);
-                            
-                            numFiles--;
-
-                            if (processedFiles === numFiles) {
-                                    console.log('All files processed');
-                                    progressBar.style.display = 'none';
-                                    allLogsWereExtracted = true;
-
-                                    document.dispatchEvent(new CustomEvent('allLogsExtracted'));
-                                    
-                            }
-                        };
-                    });
-
-                });                 
-            }  // last in
+                    });                 
+                }  // last in
+            } else if (logging_system == "syslog") {
+                const files = Array.from(event.target.files);
+                console.log("All files:", files)
+                filteredFiles = files.filter(file => file.webkitRelativePath.startsWith('log/messages'));
+                console.log("Filtered files:", filteredFiles)
+                for (file in filteredFiles) {
+                    // get plaintext contents of this file to a string
+                    // console.log(files[1]);
+                    filteredFiles[file].text().then((text) => {
+                        console.log(text);
+                        extracted = []
+                        for (line in text.split('\n')) {
+                            extracted.push({"MESSAGE": text.split('\n')[line]})
+                            console.log(extracted[line])
+                        }
+                        console.log(extracted)
+                    })
+                }
+            }
         },
         false,
     );
@@ -1392,62 +1411,62 @@
             }
         })
 
-        document.getElementById("debug-button").addEventListener("click", function() {
-            if (document.getElementById("debug-button").style.background == "white") {
-                document.getElementById("debug-button").style.background = "black";
-                document.getElementById("debug-button").style.color = "white";
-                window.showLevel7 = false;
-                console.log("window.showLevel7:", window.showLevel7)
-            } else {
-                document.getElementById("debug-button").style.background = "white";
-                document.getElementById("debug-button").style.color = "black";
-                window.showLevel7 = true;
-                console.log("window.showLevel7:", window.showLevel7)
-            }
-        })
+        // document.getElementById("debug-button").addEventListener("click", function() {
+        //     if (document.getElementById("debug-button").style.background == "white") {
+        //         document.getElementById("debug-button").style.background = "black";
+        //         document.getElementById("debug-button").style.color = "white";
+        //         window.showLevel7 = false;
+        //         console.log("window.showLevel7:", window.showLevel7)
+        //     } else {
+        //         document.getElementById("debug-button").style.background = "white";
+        //         document.getElementById("debug-button").style.color = "black";
+        //         window.showLevel7 = true;
+        //         console.log("window.showLevel7:", window.showLevel7)
+        //     }
+        // })
 
-        document.getElementById("info-button").addEventListener("click", function() {
-            if (document.getElementById("info-button").style.background == "white") {
-                document.getElementById("info-button").style.background = "black";
-                document.getElementById("info-button").style.color = "white";
-                window.showLevel5And6 = false;
-                console.log("window.showLevel5And6:", window.showLevel5And6)
-            } else {
-                document.getElementById("info-button").style.background = "white";
-                document.getElementById("info-button").style.color = "black";
-                window.showLevel5And6 = true;
-                console.log("window.showLevel5And6:", window.showLevel5And6)
-            }
-        })
+        // document.getElementById("info-button").addEventListener("click", function() {
+        //     if (document.getElementById("info-button").style.background == "white") {
+        //         document.getElementById("info-button").style.background = "black";
+        //         document.getElementById("info-button").style.color = "white";
+        //         window.showLevel5And6 = false;
+        //         console.log("window.showLevel5And6:", window.showLevel5And6)
+        //     } else {
+        //         document.getElementById("info-button").style.background = "white";
+        //         document.getElementById("info-button").style.color = "black";
+        //         window.showLevel5And6 = true;
+        //         console.log("window.showLevel5And6:", window.showLevel5And6)
+        //     }
+        // })
 
-        document.getElementById("warning-button").addEventListener("click", function() {
-            if (document.getElementById("warning-button").style.background == "white") {
-                document.getElementById("warning-button").style.background = "black";
-                document.getElementById("warning-button").style.color = "white";
-                window.showLevel4 = false;
-                console.log("window.showLevel4:", window.showLevel4)
-            } else {
-                document.getElementById("warning-button").style.background = "white";
-                document.getElementById("warning-button").style.color = "black";
-                window.showLevel4 = true;
-                console.log("window.showLevel4:", window.showLevel4)
-            }
-        })
+        // document.getElementById("warning-button").addEventListener("click", function() {
+        //     if (document.getElementById("warning-button").style.background == "white") {
+        //         document.getElementById("warning-button").style.background = "black";
+        //         document.getElementById("warning-button").style.color = "white";
+        //         window.showLevel4 = false;
+        //         console.log("window.showLevel4:", window.showLevel4)
+        //     } else {
+        //         document.getElementById("warning-button").style.background = "white";
+        //         document.getElementById("warning-button").style.color = "black";
+        //         window.showLevel4 = true;
+        //         console.log("window.showLevel4:", window.showLevel4)
+        //     }
+        // })
 
-        document.getElementById("critical-button").addEventListener("click", function() {
-            if (document.getElementById("critical-button").style.background == "white") {
-                document.getElementById("critical-button").style.background = "black";
-                document.getElementById("critical-button").style.color = "white";
-                window.showLevel3 = false;
-                console.log("window.showLevel3:", window.showLevel3)
-            } else {
-                document.getElementById("critical-button").style.background = "white";
-                document.getElementById("critical-button").style.color = "black";
-                window.showLevel3 = true;
-                console.log("window.showLevel3:", window.showLevel3)
-                console.log(Object.keys(window));
-            }
-        })
+        // document.getElementById("critical-button").addEventListener("click", function() {
+        //     if (document.getElementById("critical-button").style.background == "white") {
+        //         document.getElementById("critical-button").style.background = "black";
+        //         document.getElementById("critical-button").style.color = "white";
+        //         window.showLevel3 = false;
+        //         console.log("window.showLevel3:", window.showLevel3)
+        //     } else {
+        //         document.getElementById("critical-button").style.background = "white";
+        //         document.getElementById("critical-button").style.color = "black";
+        //         window.showLevel3 = true;
+        //         console.log("window.showLevel3:", window.showLevel3)
+        //         console.log(Object.keys(window));
+        //     }
+        // })
 
         document.getElementById("sort-button").addEventListener("click", function() {
             if (document.getElementById("sort-button").style.background == "white") {
