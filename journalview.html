@@ -216,7 +216,7 @@
 
 
 </head>
-<body>
+<body id="body">
     <h1 style="text-align: center;">View & Share System Logs</h1>
     <!-- <h1 class="scanlines" style="text-align: center;">View & Share System Logs</h1> -->
 
@@ -509,6 +509,9 @@
         
         var BASE81F = "!$&'()*+,-./0123456789:;=?@ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz~"
         var bs81f = window.baseX(BASE81F)
+        var BASE77 = "!$&(+,-./0123456789:;=@ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz~"
+        var bs77 = window.baseX(BASE77)
+        // See "Breaking characters" table for elaboration.
         
         var imported_logs = urlParams.get('fragment');
         if (fragment) {
@@ -648,7 +651,7 @@
                     delete element._CAP_EFFECTIVE  
                     delete element._SELINUX_CONTEXT  
                     delete element._SYSTEMD_INVOCATION_ID  
-                    delete element.SYSLOG_TIMESTAMP  
+                    // delete element.SYSLOG_TIMESTAMP  // needed when extracting from syslog
                     delete element._SOURCE_REALTIME_TIMESTAMP
                     delete element[""]
                     // element.__REALTIME_TIMESTAMP = element.__REALTIME_TIMESTAMP.toString().slice(-6)
@@ -704,7 +707,7 @@
                 // Nice coloring
                 // logsElement.innerHTML += '<details><summary>' + color1 + (new Date(Math.floor(parseInt(element.__REALTIME_TIMESTAMP) / 1000))).toLocaleString('en-US', {month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false}).replace(/,/g, '') + ' ' + element._HOSTNAME + ' ' + (element.SYSLOG_IDENTIFIER ? element.SYSLOG_IDENTIFIER : element._COMM) + '[' + element._PID + ']: ' + element.MESSAGE + color2 + '</summary>' + verbose + '</details>'; 
                 // Conventional coloring
-                logsElement.innerHTML += '<details><summary>' + (new Date(Math.floor(parseInt(element.__REALTIME_TIMESTAMP) / 1000))).toLocaleString('en-US', {month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false}).replace(/,/g, '') + ' ' + element._HOSTNAME + ' ' + (element.SYSLOG_IDENTIFIER ? element.SYSLOG_IDENTIFIER : element._COMM) + '[' + element._PID + ']: ' + color1 + element.MESSAGE + color2 + '</summary>' + verbose + '</details>'; 
+                logsElement.innerHTML += '<details><summary>' + (element.__REALTIME_TIMESTAMP ? (new Date(Math.floor(parseInt(element.__REALTIME_TIMESTAMP) / 1000))).toLocaleString('en-US', {month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false}).replace(/,/g, '') : element.SYSLOG_TIMESTAMP) + ' ' + element._HOSTNAME + ' ' + (element.SYSLOG_IDENTIFIER ? element.SYSLOG_IDENTIFIER : element._COMM) + ('_PID' in element ? ('[' + element._PID + ']: ') : ':') + color1 + element.MESSAGE + color2 + '</summary>' + verbose + '</details>'; 
                 // console.log(element.MESSAGE)
 
             });
@@ -1213,11 +1216,155 @@
                     filteredFiles[file].text().then((text) => {
                         console.log(text);
                         extracted = []
+                        console.log(text.split('\n'), '12345')
                         for (line in text.split('\n')) {
-                            extracted.push({"MESSAGE": text.split('\n')[line]})
+                            if (text.split('\n')[line] == "") {
+                                console.log('EMPTY LINE', text.split('\n')[line])
+                                break
+                            }
+                            var level = 6
+                            facility = text.split('\n')[line].match(/\w*(?=\.)/)[0]
+                            level = text.split('\n')[line].match(/(?<=\.)\w*/)[0]
+                            console.log(level, '19999')
+
+                            if (level[0] == "emerg") {
+                                level = 0
+                            } else if (level == "alert") {
+                                level = 1
+                            } else if (level == "crit") {
+                                level = 2
+                            } else if (level == "err") {
+                                level = 3
+                            } else if (level == "warning") {
+                                level = 4
+                            } else if (level == "notice") {
+                                level = 5
+                            } else if (level == "info") {
+                                level = 6
+                            } else if (level == "debug") {
+                                level = 7
+                            }
+
+                            const facilityCode = {
+                                "kern": 0,
+                                "user": 1,
+                                "mail": 2,
+                                "daemon": 3,
+                                "auth": 4,
+                                "syslog": 5,
+                                "lpr": 6,
+                                "news": 7,
+                                "uucp": 8,
+                                "cron": 9,
+                                "authpriv": 10,
+                                "ftp": 11,
+                                "ntp": 12,
+                                "security": 13,
+                                "console": 14,
+                                "solaris-cron": 15,
+                                "local0": 16,
+                                "local1": 17,
+                                "local2": 18,
+                                "local3": 19,
+                                "local4": 20,
+                                "local5": 21,
+                                "local6": 22,
+                                "local7": 23
+                            };
+
+                                SYSLOG_FACILITY = facilityCode[facility]
+                            
+                            // ╔═══════╤═══════════════╤═════════╤══════════════════════════════════╗
+                            // ║ Level │ Severity      │ Keyword │ Description                      ║
+                            // ╠═══════╪═══════════════╪═════════╪══════════════════════════════════╣
+                            // ║ 0     │ Emergency     │ emerg   │ System is unusable               ║
+                            // ╟───────┼───────────────┼─────────┼──────────────────────────────────╢
+                            // ║ 1     │ Alert         │ alert   │ Action must be taken immediately ║
+                            // ╟───────┼───────────────┼─────────┼──────────────────────────────────╢
+                            // ║ 2     │ Critical      │ crit    │ Critical conditions              ║
+                            // ╟───────┼───────────────┼─────────┼──────────────────────────────────╢
+                            // ║ 3     │ Error         │ err     │ Error conditions                 ║
+                            // ╟───────┼───────────────┼─────────┼──────────────────────────────────╢
+                            // ║ 4     │ Warning       │ warning │ Warning conditions               ║
+                            // ╟───────┼───────────────┼─────────┼──────────────────────────────────╢
+                            // ║ 5     │ Notice        │ notice  │ Normal but significant condition ║
+                            // ╟───────┼───────────────┼─────────┼──────────────────────────────────╢
+                            // ║ 6     │ Informational │ info    │ Informational messages           ║
+                            // ╟───────┼───────────────┼─────────┼──────────────────────────────────╢
+                            // ║ 7     │ Debug         │ debug   │ Debug-level messages             ║
+                            // ╚═══════╧═══════════════╧═════════╧══════════════════════════════════╝
+                            
+                            // Table 1.  Syslog Message Facilities
+
+                            //   Numerical             Facility
+                            //      Code
+
+                            //       0             kernel messages
+                            //       1             user-level messages
+                            //       2             mail system
+                            //       3             system daemons
+                            //       4             security/authorization messages
+                            //       5             messages generated internally by syslogd
+                            //       6             line printer subsystem
+                            //       7             network news subsystem
+                            //       8             UUCP subsystem
+                            //       9             clock daemon
+                            //      10             security/authorization messages
+                            //      11             FTP daemon
+                            //      12             NTP subsystem
+                            //      13             log audit
+                            //      14             log alert
+                            //      15             clock daemon (note 2)
+                            //      16             local use 0  (local0)
+                            //      17             local use 1  (local1)
+                            //      18             local use 2  (local2)
+                            //      19             local use 3  (local3)
+                            //      20             local use 4  (local4)
+                            //      21             local use 5  (local5)
+                            //      22             local use 6  (local6)
+                            //      23             local use 7  (local7)
+
+                            //    Numerical         Severity
+                            //      Code
+
+                            //       0       Emergency: system is unusable
+                            //       1       Alert: action must be taken immediately
+                            //       2       Critical: critical conditions
+                            //       3       Error: error conditions
+                            //       4       Warning: warning conditions
+                            //       5       Notice: normal but significant condition
+                            //       6       Informational: informational messages
+                            //       7       Debug: debug-level messages
+
+                            //       Table 2. Syslog Message Severities
+
+                            //  https://www.rfc-editor.org/rfc/rfc5424
+
+                            extracted.push({"MESSAGE": text.split('\n')[line].split(": ").slice(1).join(": "),
+                                "SYSLOG_TIMESTAMP": text.split('\n')[line].match(/^... ( |\d)\d \d\d:\d\d:\d\d/) ? text.split('\n')[line].match(/^... ( |\d)\d \d\d:\d\d:\d\d/)[0] : "!#!", 
+                                "_HOSTNAME": text.split('\n')[line].split(/(  | )/)[6],
+                                "SYSLOG_IDENTIFIER": (text.split('\n')[line].split(":")[2].endsWith(' ')) ? "" : text.split('\n')[line].split(/  |\s|\[/g)[5],
+                                "_PID": text.split('\n')[line].split(/(\[|\])/)[2] ? text.split('\n')[line].split(/(\[|\])/)[2] : "",
+                                "PRIORITY": level.toString(),
+                                "SYSLOG_FACILITY": SYSLOG_FACILITY
+                            })
+                            if (extracted[line]._PID == "") {
+                                delete extracted[line]._PID
+                            }
                             console.log(extracted[line])
                         }
-                        console.log(extracted)
+                        console.log("EXTRACTED", extracted)
+                        extracted_logs = extracted
+                        document.dispatchEvent(new CustomEvent('allLogsExtracted'));
+
+                        //  Jul 31 03:00:00 localhost cron.info crond[2352]: USER root pid 2907 cmd run-parts /etc/periodic/hourly
+                        //  Aug  8 05:20:09 localhost syslog.info syslogd started: BusyBox v1.36.1
+                        //  Aug  8 05:20:09 localhost daemon.info init: starting pid 2308, tty '': '/sbin/openrc default'
+                        //  Aug  8 05:20:10 localhost cron.info crond[2354]: crond (busybox 1.36.1) started, log level 8
+                        // SYSLOG_TIMESTAMP _HOSTNAME  ^^  LVL  SYSLOG_ID…
+                        //                         TRANSPORT???
+                        // (?<=(^... ( |\d)\d \d\d:\d\d:\d\d ))\w*
+
                     })
                 }
             }
@@ -1323,7 +1470,7 @@
         <!-- Color -->
 
         <div class="button-group" style="justify-content: flex-start;">
-            <button class="button">
+            <button class="button" id="theme-button">
                 <i class="fa-solid fa-palette"></i>
             </button>
             <button class="button" id="sort-button">
@@ -1352,19 +1499,19 @@
             -->
 
             <label class="button" title="Show logs of level 7 (debug)">
-                <input type="checkbox" id="debug-checkbox" class="hidden-checkbox">
+                <input type="checkbox" id="debug-checkbox" class="hidden-checkbox" checked>
                 <i class="fa-solid fa-bug-slash"></i> <!-- 🐞︎ -->
             </label>
             <label class="button" title="Show logs of levels 5 and 6 (info and notice)">
-                <input type="checkbox" id="info-checkbox" class="hidden-checkbox">
+                <input type="checkbox" id="info-checkbox" class="hidden-checkbox" checked>
                 <i class="fa-solid fa-circle-info"></i> <!-- 🛈 -->
             </label>
             <label class="button" title="Show logs of level 4 (warning)">
-                <input type="checkbox" id="warning-checkbox" class="hidden-checkbox">
+                <input type="checkbox" id="warning-checkbox" class="hidden-checkbox" checked>
                 <i class="fa-solid fa-triangle-exclamation"></i> <!-- ⚠ -->
             </label>
             <label class="button" title="Show logs of levels 0-3 (critical, alert and emergency)">
-                <input type="checkbox" id="critical-checkbox" class="hidden-checkbox">
+                <input type="checkbox" id="critical-checkbox" class="hidden-checkbox" checked>
                 <i class="fa-solid fa-radiation"></i> <!-- ☢ -->
             </label>
 
@@ -1386,6 +1533,19 @@
     </div>
 
     <script>
+        window.theme = "dark";
+        document.getElementById("theme-button").addEventListener("click", function() {
+            if (window.theme == "dark") {
+                window.theme = "retro";
+                console.log("window.theme:", window.theme)
+                document.getElementById("body").className = "scanlines";
+                document.getElementById("body").style.color = "green";
+                document.body.style.fontFamily = "'3270'";
+                document.body.button.style.fontFamily = "'3270'";
+                document.body.input.datetime_local.style.borderColor = "green";
+            }
+        })
+
         // make it so when expand_logs_division_button is clicked, the logs division is expanded to full-screen
         document.getElementById("expand_logs_division_button").addEventListener("click", function() {
             if (document.getElementById("logs").style.width != "95vw") {
