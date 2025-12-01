@@ -1,0 +1,320 @@
+:root {
+  --terminal-green: #BAFF93;
+  --terminal-dim-green: #b3ff93b1;
+  --terminal-green-shadow: #b3ff9334;
+}
+
+.myClass {
+  color: var(--green);
+}
+
+.myOtherClass {
+  background-color: var(--green);
+}
+
+body {
+    /* margin: 40px auto; */
+    /* max-width: 650px; */
+    /* font-size: 18px; */
+    /* background-color: #F6F6F6; */
+    /* color: #444; */
+    /* padding: 0 10px; */
+    /* background-color: #111; */
+    color: var(--terminal-green);
+    font-family: "'3270'";
+    /* font-family: lexend, noto-sans, sans; */
+    /* font-size: larger; */
+    /* scrollbar-color: white black; */
+}
+#drop_zone {
+    border: 2px dashed #bbb;
+    border-radius: 5px;
+    padding: 50px;
+    text-align: center;
+    /* border-color: green; */
+}
+
+
+
+.scanlines {
+    overflow: hidden;
+    position: relative;
+}
+.scanlines:before,
+.scanlines:after {
+    display: block;
+    pointer-events: none;
+    content: "";
+    position: absolute;
+}
+.scanlines:before {
+    width: 100%;
+    height: 2px;
+    z-index: 2147483649;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0.75;
+    animation: scanline 6s linear infinite;
+}
+.scanlines:after {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2147483648;
+    background: linear-gradient(
+        to bottom,
+        transparent 50%,
+        rgba(0, 0, 0, 0.3) 51%
+        );
+        background-size: 100% 4px;
+        animation: scanlines 1s steps(60) infinite;
+    }
+    
+    /* ANIMATE UNIQUE SCANLINE */
+    @keyframes scanline {
+        0% {
+            transform: translate3d(0, 200000%, 0);
+        }
+    }
+    @keyframes scanlines {
+        0% {
+            background-position: 0 50%;
+        }
+    }
+    div {
+        margin: 0;
+        padding: 0;
+    }
+    div.scanlines {
+        position: absolute;
+    }
+
+.datetime-local {
+    background-color: #232323;
+    color: #f3f3f3;
+    border: 2px solid #ffffff;
+    border-radius: 14px; 
+    padding: 7px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+    box-shadow: 0 2px 8px #0002;    
+    /* font-family: "Lexend";   set font not here, but in input[ty…*/
+}
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+
+    filter: invert(100%) brightness(50%) sepia(100%) saturate(10000%) hue-rotate(0.4turn) saturate(400%) hue-rotate(0.1turn);
+}
+
+input[type="checkbox"] {
+    accent-color: var(--terminal-green);
+}
+
+/* Minimal dark styling for all datetime-local inputs */
+input[type="datetime-local"] {
+    font-family: inherit;
+    /* font-size: inherit; */
+    font-size: 16px;
+    background: black;
+    color: var(--terminal-green);
+    border: 1px solid var(--terminal-green);
+    padding: 8px 10px;
+    border-radius: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Keep inner text color in WebKit-based browsers */
+input[type="datetime-local"]::-webkit-datetime-edit,
+input[type="datetime-local"]::-webkit-datetime-edit-fields-wrapper,
+input[type="datetime-local"]::-webkit-datetime-edit-text {
+    color: inherit;
+}
+
+/* Simple accessible focus hint */
+input[type="datetime-local"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(99,102,241,0.08);
+    border-color: rgba(99,102,241,0.7);
+}
+
+input::file-selector-button {
+    font-weight: bold;
+    color: white;
+    padding: 0.5em;
+    border: thin solid white;
+    border-radius: 3px;
+    background-color: #000000;
+}
+
+.upload-btn {
+  cursor: pointer;
+  border: 2.5px solid var(--terminal-green);
+  border-radius: 40px;
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+/* from: style="cursor: pointer; border:#ffffff 2.5px solid; border-radius: 40px; padding: 10px 20px; font-weight: bold;" */
+
+@font-face {
+    font-family: "'3270'";
+    src: url('../fonts/3270-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+progress {
+    display: block;
+    margin: 0 auto;
+}
+
+input[type="text"] {
+    background-color: #232323;
+    color: #f3f3f3;
+    border: 2px solid var(--terminal-green);
+    border-radius: 14px; 
+    padding: 7px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+    box-shadow: 0 2px 8px #0002;
+    font-family: "Lexend", iosevka, sans;
+}
+
+/* Try to fix autosuggestion style overwrite? 
+Futile. Chrome problem.*/
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+-webkit-text-fill-color: #f3f3f3 !important;
+box-shadow: inset 0 0 0 1000px #232323 !important;
+transition: background-color 5000s ease-in-out 0s !important;
+}
+.checkbox-row {
+    margin: 8px 0;
+}
+.checkbox-label {
+    display: inline-block;
+    margin-left: 6px;
+    font-weight: 600;
+}
+.checkbox-clarification {
+    display: block;
+    margin-left: 30px; /* aligns with label text, adjust if needed */
+    color: var(--terminal-dim-green);    /* gray color (Tailwind slate-500-ish) */
+    font-size: 0.875rem; /* slightly smaller than main label */
+    line-height: 1.2;
+}
+.button-group {
+    display: flex;
+    justify-content: flex-start; /* Change this to center or flex-end for other alignments */
+    padding: 0px;
+    padding-top: 20px;
+}
+.button-row {
+    display: flex;
+    justify-content: space-between; /* Distributes space between left, center, and right groups */
+    /* padding: 20px; */
+}
+.button {
+    background-color: black; /* Green */
+    border: none;
+    color: green;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 1px; /* Add spacing between buttons */
+    transition: background-color 0.3s;
+    font-family: lexend, sans;
+    font-size: medium;
+}
+.button:hover {
+    background-color: gray;
+}
+
+.hidden-checkbox {
+    display: none; /* Hide the actual checkbox */
+}
+
+label:has(input[type="checkbox"]:checked) {
+    background-color: white;
+    color: black;
+}
+.link_share_clarification {
+    color: gray;
+    margin-top: 8px;
+}
+
+footer {
+    display: flex;
+    justify-content: space-around; /* Evenly distribute space */
+    padding: 20px; /* Padding for the footer */
+}
+footer a {
+    color: var(--terminal-green); /* Link color */
+    text-decoration: none; /* Remove underline */
+    padding: 10px 15px; /* Padding for links */
+}
+footer a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+
+
+.button-group {
+    display: flex;
+    justify-content: flex-start; /* Change this to center or flex-end for other alignments */
+    padding: 0px;
+    padding-top: 20px;
+}
+.button-row {
+    display: flex;
+    justify-content: space-between; /* Distributes space between left, center, and right groups */
+    /* padding: 20px; */
+}
+.button {
+    background-color: black; /* Green */
+    border: none;
+    color: var(--terminal-green);
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 1px; /* Add spacing between buttons */
+    transition: background-color 0.3s;
+    font-family: lexend, sans;
+    font-size: medium;
+}
+.button:hover {
+    background-color: var(--terminal-dim-green);
+}
+
+.hidden-checkbox {
+    display: none; /* Hide the actual checkbox */
+}
+/* .button input:checked + i {
+    color: black; 
+    background-color: white; 
+}
+.button input:checked {
+    background-color: white; 
+    color: black; 
+} */
+label:has(input[type="checkbox"]:checked) {
+    background-color: var(--terminal-green);
+    color: black;
+}

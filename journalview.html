@@ -212,6 +212,105 @@
                     
                     
     </style>
+    <style>
+        .upload-btn {
+            cursor: pointer;
+            border: 2.5px solid #ffffff;
+            border-radius: 40px;
+            padding: 10px 20px;
+            font-weight: bold;
+        }
+    </style>
+    <style>
+        .link_share_clarification {
+            color: gray;
+            margin-top: 8px;
+        }
+    </style>
+        <style>
+        .checkbox-row {
+            margin: 8px 0;
+        }
+        .checkbox-label {
+            display: inline-block;
+            margin-left: 6px;
+            font-weight: 600;
+        }
+        .checkbox-clarification {
+            display: block;
+            margin-left: 30px; /* aligns with label text, adjust if needed */
+            color: #6b7280;    /* gray color (Tailwind slate-500-ish) */
+            font-size: 0.875rem; /* slightly smaller than main label */
+            line-height: 1.2;
+        }
+    </style>
+    <style>
+        footer {
+            display: flex;
+            justify-content: space-around; /* Evenly distribute space */
+            padding: 20px; /* Padding for the footer */
+        }
+        footer a {
+            color: white; /* Link color */
+            text-decoration: none; /* Remove underline */
+            padding: 10px 15px; /* Padding for links */
+        }
+        footer a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+    </style>
+    <style>
+        .button-group {
+            display: flex;
+            justify-content: flex-start; /* Change this to center or flex-end for other alignments */
+            padding: 0px;
+            padding-top: 20px;
+        }
+        .button-row {
+            display: flex;
+            justify-content: space-between; /* Distributes space between left, center, and right groups */
+            /* padding: 20px; */
+        }
+        .button {
+            background-color: black; /* Green */
+            border: none;
+            color: white;
+            padding: 10px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 1px; /* Add spacing between buttons */
+            transition: background-color 0.3s;
+            font-family: lexend, sans;
+            font-size: medium;
+        }
+        .button:hover {
+            background-color: gray;
+        }
+
+    </style>
+
+    <style>
+        .hidden-checkbox {
+            display: none; /* Hide the actual checkbox */
+        }
+        /* .button input:checked + i {
+            color: black; 
+            background-color: white; 
+        }
+        .button input:checked {
+            background-color: white; 
+            color: black; 
+        } */
+        label:has(input[type="checkbox"]:checked) {
+            background-color: white;
+            color: black;
+        }
+    </style>
+
 
 
 
@@ -277,7 +376,7 @@
         console.log("Navigator:", navigator)
     </script>
     
-    <p style="padding: 10px; text-align: center"><label for="file-picker" class="upload-btn" style="cursor: pointer; border:#ffffff 2.5px solid; border-radius: 40px; padding: 10px 20px; font-weight: bold;">Select the /var/log directory to <i class="fa-solid fa-upload"></i></label>
+    <p style="padding: 10px; text-align: center"><label for="file-picker" class="upload-btn">Select the /var/log directory to <i class="fa-solid fa-upload"></i></label>
         <input
         type="file"
         id="file-picker"
@@ -297,24 +396,6 @@
         style="display: none;"
         >
     </progress></p>
-
-    <style>
-        .checkbox-row {
-            margin: 8px 0;
-        }
-        .checkbox-label {
-            display: inline-block;
-            margin-left: 6px;
-            font-weight: 600;
-        }
-        .checkbox-clarification {
-            display: block;
-            margin-left: 30px; /* aligns with label text, adjust if needed */
-            color: #6b7280;    /* gray color (Tailwind slate-500-ish) */
-            font-size: 0.875rem; /* slightly smaller than main label */
-            line-height: 1.2;
-        }
-    </style>
 
     <div class="checkbox-row" style="margin-top: 1.7em;">
     <input type="checkbox" id="remove_sensitive_checkbox" name="scales" checked />
@@ -707,7 +788,7 @@
                 // Nice coloring
                 // logsElement.innerHTML += '<details><summary>' + color1 + (new Date(Math.floor(parseInt(element.__REALTIME_TIMESTAMP) / 1000))).toLocaleString('en-US', {month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false}).replace(/,/g, '') + ' ' + element._HOSTNAME + ' ' + (element.SYSLOG_IDENTIFIER ? element.SYSLOG_IDENTIFIER : element._COMM) + '[' + element._PID + ']: ' + element.MESSAGE + color2 + '</summary>' + verbose + '</details>'; 
                 // Conventional coloring
-                logsElement.innerHTML += '<details><summary>' + (element.__REALTIME_TIMESTAMP ? (new Date(Math.floor(parseInt(element.__REALTIME_TIMESTAMP) / 1000))).toLocaleString('en-US', {month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false}).replace(/,/g, '') : element.SYSLOG_TIMESTAMP) + ' ' + element._HOSTNAME + ' ' + (element.SYSLOG_IDENTIFIER ? element.SYSLOG_IDENTIFIER : element._COMM) + ('_PID' in element ? ('[' + element._PID + ']: ') : ':') + color1 + element.MESSAGE + color2 + '</summary>' + verbose + '</details>'; 
+                logsElement.innerHTML += '<details><summary>' + (element.__REALTIME_TIMESTAMP ? (new Date(Math.floor(parseInt(element.__REALTIME_TIMESTAMP) / 1000))).toLocaleString('en-US', {month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false}).replace(/,/g, '') : element.SYSLOG_TIMESTAMP) + ' ' + element._HOSTNAME + ' ' + (element.SYSLOG_IDENTIFIER ? element.SYSLOG_IDENTIFIER : (element._COMM ? element._COMM : '')) + ('_PID' in element ? ('[' + element._PID + ']: ') : ': ') + color1 + element.MESSAGE + color2 + '</summary>' + verbose + '</details>'; 
                 // console.log(element.MESSAGE)
 
             });
@@ -1340,10 +1421,12 @@
 
                             //  https://www.rfc-editor.org/rfc/rfc5424
 
+                            words_in_syslogid = text.split('\n')[line].split(":")[2].split(/\s+/).length == 4 ? 1 : 2
+
                             extracted.push({"MESSAGE": text.split('\n')[line].split(": ").slice(1).join(": "),
                                 "SYSLOG_TIMESTAMP": text.split('\n')[line].match(/^... ( |\d)\d \d\d:\d\d:\d\d/) ? text.split('\n')[line].match(/^... ( |\d)\d \d\d:\d\d:\d\d/)[0] : "!#!", 
                                 "_HOSTNAME": text.split('\n')[line].split(/(  | )/)[6],
-                                "SYSLOG_IDENTIFIER": (text.split('\n')[line].split(":")[2].endsWith(' ')) ? "" : text.split('\n')[line].split(/  |\s|\[/g)[5],
+                                "SYSLOG_IDENTIFIER": (text.split('\n')[line].split(":")[2].endsWith(' ')) ? "" : (text.split('\n')[line].split(/  |\s|\[/g)[5].endsWith(':') ? text.split('\n')[line].split(/  |\s|\[/g)[5].slice(0, -1) : text.split('\n')[line].split(/  |\s|\[/g)[5]),
                                 "_PID": text.split('\n')[line].split(/(\[|\])/)[2] ? text.split('\n')[line].split(/(\[|\])/)[2] : "",
                                 "PRIORITY": level.toString(),
                                 "SYSLOG_FACILITY": SYSLOG_FACILITY
@@ -1375,92 +1458,6 @@
 
     
     </script>
-
-
-
-    <style>
-        .button-group {
-            display: flex;
-            justify-content: flex-start; /* Change this to center or flex-end for other alignments */
-            padding: 0px;
-            padding-top: 20px;
-        }
-        .button-row {
-            display: flex;
-            justify-content: space-between; /* Distributes space between left, center, and right groups */
-            /* padding: 20px; */
-        }
-        .button {
-            background-color: black; /* Green */
-            border: none;
-            color: white;
-            padding: 10px 10px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 1px; /* Add spacing between buttons */
-            transition: background-color 0.3s;
-            font-family: lexend, sans;
-            font-size: medium;
-        }
-        .button:hover {
-            background-color: gray;
-        }
-
-    </style>
-
-    <!-- <style>
-        .switch-container {
-            display: inline-block;
-            position: relative;
-        }
-        input[type="checkbox"] {
-            display: none; /* Hide the checkbox */
-        }
-        .switch-button {
-            background-color: black; /* Green for 'On' */
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        input[type="checkbox"]:checked + .switch-button {
-            background-color: white;
-            color: black;
-        }
-        input[type="checkbox"]:checked + .switch-button::after {
-            content: 'OFF'; /* Change text to 'Off' when checked */
-        }
-        .switch-button::after {
-            content: 'ON'; /* Default text */
-        }
-    </style> -->
-
-    <style>
-        .hidden-checkbox {
-            display: none; /* Hide the actual checkbox */
-        }
-        /* .button input:checked + i {
-            color: black; 
-            background-color: white; 
-        }
-        .button input:checked {
-            background-color: white; 
-            color: black; 
-        } */
-        label:has(input[type="checkbox"]:checked) {
-            background-color: white;
-            color: black;
-        }
-    </style>
-
 
 
 
@@ -1538,11 +1535,45 @@
             if (window.theme == "dark") {
                 window.theme = "retro";
                 console.log("window.theme:", window.theme)
+
+                // Get HTML head element
+                let head = document.getElementsByTagName('HEAD')[0];
+
+                // Create new link Element
+                let link = document.createElement('link');
+
+                // set the attributes for link element
+                link.rel = 'stylesheet';
+            
+                link.type = 'text/css';
+            
+                link.href = 'themes/retro.css';
+
+                // Append link element to HTML head
+                head.appendChild(link);
+
                 document.getElementById("body").className = "scanlines";
-                document.getElementById("body").style.color = "green";
-                document.body.style.fontFamily = "'3270'";
-                document.body.button.style.fontFamily = "'3270'";
-                document.body.input.datetime_local.style.borderColor = "green";
+                // document.getElementById("body").style.color = "green";
+                // document.body.style.fontFamily = "'3270'";
+                // document.body.button.style.fontFamily = "'3270'";
+                // document.body.input.datetime_local.style.borderColor = "green";
+            } else {
+                document.getElementById("body").className = "scanlines"
+                window.theme = "dark";
+                console.log("window.theme:", window.theme)
+
+                document.getElementById("body").className = "";
+
+                let head = document.getElementsByTagName('HEAD')[0];
+                const header = document.querySelector('header');
+                const links = head.querySelectorAll('link[rel="stylesheet"]');
+
+                // Iterate over the links and remove the ones that end with .css
+                links.forEach(link => {
+                    if (link.href.endsWith('.css') && link.href.includes('themes/')) {
+                        link.remove();
+                    }
+                });
             }
         })
 
@@ -1667,13 +1698,6 @@
         <pre id="logs" class="scanlines" style="font-family: 'Source Code Pro', '3270', monospace; overflow-x:auto; overflow-y: auto; max-height: 12em;">
         </pre>
 
-        <style>
-            .link_share_clarification {
-                color: gray;
-                margin-top: 8px;
-            }
-        </style>
-
         <div id="static_url_output_div">
             <h3 style="margin-bottom: 5px; display: inline-block">Copy permanent link</h3><h3 id="static_url_output_length" style="margin-bottom: 5px; display: inline-block; float: right; background-color: white; color: black; border-radius: 6px; padding: 1px 15px"><output id="static_url_output_length_output">x</output> symbols</h3>
             <br>
@@ -1699,23 +1723,6 @@
 
 
 
-    <style>
-        footer {
-            display: flex;
-            justify-content: space-around; /* Evenly distribute space */
-            padding: 20px; /* Padding for the footer */
-        }
-        footer a {
-            color: white; /* Link color */
-            text-decoration: none; /* Remove underline */
-            padding: 10px 15px; /* Padding for links */
-        }
-        footer a:hover {
-            text-decoration: underline; /* Underline on hover */
-        }
-        
-    </style>
-
     <footer>
         <a onclick="document.getElementById('about').style.display == 'none' ? document.getElementById('about').style.display = 'block' : document.getElementById('about').style.display = 'block'; document.getElementById('advanced').style.display = 'none';">About</a>
         <a href="https://github.com/carbon-starlight/sharelogs">Source</a>
@@ -1726,7 +1733,7 @@
 
     <div id="about" style="display: none;">
         <h2 id="link3">About ShareLogs</h2>
-        <p>Sharing your system logs online may be 
+        <p>I always found sharing system logs online quite
             annoying: you either upload a bunch of 
             screenshots (if forum configuration allows 
             you to) or pipe them to a text file 
