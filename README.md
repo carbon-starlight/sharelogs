@@ -19,3 +19,9 @@ Try it online: https://raw.githack.com/carbon-starlight/sharelogs/main/journalvi
 * Ability to password-protect contents of a short URL?
 * Sometimes huge binary blobs are encountered (core dumps?). Learn how to read.
 * Allow to insert custom instructions to read logs from arbitrary file to query. For software not utilising system-wide logging.
+
+## Copying
+Usage of the code is allowed under MIT (X11) license. If you fork this project, please, change the name for the fork to be distinguishable. *“Better Sharelogs”* or *“SendLogs”* are fine, *“Sharelogs-NG”* is fine if you take this project after my abandonment, *“Sharelogs”* or *“Sharelogs 2.0”* are not.
+
+> [!NOTE]
+> Move to a copyleft license is being considered. Submit your arguments for or against and vote here: https://github.com/carbon-starlight/sharelogs/discussions/1
